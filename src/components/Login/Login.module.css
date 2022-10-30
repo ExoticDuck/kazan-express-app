@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200;300;400;500;600;700&display=swap");
+
+.Container {
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.GridBox {
+    width: 750px;
+    height: 560px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 700;
+    font-size: 24px;
+    box-sizing: border-box;
+    justify-content: center;
+    position: relative;
+
+    -webkit-box-shadow: 7px 4px 55px 25px rgba(13, 13, 13, 0.2);
+    -moz-box-shadow: 7px 4px 55px 25px rgba(13, 13, 13, 0.2);
+    box-shadow: 7px 4px 55px 25px rgba(13, 13, 13, 0.2);
+}
+
+.LeftBox {
+    height: 100%;
+    width: 375px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 700;
+    font-size: 24px;
+    box-sizing: border-box;
+    justify-content: center;
+    gap: 25px;
+    position: relative;
+}
+.RightBox {
+    height: 100%;
+    width: 375px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    font-family: "IBM Plex Mono", monospace;
+    background-image: url(../../img/background.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.InputBox {
+    width: 80%;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    height: 25px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.Eye {
+    position: absolute;
+    right: 4px;
+    top: -3px;
+    height: 25px;
+    width: 22px;
+}
+
+.Input {
+    width: 80%;
+    padding: 2px;
+    margin: 0;
+    outline: none;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    height: 25px;
+    padding-left: 3px;
+}
+
+.Input[type="password"] {
+    border: none;
+
+    width: 85%;
+    margin: none;
+    float: left;
+    padding: 0;
+    padding-left: 3px;
+}
+.Input[type="text"] {
+    border: none;
+
+    width: 85%;
+    margin: none;
+    float: left;
+    padding: 0;
+    padding-left: 3px;
+}
+
+i {
+    height: 30px;
+    font-size: 18px;
+    margin: 0 auto;
+}
+
+.Logo {
+    position: absolute;
+    top: 40px;
+    width: 75%;
+}
+
+.Qr {
+    width: 120px;
+}
+
+.Button {
+    width: 82%;
+    height: 40px;
+    border-radius: 8px;
+    border: 0;
+    background-color: #ff0000;
+    color: #fff;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 200;
+    font-size: 18px;
+}
+
+.QrContainer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.TextContainer {
+    font-family: "IBM Plex Mono", monospace;
+    color: #fff;
+    font-weight: 400;
+    font-size: 20px;
+    height: fit-content;
+}
