@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/kazan-express-app/static/css/main.5d064fa7.css",
+    "main.js": "/kazan-express-app/static/js/main.dbdcba25.js",
+    "static/js/787.c4fcfc69.chunk.js": "/kazan-express-app/static/js/787.c4fcfc69.chunk.js",
+    "static/media/background.jpg": "/kazan-express-app/static/media/background.fb0b9ea1521a90400221.jpg",
+    "static/media/qr-code.png": "/kazan-express-app/static/media/qr-code.e62e4eb63ee5378b8a7b.png",
+    "static/media/KEstat-icon.png": "/kazan-express-app/static/media/KEstat-icon.88df90059bef804704ff.png",
+    "index.html": "/kazan-express-app/index.html",
+    "main.5d064fa7.css.map": "/kazan-express-app/static/css/main.5d064fa7.css.map",
+    "main.dbdcba25.js.map": "/kazan-express-app/static/js/main.dbdcba25.js.map",
+    "787.c4fcfc69.chunk.js.map": "/kazan-express-app/static/js/787.c4fcfc69.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5d064fa7.css",
+    "static/js/main.dbdcba25.js"
+  ]
+}
