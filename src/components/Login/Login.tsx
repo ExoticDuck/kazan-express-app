@@ -1,19 +1,38 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
 import style from "./Login.module.css"
 import logo from "../../img/KEstat-icon.png";
 import qr from "../../img/qr-code.png";
 
+import {useSelector, useDispatch} from "react-redux"
+import { RootStateType } from '../../store/store';
+import { setEmailAC, setPasswordAC } from '../../store/reducers/LoginReducer';
+
 
 function Login() {
+    
+    let emailValue = useSelector((state: RootStateType) => state.login.email);
+    let passwordValue = useSelector((state: RootStateType) => state.login.password);
+    let dispatch = useDispatch();
+    
     const [showPassword, setShowPassword] = useState(false);
+
+    function emailChangeHandler(e: ChangeEvent<HTMLInputElement>) {
+        let value = e.currentTarget.value.trim();
+        dispatch(setEmailAC(value))
+    }
+    function passwordChangeHandler(e: ChangeEvent<HTMLInputElement>) {
+        let value = e.currentTarget.value.trim();
+        dispatch(setPasswordAC(value))
+    }
+
     return (
         <div className={style.Container}>
             <div className={style.GridBox}>
                 <div className={style.LeftBox}>
                     <img src={logo} alt="logo" className={style.Logo} />
-                    <input className={style.Input} placeholder="Введите email" type={"email"} />
+                    <input className={style.Input} placeholder="Введите email" type={"email"} value={emailValue} onChange={emailChangeHandler}/>
                     <div className={style.InputBox}>
-                        <input className={style.Input} placeholder="Введите пароль" type={showPassword ? "text" : "password"}></input>
+                        <input className={style.Input} placeholder="Введите пароль" type={showPassword ? "text" : "password"} value={passwordValue} onChange={passwordChangeHandler}></input>
                         <div className={style.Eye} onClick={() => setShowPassword(!showPassword)}>
                             <i className={showPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}></i>
                         </div>
@@ -24,7 +43,7 @@ function Login() {
                 <div className={style.RightBox}>
                     <div className={style.TextContainer}>
                         KEstat - это сервис для продавцов KazanExpress. Расширенный функционал по учету товаров, накладных,
-                        заказов. Получай уведомления о заканчивающихся скидках прям из бота! Никаких сторонних CRM, долгих
+                        заказов. Получай уведомления о заканчивающихся скидках прямо из бота! Никаких сторонних CRM, долгих
                         подключений и непонятного интерфейса. Для регистрации перейди в Telegram бот @KEstat_bot или отсканируй
                         QR-код.
                     </div>

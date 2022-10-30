@@ -137,6 +137,14 @@ i {
     font-size: 18px;
 }
 
+.Button:hover {
+    cursor: pointer;
+}
+
+.Button:active {
+    transform: scale(98%);
+}
+
 .QrContainer {
     position: absolute;
     bottom: 0;
