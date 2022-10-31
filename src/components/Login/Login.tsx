@@ -5,14 +5,18 @@ import qr from "../../img/qr-code.png";
 
 import {useSelector, useDispatch} from "react-redux"
 import { RootStateType } from '../../store/store';
-import { setEmailAC, setPasswordAC } from '../../store/reducers/LoginReducer';
+import { LoginTC, setEmailAC, setPasswordAC } from '../../store/reducers/LoginReducer';
+import { useAppDispatch } from './../../store/hooks';
+import { useNavigate } from 'react-router-dom';
 
 
 function Login() {
+
+    const navigate = useNavigate()
     
     let emailValue = useSelector((state: RootStateType) => state.login.email);
     let passwordValue = useSelector((state: RootStateType) => state.login.password);
-    let dispatch = useDispatch();
+    let dispatch = useAppDispatch();
     
     const [showPassword, setShowPassword] = useState(false);
 
@@ -23,6 +27,12 @@ function Login() {
     function passwordChangeHandler(e: ChangeEvent<HTMLInputElement>) {
         let value = e.currentTarget.value.trim();
         dispatch(setPasswordAC(value))
+    }
+    function onSubmit() {
+        if(emailValue.trim() !== "" && passwordValue.trim() !== "" ) {
+            dispatch(LoginTC(emailValue, passwordValue))
+            navigate("/seller")
+        }
     }
 
     return (
@@ -37,7 +47,7 @@ function Login() {
                             <i className={showPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}></i>
                         </div>
                     </div>
-                    <button className={style.Button}>Войти</button>
+                    <button className={style.Button} onClick={onSubmit}>Войти</button>
                     <div className={style.QrContainer}><a href='https://t.me/KEstat_bot'><img src={qr} alt="logo" className={style.Qr} /></a></div>
                 </div>
                 <div className={style.RightBox}>

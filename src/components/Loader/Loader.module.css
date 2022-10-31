@@ -1,0 +1,76 @@
+.Container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-image: url(../../img/ke_stat_bg.png);
+    background-size: cover; */
+    
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15.5px);
+    -webkit-backdrop-filter: blur(15.5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.Loader {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    left: -32px;
+    border-radius: 50%;
+    color: rgb(0, 0, 0);
+    background: currentColor;
+    box-shadow: 32px 0, -32px 0, 64px 0;
+}
+
+.Loader::after {
+    content: "";
+    position: absolute;
+    left: -32px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    background: rgb(255, 0, 0);
+    animation: move 3s linear infinite alternate;
+}
+
+@keyframes move {
+    0%,
+    5% {
+        left: -32px;
+        width: 16px;
+    }
+    15%,
+    20% {
+        left: -32px;
+        width: 48px;
+    }
+    30%,
+    35% {
+        left: 0px;
+        width: 16px;
+    }
+    45%,
+    50% {
+        left: 0px;
+        width: 48px;
+    }
+    60%,
+    65% {
+        left: 32px;
+        width: 16px;
+    }
+
+    75%,
+    80% {
+        left: 32px;
+        width: 48px;
+    }
+    95%,
+    100% {
+        left: 64px;
+        width: 16px;
+    }
+}

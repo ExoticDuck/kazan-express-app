@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600;700&display=swap");
+
+.Container {
+    width: 100vw;
+    height: 90px;
+    position: sticky;
+    left: 0px;
+    top: 0px;
+    background-color: #37323e;
+    padding-left: 50px;
+    padding-right: 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Logo {
+    height: 60px;
+}
+
+.LogoContainer {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.InfoContainer  {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto Mono", monospace;
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+}
+.PersonInfoContainer  {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    font-family: "Roboto Mono", monospace;
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.Button {
+    width: 130px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: inherit;
+}
+
+i {
+    font-size: 25px;
+}
