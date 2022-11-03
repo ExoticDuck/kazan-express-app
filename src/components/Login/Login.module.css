@@ -11,28 +11,8 @@
 }
 
 .GridBox {
-    width: 750px;
-    height: 560px;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    font-family: "Roboto Mono", monospace;
-    font-weight: 700;
-    font-size: 24px;
-    box-sizing: border-box;
-    justify-content: center;
-    position: relative;
-
-    -webkit-box-shadow: 7px 4px 55px 25px rgba(13, 13, 13, 0.2);
-    -moz-box-shadow: 7px 4px 55px 25px rgba(13, 13, 13, 0.2);
-    box-shadow: 7px 4px 55px 25px rgba(13, 13, 13, 0.2);
-}
-
-.LeftBox {
-    height: 100%;
-    width: 375px;
-
+    width: 480px;
+    height: 828px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -40,101 +20,115 @@
     font-weight: 700;
     font-size: 24px;
     box-sizing: border-box;
-    justify-content: center;
-    gap: 25px;
+    justify-content: space-between;
     position: relative;
-}
-.RightBox {
-    height: 100%;
-    width: 375px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    font-family: "IBM Plex Mono", monospace;
-    background-image: url(../../img/background.jpg);
-    background-size: cover;
-    background-position: center;
-    padding: 15px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
 }
 
 .InputBox {
-    width: 80%;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 8px;
-    height: 25px;
-    padding: 2px;
-    padding-left: 0px;
-    display: flex;
-    align-items: center;
-    position: relative;
+    width: 480px;
+    height: 280px;
+}
+
+.Title {
+    font-weight: 700;
+    font-size: 32px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 17px;
 }
 
 .Eye {
     position: absolute;
-    right: 4px;
-    top: -3px;
-    height: 25px;
-    width: 22px;
+    top: 0px;
+    right: 27px;
+    box-sizing: border-box;
+    width: min-content;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .Input {
-    width: 80%;
-    padding: 2px;
-    margin: 0;
+    width: 86%;
+    box-sizing: border-box;
+    height: 68px;
     outline: none;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 8px;
-    height: 25px;
-    padding-left: 3px;
-}
-
-.Input[type="password"] {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
     border: none;
-
-    width: 85%;
-    margin: none;
-    float: left;
-    padding: 0;
-    padding-left: 3px;
+    padding-left: 17px;
+    border-bottom: 1px solid #CECECE;
+    border-bottom-left-radius: 6px;
 }
-.Input[type="text"] {
-    border: none;
 
-    width: 85%;
-    margin: none;
-    float: left;
-    padding: 0;
-    padding-left: 3px;
+.InputEmail {
+    width: 100%;
+    height: 68px;
+    border: 1px solid #CECECE;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    padding-left: 17px;
+    margin-bottom: 10px;
 }
+
+.PasswordInput {
+    width: 100%;
+    height: 68px;
+    border: 1px solid #CECECE;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 24px;
+    font-weight: 400;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+::-webkit-input-placeholder { 
+        color: #A8A8A8;
+    }
+
 
 i {
-    height: 30px;
-    font-size: 18px;
-    margin: 0 auto;
+    height: 22px;
+    box-sizing: border-box;
+    font-size: 22px;
+    color: #CECECE;
+    line-height: 22px;
 }
 
 .Logo {
-    position: absolute;
-    top: 40px;
-    width: 75%;
+    width: 137px;
 }
 
 .Qr {
-    width: 120px;
+    width: 140px;
+    margin-bottom: 20px;
+    margin: 0 auto;
+}
+
+.QrBox {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .Button {
-    width: 82%;
+    width: 100%;
     height: 40px;
-    border-radius: 8px;
-    border: 0;
-    background-color: #ff0000;
+    border-radius: 6px;
+    border: 0px;
+    background-color: #FF464C;
     color: #fff;
     font-family: "Roboto Mono", monospace;
-    font-weight: 200;
+    font-weight: 700;
     font-size: 18px;
 }
 
@@ -147,12 +141,32 @@ i {
 }
 
 .QrContainer {
-    position: absolute;
-    bottom: 0;
-    display: flex;
+    /* display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 200px;
+    justify-content: space-between; */
+    height: 266px;
+    /* width: 212px; */
+    width: fit-content;
+    
+}
+
+.QrTitle {
+    width: 100%;
+    height: 43px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 43.26px;
+    text-align: center;
+    margin-bottom: 19px;
+}
+.QrTitleBottom {
+    width: 100%;
+    height: 43px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 43.26px;
+    text-align: center;
 }
 
 .TextContainer {
@@ -161,4 +175,8 @@ i {
     font-weight: 400;
     font-size: 20px;
     height: fit-content;
+}
+
+input {
+    outline: none;
 }

@@ -5,6 +5,7 @@ import { useAppSelector } from '../../store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from './../../store/hooks';
 import { resetUserAC } from '../../store/reducers/UserReducer';
+import { ReactComponent as Logo } from '../../img/Group 1.svg';
 
 function Header() {
     let name = useAppSelector(state => state.user.userInfo.name);
@@ -22,15 +23,22 @@ function Header() {
     return (
         <div className={style.Container}>
             <div className={style.LogoContainer}>
-                <div onClick={() => navigate('/seller')}><img src={logo} alt="" className={style.Logo}></img></div>
+                <div onClick={() => navigate('/seller')}><Logo /></div>
+            </div>
+            <div className={style.LeftContainer}>
+                <div className={style.ShopsButton}>
+                    Мои магазины
+                </div>
+                <div className={style.StatisticsTitle}>
+                    Общая статистика
+                </div>
             </div>
             <div className={style.InfoContainer}>
                 <div className={style.PersonInfoContainer}>
                     <div style={{ width: "fit-content" }}>{name} {surname}</div>
-                    <div>{email}</div>
                 </div>
                 <div>
-                    <button onClick={onClickHandler} className={style.Button}>Выход <i className="fa-solid fa-arrow-right-from-bracket"></i></button>
+                    <button onClick={onClickHandler} className={style.Button}>Выход</button>
                 </div>
             </div>
         </div>
