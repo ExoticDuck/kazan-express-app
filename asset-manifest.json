@@ -1,17 +1,21 @@
 {
   "files": {
-    "main.css": "/kazan-express-app/static/css/main.f150626d.css",
-    "main.js": "/kazan-express-app/static/js/main.e6f78a3a.js",
+    "main.css": "/kazan-express-app/static/css/main.4f71ea72.css",
+    "main.js": "/kazan-express-app/static/js/main.fa299324.js",
     "static/js/787.c4fcfc69.chunk.js": "/kazan-express-app/static/js/787.c4fcfc69.chunk.js",
+    "static/media/TRYFINDER-BOLD.TTF": "/kazan-express-app/static/media/TRYFINDER-BOLD.2eef8ad3c88883580a32.TTF",
+    "static/media/TRYFINDER-LIGHT.TTF": "/kazan-express-app/static/media/TRYFINDER-LIGHT.5028276b69eb4cbffa7d.TTF",
+    "static/media/TRYFINDER-REGULAR.TTF": "/kazan-express-app/static/media/TRYFINDER-REGULAR.e449cef98c8dc20b307f.TTF",
+    "static/media/qr-icon.svg": "/kazan-express-app/static/media/qr-icon.ebea59952634892ddcd24525fe714abf.svg",
     "static/media/KEstat-icon.png": "/kazan-express-app/static/media/KEstat-icon.88df90059bef804704ff.png",
     "static/media/Group 1.svg": "/kazan-express-app/static/media/Group 1.cceb75d63c604571f8e510717b3a45a3.svg",
     "index.html": "/kazan-express-app/index.html",
-    "main.f150626d.css.map": "/kazan-express-app/static/css/main.f150626d.css.map",
-    "main.e6f78a3a.js.map": "/kazan-express-app/static/js/main.e6f78a3a.js.map",
+    "main.4f71ea72.css.map": "/kazan-express-app/static/css/main.4f71ea72.css.map",
+    "main.fa299324.js.map": "/kazan-express-app/static/js/main.fa299324.js.map",
     "787.c4fcfc69.chunk.js.map": "/kazan-express-app/static/js/787.c4fcfc69.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f150626d.css",
-    "static/js/main.e6f78a3a.js"
+    "static/css/main.4f71ea72.css",
+    "static/js/main.fa299324.js"
   ]
 }
