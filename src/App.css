@@ -4,3 +4,15 @@
  box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'TRY-finder-bold';
+    src: url('./fonts/TRYFINDER-BOLD.TTF');
+}
+@font-face {
+    font-family: 'TRY-finder-regular';
+    src: url('./fonts/TRYFINDER-REGULAR.TTF');
+}
+@font-face {
+    font-family: 'TRY-finder-light';
+    src: url('./fonts/TRYFINDER-LIGHT.TTF');
+}

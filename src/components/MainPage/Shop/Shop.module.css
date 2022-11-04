@@ -2,15 +2,15 @@
 
 
 .Container {
-    width: 80%;
-    height: 45px;
-    display: flex;
-    border: 1px solid black;
-    align-items: center;
-    font-family: "Roboto Mono", monospace;
+    width: 370px;
+    height: 54px;
+    /* display: flex;
+    align-items: center; */
+    font-family: "TRY-finder-bold", monospace;
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 700;
     padding-left: 10px;
+    line-height: 24.34px;
 
     white-space: nowrap; 
     overflow: hidden; /* Обрезаем все, что не помещается в область */

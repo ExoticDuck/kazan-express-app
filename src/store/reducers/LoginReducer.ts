@@ -55,12 +55,14 @@ export const LoginTC = (username: string, password: string): AppThunk => {
             console.log(res.data);
             dispatch(setTokenAC(res.data.access_token))
             localStorage.setItem("access_token", res.data.access_token);
-        }).then((res) => {
-            API.getUserInfo(getState().app.token).then((res) => {
+            return(res.data.access_token);
+        }).then((token) => {
+            API.getUserInfo(token).then((res) => {
                 console.log(res.data);
                 dispatch(setUserInfoAC(res.data))
-            }).then((res) => {
-                API.getUserStat(getState().app.token).then((res) => {
+                return token
+            }).then((token) => {
+                API.getUserStat(token).then((res) => {
                     console.log(res.data);
                     dispatch(setUserStatAC(res.data))
                 })

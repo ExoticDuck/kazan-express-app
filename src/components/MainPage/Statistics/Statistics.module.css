@@ -3,8 +3,6 @@
 .Container {
     width: 400px;
     height: 360px;
-   
-    font-family: "Roboto Mono", monospace;
     background-color: #F1F1F1;
     border-radius: 10px;
     box-sizing: border-box;
@@ -24,7 +22,7 @@
     line-height: 24.3px;
     border-bottom: 1px solid #CDCDCD;
     padding-bottom: 19px;
-
+    font-family: 'TRY-finder-bold';
 }
 
 .Item {
@@ -35,6 +33,7 @@
     line-height: 24.3px;
     padding-bottom: 19px;
     padding-top: 5px;
+    font-family: 'TRY-finder-regular';
 }
 .ItemLast {
     font-size: 18px;
@@ -42,4 +41,5 @@
     width: 100%;
     padding-top: 5px;
     padding-bottom: 19px;
+    font-family: 'TRY-finder-regular';
 }

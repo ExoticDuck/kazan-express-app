@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { API } from '../../api/api';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setIsLoadingAC, setTokenAC } from '../../store/reducers/AppReducer';
@@ -14,6 +14,8 @@ function MainPage() {
     let todayData = useAppSelector(state => state.user.userStat.today);
     let yesterdayData = useAppSelector(state => state.user.userStat.yesterday);
     let navigate = useNavigate();
+
+    let [isActiveBtn, setIsActiveButton] = useState(false);
 
     console.log(shops)
 
@@ -47,11 +49,10 @@ function MainPage() {
 
   return (
     <div className={style.Container}>
-        <Header/>
+        <Header isActiveButton={isActiveBtn} setIsActive={setIsActiveButton}/>
         <div className={style.BoxContainer}>
-            <div className={style.LeftColumn}>
+            <div className={isActiveBtn ? style.LeftColumnActive : style.LeftColumn}>
                 <div className={style.ShopBlock}>
-                    <div className={style.ShopTitle}>Магазины</div>
                     <div className={style.ShopContainer}>
                         {shops.map((el, i) => {
                             return <Shop title={el.title} id={el.id} key={i}/>

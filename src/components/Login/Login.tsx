@@ -2,7 +2,7 @@ import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
 import style from "./Login.module.css"
 import logo from "../../img/KEstat-icon.png";
 import qr from "../../img/qr-black.png";
-
+import { ReactComponent as QRcode } from '../../img/qr-icon.svg';
 import { useSelector, useDispatch } from "react-redux"
 import { RootStateType } from '../../store/store';
 import { LoginTC, setEmailAC, setPasswordAC } from '../../store/reducers/LoginReducer';
@@ -54,7 +54,7 @@ function Login() {
                 </div>
                 <div className={style.QrContainer}>
                     <div className={style.QrTitle}>Нет аккаунта?</div>
-                    <div className={style.QrBox}><a href='https://t.me/KEstat_bot'><img src={qr} alt="logo" className={style.Qr} /></a></div>
+                    <div className={style.QrBox}><a href='https://t.me/KEstat_bot'><QRcode className={style.Qr}/></a></div>
                     <div className={style.QrTitleBottom}>Сканируй QR!</div>
                 </div>
             </div>
