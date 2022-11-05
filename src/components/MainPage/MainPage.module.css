@@ -10,7 +10,7 @@
 
 .BoxContainer {
     width: 100vw;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 50px);
     /* padding-left: 7%;
     padding-right: 7%; */
     box-sizing: border-box;
@@ -18,11 +18,18 @@
     align-items: center;
     flex-direction: row;
     column-gap: 10px;
+    position: relative;
+}
+
+.LeftContainer {
+    position: relative;
+    width: 400px;
+    height: calc(100vh - 50px);
 }
 
 .LeftColumn {
     width: 400px;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 50px);
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
@@ -37,7 +44,7 @@
 
 .LeftColumnActive {
     width: 400px;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 50px);
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
@@ -49,16 +56,50 @@
   -o-transform: translateX(0%);
   transform: translateX(0%);
 }
+.LeftColumnDefault {
+    width: 400px;
+    height: calc(100vh - 50px);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transform: translateX(0%);
+  -moz-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  -o-transform: translateX(0%);
+  transform: translateX(0%);
+}
+.LeftColumnDefaultOff {
+    width: 400px;
+    height: calc(100vh - 50px);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
 .RightColumn {
     width: calc(100% - 400px);
-    height: calc(100vh - 90px);
+    height: calc(100vh - 50px);
     /* background-color: blueviolet; */
-    padding-left: 145px;
-    padding-right: 145px;
-    padding-top: 30px;
+    padding-top: 40px;
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 60px;
 }
 
 .StatTitle {
@@ -82,17 +123,10 @@
     height: 100%;
     background-color: #f1f1f1;
     box-sizing: border-box;
-    padding-top: 21px;
-    padding-bottom: 20px;
-    padding-left: 30px;
-    /* display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 0px; */
 }
 
 .ShopContainer {
-    width: 370px;
+    width: 400px;
     height: fit-content;
     display: flex;
     justify-content: center;

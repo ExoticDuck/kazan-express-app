@@ -2,12 +2,17 @@
 import { resetUserAC, resetUserACType } from './UserReducer';
 type AppStateType = {
     token: string,
-    isLoading: boolean
+    isLoading: boolean,
+    error: {
+        isActive: boolean,
+        message: string
+    }
 }
 
 let initialState: AppStateType = {
     token: "",
-    isLoading: false
+    isLoading: false,
+    error: {isActive: false, message: ""}
 }
 
 export const AppReducer = (state = initialState, action: AppActionsType): AppStateType => {
@@ -18,6 +23,8 @@ export const AppReducer = (state = initialState, action: AppActionsType): AppSta
             return { ...state, isLoading: action.isLoading }
         case "RESET-USER":
             return { ...initialState }
+        case "app/SET-ERROR":
+            return { ...initialState, error: {isActive: action.isActive, message: action.message} }
         default:
             return { ...state }
     }
@@ -40,5 +47,14 @@ export const setIsLoadingAC = (isLoading: boolean) =>
 
 export type setIsLoadingACType = ReturnType<typeof setIsLoadingAC>
 
+export const setErrorAC = (isActive: boolean, message: string) =>
+({
+    type: 'app/SET-ERROR',
+    isActive, 
+    message
+} as const)
 
-export type AppActionsType = setTokenACType | setIsLoadingACType | resetUserACType;
+export type setErrorACType = ReturnType<typeof setErrorAC>
+
+
+export type AppActionsType = setTokenACType | setIsLoadingACType | resetUserACType | setErrorACType;

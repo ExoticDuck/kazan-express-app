@@ -2,8 +2,8 @@
 
 
 .Container {
-    width: 370px;
-    height: 54px;
+    width: 400px;
+    height: 55px;
     /* display: flex;
     align-items: center; */
     font-family: "TRY-finder-bold", monospace;
@@ -11,10 +11,20 @@
     font-weight: 700;
     padding-left: 10px;
     line-height: 24.34px;
-
+    display: flex;
+    padding-left: 30px;
+    align-items: center;
     white-space: nowrap; 
     overflow: hidden; /* Обрезаем все, что не помещается в область */
     text-overflow: ellipsis; /* Добавляем многоточие */
+    cursor: pointer;
+    box-sizing: border-box;
+}
 
-    
+.Container:hover {
+    background-color: #E7E7E7;
+}
+
+.Container:active {
+    background-color: #E7E7E7;
 }

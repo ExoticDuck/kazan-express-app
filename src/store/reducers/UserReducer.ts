@@ -1,6 +1,9 @@
-import { UserInfoResponceType, UserStatResponceType } from "../../api/api"
+import { AxiosError } from "axios";
+import { API, UserInfoResponceType, UserStatResponceType } from "../../api/api"
+import { AppThunk } from "../store";
+import { setIsLoadingAC, setTokenAC } from "./AppReducer";
 
-type ShopType = {title: string, id: number};
+type ShopType = { title: string, id: number };
 
 type UserStateType = {
     userInfo: {
@@ -26,7 +29,18 @@ type UserStateType = {
             marginality: number,
             clear_profit: number
         }
-    }
+    },
+    invoices: {
+        today: {
+          invoices_amount: number,
+          items_amount: number
+        },
+        yesterday: {
+          invoices_amount: number,
+          items_amount: number
+        },
+        items_left: number
+      }
 }
 
 let initialState: UserStateType = {
@@ -53,7 +67,18 @@ let initialState: UserStateType = {
             marginality: 0,
             clear_profit: 0
         }
-    }
+    },
+    invoices: {
+        today: {
+          invoices_amount: 0,
+          items_amount: 0
+        },
+        yesterday: {
+          invoices_amount: 0,
+          items_amount: 0
+        },
+        items_left: 0
+      }
 }
 
 export type StatType = typeof initialState.userStat.today;
@@ -61,7 +86,7 @@ export type StatType = typeof initialState.userStat.today;
 export const UserReducer = (state = initialState, action: UserActionsType): UserStateType => {
     switch (action.type) {
         case "user/SET-USER":
-            return { ...state, userInfo: {...action.payload} }
+            return { ...state, userInfo: { ...action.payload } }
         case "user/SET-USER-STAT":
             return { ...state, userStat: { ...action.payload } }
         case "RESET-USER":
@@ -98,6 +123,30 @@ export const resetUserAC = () =>
 } as const)
 
 export type resetUserACType = ReturnType<typeof resetUserAC>
+
+
+//thunk
+
+export const UserInfoTC = (token: string): AppThunk => {
+    return (dispatch, getState) => {
+        dispatch(setIsLoadingAC(true))
+        dispatch(setTokenAC(token));
+        debugger
+        dispatch(setIsLoadingAC(true))
+        API.getUserInfo(token).then((res) => {
+            console.log(res.data);
+            dispatch(setUserInfoAC(res.data))
+        }).then((res) => {
+            API.getUserStat(token).then((res) => {
+                console.log(res.data);
+                dispatch(setUserStatAC(res.data))
+            })
+            dispatch(setIsLoadingAC(false))
+        }).catch((e: AxiosError) => {
+            dispatch(setIsLoadingAC(false));
+        })
+    }
+}
 
 
 export type UserActionsType = setUserInfoACType | setUserStatACType | resetUserACType;

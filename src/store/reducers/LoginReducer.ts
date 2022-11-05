@@ -2,8 +2,9 @@ import { AxiosError } from "axios"
 import { Dispatch } from "redux"
 import { API } from "../../api/api"
 import { AppThunk, RootStateType } from "../store"
-import { setIsLoadingAC, setTokenAC } from "./AppReducer"
+import { setErrorAC, setIsLoadingAC, setTokenAC } from "./AppReducer"
 import { resetUserACType, setUserInfoAC, setUserStatAC } from "./UserReducer"
+
 
 type LoginStateType = {
     email: string
@@ -52,24 +53,20 @@ export const LoginTC = (username: string, password: string): AppThunk => {
     return (dispatch, getState) => {
         dispatch(setIsLoadingAC(true))
         API.getToken(username, password).then((res) => {
+            debugger
             console.log(res.data);
-            dispatch(setTokenAC(res.data.access_token))
             localStorage.setItem("access_token", res.data.access_token);
-            return(res.data.access_token);
-        }).then((token) => {
-            API.getUserInfo(token).then((res) => {
-                console.log(res.data);
-                dispatch(setUserInfoAC(res.data))
-                return token
-            }).then((token) => {
-                API.getUserStat(token).then((res) => {
-                    console.log(res.data);
-                    dispatch(setUserStatAC(res.data))
-                })
-                dispatch(setIsLoadingAC(false))
-            })
+            dispatch(setTokenAC(res.data.access_token))
+            setTimeout(() =>  dispatch(setIsLoadingAC(false)), 500)
+            // dispatch(setIsLoadingAC(false));
         }).catch((e: AxiosError) => {
-           setIsLoadingAC(false)
+            //@ts-ignore
+            if(e.response?.data.detail === "Incorrect username or login") {
+                dispatch(setErrorAC(true, "Неверный логин или пароль!"));
+                dispatch(setPasswordAC(""));
+            }
+
+            dispatch(setIsLoadingAC(false));
         })
     }
 }

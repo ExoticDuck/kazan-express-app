@@ -66,12 +66,41 @@
     border-bottom: 1px solid #CECECE;
     border-bottom-left-radius: 6px;
 }
+.InputError {
+    font-family: 'TRY-finder-regular';
+    width: 86%;
+    box-sizing: border-box;
+    height: 67px;
+    padding: 0;
+    outline: none;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    border: none;
+    padding-left: 17px;
+    border-bottom: 1px solid #FC3D3D;
+    border-bottom-left-radius: 6px;
+}
 
 .InputEmail {
     font-family: 'TRY-finder-regular';
     width: 100%;
     height: 68px;
     border: 1px solid #CECECE;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    padding-left: 17px;
+    margin-bottom: 10px;
+}
+
+.InputEmailError {
+    font-family: 'TRY-finder-regular';
+    width: 100%;
+    height: 68px;
+    border: 1px solid #FC3D3D;
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 24px;
@@ -92,6 +121,30 @@
     font-weight: 400;
     position: relative;
     margin-bottom: 30px;
+}
+
+.PasswordInputError {
+    font-family: 'TRY-finder-regular';
+    width: 100%;
+    height: 68px;
+    border: 1px solid #FC3D3D;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 24px;
+    font-weight: 400;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.ErrorMessage {
+    height: 32px;
+    font-family: "TRY-finder-regular";
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32.45px;
+    color: #FE5C61;
+    padding-left: 17px;
+    margin-bottom: 10px;
 }
 
 ::-webkit-input-placeholder { 
@@ -146,14 +199,8 @@ i {
 }
 
 .QrContainer {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between; */
     height: 266px;
-    /* width: 212px; */
     width: fit-content;
-    
 }
 
 .QrTitle {
