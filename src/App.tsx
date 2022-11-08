@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { API } from './api/api';
 import { setUserInfoAC, setUserStatAC } from './store/reducers/UserReducer';
 import { setIsLoadingAC, setTokenAC } from './store/reducers/AppReducer';
+import Home from './components/Home/Home';
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
     <div className="App">
       {isLoading && <Loader />}
       <Routes>
-        <Route element={<div>home</div>} path={"/"}></Route>
+        <Route element={<Home/>} path={"/"}></Route>
         <Route element={<Login />} path={"/login"}></Route>
         <Route element={<MainPage />} path={"/seller"}></Route>
       </Routes>

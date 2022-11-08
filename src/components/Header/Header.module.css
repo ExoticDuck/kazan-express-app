@@ -122,7 +122,7 @@ i {
     background-color: #20242a;
 }
 
-.StatisticsTitle {
+.StatisticsButton {
     height: 50px;
     width: 300px;
     padding-left: 40px;
@@ -134,4 +134,9 @@ i {
     font-weight: 700;
     display: flex;
     box-sizing: border-box;
+    cursor: pointer;
+}
+
+.StatisticsButton:active {
+    background-color: #20242a;
 }

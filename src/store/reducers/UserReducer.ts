@@ -41,6 +41,11 @@ type UserStateType = {
         },
         items_left: number
       }
+    ,
+    selectedShop: {
+        id: number,
+        title: string
+    }
 }
 
 let initialState: UserStateType = {
@@ -78,6 +83,10 @@ let initialState: UserStateType = {
           items_amount: 0
         },
         items_left: 0
+      },
+      selectedShop: {
+        id: 0,
+        title: ""
       }
 }
 
@@ -89,6 +98,8 @@ export const UserReducer = (state = initialState, action: UserActionsType): User
             return { ...state, userInfo: { ...action.payload } }
         case "user/SET-USER-STAT":
             return { ...state, userStat: { ...action.payload } }
+        case "user/SET-SELECTED-SHOP":
+            return { ...state, selectedShop: { ...action.payload } }
         case "RESET-USER":
             return { ...initialState }
         default:
@@ -124,6 +135,17 @@ export const resetUserAC = () =>
 
 export type resetUserACType = ReturnType<typeof resetUserAC>
 
+export const setSelectedShopAC = (id: number, title: string) =>
+({
+    type: 'user/SET-SELECTED-SHOP',
+    payload: {
+        id,
+        title
+    }
+} as const)
+
+export type setSelectedShopACType = ReturnType<typeof setSelectedShopAC>
+
 
 //thunk
 
@@ -149,4 +171,4 @@ export const UserInfoTC = (token: string): AppThunk => {
 }
 
 
-export type UserActionsType = setUserInfoACType | setUserStatACType | resetUserACType;
+export type UserActionsType = setUserInfoACType | setUserStatACType | resetUserACType | setSelectedShopACType;

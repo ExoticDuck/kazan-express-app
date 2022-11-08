@@ -6,13 +6,16 @@
 
 @font-face {
     font-family: 'TRY-finder-bold';
-    src: url('./fonts/TRYFINDER-BOLD.TTF');
+    src: url('./fonts/tryfinder-bold.woff');
+    font-display: block;
 }
 @font-face {
     font-family: 'TRY-finder-regular';
-    src: url('./fonts/TRYFINDER-REGULAR.TTF');
+    src: url('./fonts/tryfinder-regular.woff');
+    font-display: block;
 }
 @font-face {
     font-family: 'TRY-finder-light';
-    src: url('./fonts/TRYFINDER-LIGHT.TTF');
+    src: url('./fonts/tryfinder-light.woff');
+    font-display: block;
 }

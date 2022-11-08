@@ -4,8 +4,8 @@ import logo from '../../img/KEstat-icon-white.png'
 import { useAppSelector } from '../../store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from './../../store/hooks';
-import { resetUserAC } from '../../store/reducers/UserReducer';
-import { ReactComponent as Logo } from '../../img/Group 1.svg';
+import { resetUserAC, setSelectedShopAC } from '../../store/reducers/UserReducer';
+// import { ReactComponent as Logo } from '../../img/Group 1.svg';
 import { useState } from 'react';
 
 type HeaderPropsType = {
@@ -17,6 +17,7 @@ function Header(props: HeaderPropsType) {
     let name = useAppSelector(state => state.user.userInfo.name);
     let surname = useAppSelector(state => state.user.userInfo.surname);
     let email = useAppSelector(state => state.user.userInfo.email);
+    let selectedShop = useAppSelector(state => state.user.selectedShop);
     let navigate = useNavigate();
     let dispatch = useAppDispatch();
     // let [isActiveBtn, setIsActiveButton] = useState(false);
@@ -31,16 +32,20 @@ function Header(props: HeaderPropsType) {
         props.setIsActive(!props.isActiveButton);
     }
 
+    function onStatClickHandler() {
+        dispatch(setSelectedShopAC(0, ""))
+    }
+
     return (
         <div className={style.Container}>
             <div className={style.LogoContainer}>
-                <div onClick={() => navigate('/seller')}><Logo /></div>
+                {/* <div onClick={() => navigate('/seller')}><Logo /></div> */}
             </div>
             <div className={style.LeftContainer}>
-                <div className={props.isActiveButton ? style.ShopsButtonActive : style.ShopsButton} onClick={onShopsClickHandler}>
-                    Мои магазины
+                <div className={style.ShopsButtonActive} onClick={onShopsClickHandler}>
+                    {selectedShop.title !== "" ? selectedShop.title : 'Мои магазины'}
                 </div>
-                <div className={style.StatisticsTitle}>
+                <div className={style.StatisticsButton} onClick={onStatClickHandler}>
                     Общая статистика
                 </div>
             </div>

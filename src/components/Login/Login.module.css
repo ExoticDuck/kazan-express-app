@@ -24,6 +24,8 @@
     position: relative;
 }
 
+
+
 .InputBox {
     width: 480px;
     height: 280px;
@@ -34,7 +36,7 @@
     font-weight: 700;
     font-size: 32px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     padding-left: 17px;
 }
 
@@ -65,6 +67,7 @@
     padding-left: 17px;
     border-bottom: 1px solid #CECECE;
     border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
 }
 .InputError {
     font-family: 'TRY-finder-regular';
@@ -172,6 +175,7 @@ i {
 
 .QrBox {
     width: 100%;
+    height: 147px;
     height: 140px;
     display: flex;
     align-items: center;
@@ -180,22 +184,50 @@ i {
 
 .Button {
     width: 100%;
-    height: 40px;
+    height: 68px;
+    border-radius: 6px;
+    border: 0px;
+    background-color: #CECECE;
+    color: #fff;
+    font-family: "TRY-finder-bold";
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32.4px;
+}
+
+.ButtonFilled {
+    width: 100%;
+    height: 68px;
     border-radius: 6px;
     border: 0px;
     background-color: #FF464C;
     color: #fff;
     font-family: "TRY-finder-bold";
     font-weight: 700;
-    font-size: 18px;
+    font-size: 24px;
+    line-height: 32.4px;
 }
 
 .Button:hover {
     cursor: pointer;
+    background-color: #C02328;
 }
 
 .Button:active {
+    cursor: pointer;
     transform: scale(98%);
+    background-color: #C02328;
+}
+
+.ButtonFilled:hover {
+    cursor: pointer;
+    background-color: #C02328;
+}
+
+.ButtonFilled:active {
+    cursor: pointer;
+    transform: scale(98%);
+    background-color: #C02328;
 }
 
 .QrContainer {
@@ -211,7 +243,7 @@ i {
     font-size: 32px;
     line-height: 43.26px;
     text-align: center;
-    margin-bottom: 19px;
+    margin-bottom: 20px;
 }
 .QrTitleBottom {
     font-family: 'TRY-finder-bold';
@@ -221,8 +253,136 @@ i {
     font-size: 32px;
     line-height: 43.26px;
     text-align: center;
+    margin-top: 20px;
+}
+
+.Link {
+    height: 140px;
+    width: fit-content;
 }
 
 input {
     outline: none;
+}
+
+@media (min-width: 540px) and (max-width: 745px) {
+    .GridBox {
+        width: 420px;
+        height: 795px;
+        
+    }
+    .InputBox {
+        width: 420px;
+        height: 287px;
+
+    }
+    .Title {
+        font-size: 28px;
+        line-height: 37.8px;
+        padding-left: 15px;
+        margin-bottom: 25px;
+    }
+    .Eye {
+        height: 58px;
+    }
+    .Input {
+        height: 57px;
+        font-size: 19px;
+        line-height: 26px;
+    }
+    .InputError {
+        height: 57px;
+        font-size: 19px;
+        line-height: 26px;
+        padding-left: 15px;
+    }
+    
+    .InputEmail {
+        height: 58px;
+        font-size: 19px;
+        line-height: 26px;
+        padding-left: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .InputEmailError {
+        height: 58px;
+        font-size: 19px;
+        line-height: 26px;
+        padding-left: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .PasswordInput {
+        height: 58px;
+        font-size: 19px;
+        line-height: 26px;
+
+        margin-bottom: 40px;
+    }
+    
+    .PasswordInputError {
+        height: 58px;
+        font-size: 19px;
+        line-height: 26px;
+
+        margin-bottom: 10px;
+    }
+    
+    .ErrorMessage {
+        
+    }
+    
+    .Logo {
+        width: 120px;
+    }
+    
+    .Qr {
+        width: 117px;
+        margin: 0 auto;
+    }
+    
+    .QrBox {
+        width: 100%;
+        height: 117px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    .Button {
+        height: 58px;
+        font-size: 19px;
+        line-height: 26px;
+    }
+    
+    .ButtonFilled {
+        height: 58px;
+        font-size: 19px;
+        line-height: 26px;
+    }
+    
+    
+    .QrContainer {
+        height: 233px;
+        width: fit-content;
+    }
+    
+    .QrTitle {
+        height: 38px;
+        font-size: 28px;
+        line-height: 38px;
+    }
+
+    .QrTitleBottom {
+        height: 38px;
+        font-size: 28px;
+        line-height: 38px;
+    }
+    
+    .Link {
+        height: 117px;
+    }
+
 }

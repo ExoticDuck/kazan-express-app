@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { API } from '../../api/api';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setIsLoadingAC, setTokenAC } from '../../store/reducers/AppReducer';
-import { setUserInfoAC, setUserStatAC, UserInfoTC } from '../../store/reducers/UserReducer';
+import { setSelectedShopAC, setUserInfoAC, setUserStatAC, UserInfoTC } from '../../store/reducers/UserReducer';
 import Header from '../Header/Header';
 import style from './MainPage.module.css'
 import Shop from './Shop/Shop';
@@ -42,7 +42,7 @@ function MainPage() {
             <div className={style.ShopBlock}>
               <div className={style.ShopContainer}>
                 {shops.map((el, i) => {
-                  return <Shop title={el.title} id={el.id} key={i} />
+                  return <Shop title={el.title} id={el.id} key={i} onClick={() => dispatch(setSelectedShopAC(el.id, el.title))}/>
                 })}
               </div>
             </div>
