@@ -9,6 +9,8 @@ import { LoginTC, setEmailAC, setPasswordAC } from '../../store/reducers/LoginRe
 import { useAppDispatch, useAppSelector } from './../../store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { setErrorAC, setIsLoadingAC } from '../../store/reducers/AppReducer';
+import { ReactComponent as EyeOpen } from '../../img/eye-open.svg';
+import { ReactComponent as EyeClosed } from '../../img/eye-closed.svg';
 
 
 function Login() {
@@ -30,26 +32,31 @@ function Login() {
     }, [token, navigate, dispatch])
 
     const [showPassword, setShowPassword] = useState(false);
+    // const [filledInputs, setFilledInputs] = useState(false);
 
     function emailChangeHandler(e: ChangeEvent<HTMLInputElement>) {
         if(error.isActive !== false) {
             dispatch(setErrorAC(false, ""))
         }
         let value = e.currentTarget.value.trim();
-        dispatch(setEmailAC(value))
+        dispatch(setEmailAC(value));
+        
     }
     function passwordChangeHandler(e: ChangeEvent<HTMLInputElement>) {
         if(error.isActive !== false) {
             dispatch(setErrorAC(false, ""))
         }
         let value = e.currentTarget.value.trim();
-        dispatch(setPasswordAC(value))
+        dispatch(setPasswordAC(value));
+        
     }
     function onSubmit() {
         if (emailValue.trim() !== "" && passwordValue.trim() !== "") {
             dispatch(LoginTC(emailValue, passwordValue))
         }
     }
+
+    let filledInputs = emailValue !== "" && passwordValue !== "";
 
     return (
         <div className={style.Container}>
@@ -62,15 +69,15 @@ function Login() {
                     <div className={error.isActive ? style.PasswordInputError : style.PasswordInput}>
                         <input className={error.isActive ? style.InputError : style.Input} placeholder="Введите пароль..." type={showPassword ? "text" : "password"} value={passwordValue} onChange={passwordChangeHandler}></input>
                         <div className={style.Eye} onClick={() => setShowPassword(!showPassword)}>
-                            <i className={showPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}></i>
+                            {showPassword ? <EyeOpen/> : <EyeClosed/>}
                         </div>
                     </div>
                     {error.isActive && <div className={style.ErrorMessage}>{error.message}</div>}
-                    <button className={style.Button} onClick={onSubmit}>Войти</button>
+                    <button className={filledInputs ? style.ButtonFilled : style.Button} onClick={onSubmit}>Авторизоваться</button>
                 </div>
                 <div className={style.QrContainer}>
                     <div className={style.QrTitle}>Нет аккаунта?</div>
-                    <div className={style.QrBox}><a href='https://t.me/KEstat_bot'><QRcode className={style.Qr}/></a></div>
+                    <div className={style.QrBox}><a href='https://t.me/KEstat_bot' className={style.Link}><QRcode className={style.Qr}/></a></div>
                     <div className={style.QrTitleBottom}>Сканируй QR!</div>
                 </div>
             </div>
