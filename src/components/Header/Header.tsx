@@ -5,7 +5,7 @@ import { useAppSelector } from '../../store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from './../../store/hooks';
 import { resetUserAC, setSelectedShopAC } from '../../store/reducers/UserReducer';
-// import { ReactComponent as Logo } from '../../img/Group 1.svg';
+import { ReactComponent as Logo } from '../../img/Group 1.svg';
 import { useState } from 'react';
 
 type HeaderPropsType = {
@@ -39,14 +39,15 @@ function Header(props: HeaderPropsType) {
     return (
         <div className={style.Container}>
             <div className={style.LogoContainer}>
-                {/* <div onClick={() => navigate('/seller')}><Logo /></div> */}
+                <div onClick={() => navigate('/seller')}><Logo /></div>
             </div>
             <div className={style.LeftContainer}>
-                <div className={style.ShopsButtonActive} onClick={onShopsClickHandler}>
-                    {selectedShop.title !== "" ? selectedShop.title : 'Мои магазины'}
+                <div className={style.Shops} onClick={onShopsClickHandler}>
+                    Магазины
                 </div>
-                <div className={style.StatisticsButton} onClick={onStatClickHandler}>
-                    Общая статистика
+                <div className={style.Menu}>Меню</div>
+                <div className={style.Statistics} onClick={onStatClickHandler}>
+                    Статистика
                 </div>
             </div>
             <div className={style.InfoContainer}>

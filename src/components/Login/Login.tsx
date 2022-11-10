@@ -69,7 +69,7 @@ function Login() {
                     <div className={error.isActive ? style.PasswordInputError : style.PasswordInput}>
                         <input className={error.isActive ? style.InputError : style.Input} placeholder="Введите пароль..." type={showPassword ? "text" : "password"} value={passwordValue} onChange={passwordChangeHandler}></input>
                         <div className={style.Eye} onClick={() => setShowPassword(!showPassword)}>
-                            {showPassword ? <EyeOpen/> : <EyeClosed/>}
+                            {showPassword ? <EyeOpen className={style.EyeLogo}/> : <EyeClosed className={style.EyeLogo}/>}
                         </div>
                     </div>
                     {error.isActive && <div className={style.ErrorMessage}>{error.message}</div>}

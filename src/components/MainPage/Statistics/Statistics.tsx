@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatType } from '../../../store/reducers/UserReducer';
 import style from './Statistics.module.css';
-
+type ColorType = "grey" | "red" | "blue";
 type StatisticsPropsType = {
     title: string,
     data: StatType
@@ -23,14 +23,25 @@ type InvoicesPropsType = {
 }
 
 export default function Statistics(props: StatisticsPropsType) {
+    const [color, setColor] = useState<ColorType>("grey");
+    function onClickHandler() {
+        if(color === "grey") {
+            setColor("red")
+        } else if (color === "red") {
+            setColor("blue")
+        } else {
+            setColor("grey")
+        }
+    }
+
     return (
-        <div className={style.Container}>
+        <div className={color === "grey" ? style.Container : color === "red" ? style.ContainerRed : style.ContainerBlue} onClick={onClickHandler}>
             <div className={style.Title}>{props.title}</div>
-            <div className={style.Item}>Общий оборот: {props.data.total_profit.toFixed(0)} руб.</div>
-            <div className={style.Item}>Количество единиц: {props.data.items_amount} шт.</div>
-            <div className={style.Item}>Средний чек: {props.data.average_order.toFixed(0)} руб.</div>
-            <div className={style.Item}>Маржа: {props.data.marginality.toFixed(0)} %</div>
-            <div className={style.ItemLast}>Чистая прибыль: {props.data.clear_profit.toFixed(0)} руб.</div>
+            <div className={style.Item}>Общий оборот: {props.data.total_profit.toFixed(0)} р</div>
+            <div className={style.Item}>Средний чек: {props.data.average_order.toFixed(0)} р</div>
+            <div className={style.Item}>Количество: {props.data.items_amount} шт.</div>
+            <div className={style.Item}>Маржинальность: {props.data.marginality.toFixed(0)} %</div>
+            <div className={style.Item}>Валовая прибыль: {props.data.clear_profit.toFixed(0)} р</div>
         </div>
     )
 }
@@ -43,7 +54,7 @@ export function InvoicesStatistics(props: InvoicesPropsType) {
             <div className={style.Item}>Кол-во едениц за сегодня: {props.data.today.items_amount}</div>
             <div className={style.Item}>Поймано слотов вчера: {props.data.yesterday.invoices_amount}</div>
             <div className={style.Item}>Кол-во едениц за вчера: {props.data.yesterday.items_amount}</div>
-            <div className={style.ItemLast}>Кол-во едениц без слотов: {props.data.items_left}</div>
+            <div className={style.Item}>Кол-во едениц без слотов: {props.data.items_left}</div>
         </div>
     )
 }
