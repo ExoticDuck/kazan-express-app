@@ -8,12 +8,19 @@ import style from './MainPage.module.css'
 import Shop from './Shop/Shop';
 import Statistics, { InvoicesStatistics } from './Statistics/Statistics';
 import { useNavigate } from 'react-router-dom';
+import { ReactComponent as Logo } from '../../img/logo.svg';
+import Table from './Table/Table';
 
 function MainPage() {
   let shops = useAppSelector(state => state.user.userInfo.shops);
   let todayData = useAppSelector(state => state.user.userStat.today);
   let yesterdayData = useAppSelector(state => state.user.userStat.yesterday);
-  let invoicesData = useAppSelector(state => state.user.invoices);
+  let monthData = useAppSelector(state => state.user.userStat.month);
+  let topTurnover = useAppSelector(state => state.user.userStat.top_turnover);
+  let topClean = useAppSelector(state => state.user.userStat.top_clean);
+  let topDead = useAppSelector(state => state.user.userStat.top_dead);
+  let userName = useAppSelector(state => state.user.userInfo.name);
+  let userSurname = useAppSelector(state => state.user.userInfo.surname);
   let navigate = useNavigate();
 
   let [isActiveBtn, setIsActiveButton] = useState(false);
@@ -43,9 +50,9 @@ function MainPage() {
 
   return (
     <div className={style.Container}>
-      {/* <Header isActiveButton={isActiveBtn} setIsActive={setIsActiveButton} /> */}
       <div className={style.BoxContainer}>
         <div className={style.LeftContainer}>
+          <Logo className={style.LogoLeft} />
           <div className={style.ShopMenuBox}>
             <div className={style.Shops}>
               <div className={style.ShopsTitle}>Магазины</div>
@@ -72,32 +79,15 @@ function MainPage() {
             <div className={style.StatisticTitle}>Статистика</div>
             <Statistics title="За сегодня" data={todayData} />
             <Statistics title="За вчера" data={yesterdayData} />
-            <Statistics title="За месяц" data={yesterdayData} />
-            {
-              //!fix стата за месяц
-            }
+            <Statistics title="За месяц" data={monthData} />
           </div>
-          {/* <div className={isActiveBtn ? style.LeftColumnActive : style.LeftColumn}>
-            <div className={style.ShopBlock}>
-              <div className={style.ShopContainer}>
-                {shops.map((el, i) => {
-                  return <Shop title={el.title} id={el.id} key={i} onClick={() => dispatch(setSelectedShopAC(el.id, el.title))}/>
-                })}
-              </div>
-            </div>
-          </div> */}
-          {/* <div className={isActiveBtn ? style.LeftColumnDefaultOff : style.LeftColumnDefault}>
-            <div className={style.ShopBlock}>
-              <div className={style.ShopContainer}>
-                {[{ title: "Мои товары", id: 1 }, { title: "Склад", id: 2 }, { title: "Накладные", id: 3 }].map((el, i) => {
-                  return <Shop title={el.title} id={el.id} key={i} />
-                })}
-              </div>
-            </div>
-          </div> */}
         </div>
         <div className={style.RightColumn}>
-
+          <Logo className={style.LogoRight} />
+          <div className={style.Name}>{userName + " " + userSurname}</div>
+          <Table data={topTurnover} title={"Топ 10 товаров по обороту"} type={'turnover'} />
+          <Table data={topClean} title={"Топ 10 товаров по чистой прибыли"} type={"profit"} />
+          <Table data={topDead} title={"Топ 10 товаров dead stock"} type={'quantity'} />
         </div>
       </div>
     </div>

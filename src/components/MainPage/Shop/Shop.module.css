@@ -29,6 +29,12 @@
     margin-bottom: 10px;
 }
 
+@media (max-width: 1400px) {
+    .Container {
+        width: 276px;
+    }
+}
+
 /* .Container:hover {
     background-color: #E7E7E7;
 }

@@ -5,6 +5,14 @@ import { setIsLoadingAC, setTokenAC } from "./AppReducer";
 
 type ShopType = { title: string, id: number };
 
+export type StatTableItem = {
+    place: number,
+    sku_id: number,
+    sku_title: string,
+    title: string,
+    value: number
+}
+
 type UserStateType = {
     userInfo: {
         id: number,
@@ -28,19 +36,29 @@ type UserStateType = {
             average_order: number,
             marginality: number,
             clear_profit: number
-        }
+        },
+        month: {
+            items_amount: number,
+            total_profit: number,
+            average_order: number,
+            marginality: number,
+            clear_profit: number
+        },
+        top_turnover: StatTableItem[],
+        top_clean: StatTableItem[],
+        top_dead: StatTableItem[]
     },
     invoices: {
         today: {
-          invoices_amount: number,
-          items_amount: number
+            invoices_amount: number,
+            items_amount: number
         },
         yesterday: {
-          invoices_amount: number,
-          items_amount: number
+            invoices_amount: number,
+            items_amount: number
         },
         items_left: number
-      }
+    }
     ,
     selectedShop: {
         id: number,
@@ -71,23 +89,33 @@ let initialState: UserStateType = {
             average_order: 0,
             marginality: 0,
             clear_profit: 0
-        }
+        },
+        month: {
+            items_amount: 0,
+            total_profit: 0,
+            average_order: 0,
+            marginality: 0,
+            clear_profit: 0
+        },
+        top_turnover: [],
+        top_clean: [],
+        top_dead: []
     },
     invoices: {
         today: {
-          invoices_amount: 0,
-          items_amount: 0
+            invoices_amount: 0,
+            items_amount: 0
         },
         yesterday: {
-          invoices_amount: 0,
-          items_amount: 0
+            invoices_amount: 0,
+            items_amount: 0
         },
         items_left: 0
-      },
-      selectedShop: {
+    },
+    selectedShop: {
         id: 0,
         title: ""
-      }
+    }
 }
 
 export type StatType = typeof initialState.userStat.today;

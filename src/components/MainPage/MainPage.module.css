@@ -21,7 +21,9 @@
     flex-direction: row;
     column-gap: 20px;
     position: relative;
+    /* flex-wrap: wrap; */
 }
+
 
 .LeftContainer {
     position: relative;
@@ -30,6 +32,14 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
+}
+
+.LogoLeft {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 0px;
+    transform: translate(0%, -50%);
 }
 
 .ShopMenuBox {
@@ -124,7 +134,7 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    background-color: #E9E9E9;
+    background-color: #e9e9e9;
     border-radius: 6px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -165,18 +175,41 @@
     color: #000000;
 }
 
-
 .RightColumn {
     width: calc(100% - 608px);
-    height: 100vh;
+    height: calc(100vh - 16px);
     /* background-color: blueviolet; */
-    padding-top: 40px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: nowrap;
-    gap: 60px;
+    flex-direction: column;
+    padding-right: 12px;
     box-sizing: border-box;
+    position: relative;
+}
+
+@media (min-width: 1920px) {
+    .RightColumn {
+       align-items: center;
+    }
+}
+.LogoRight {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Name {
+    position: absolute;
+    top: 16px;
+    right: 30px;
+    transform: translate(-50%, -50%);
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    text-align: right;
+    color: #000000;
 }
 
 .StatTitle {
@@ -202,4 +235,35 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+@media (max-width: 1400px) {
+    .BoxContainer {
+        flex-wrap: wrap;
+    }
+    .LeftContainer {
+        height: fit-content;
+        width: 694px;
+    }
+    .ShopMenuBox {
+        width: 100%;
+    }
+    .Shops {
+        width: 294px;
+    }
+    .ShopList {
+        width: 294px;
+    }
+    .RightColumn {
+        height: fit-content;
+    }
+    .LogoRight {
+        display: none;
+    }
+    .LogoLeft {
+        display: initial;
+    }
+    .Name {
+        display: none;
+    }
 }

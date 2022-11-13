@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { StatTableItem } from "../store/reducers/UserReducer";
 
 const instance = axios.create({
     baseURL: "https://api.ke-stat.ru/v2",
@@ -67,5 +68,15 @@ export type UserStatResponceType = {
         average_order: number,
         marginality: number,
         clear_profit: number
-    }
+    },
+    month: {
+        items_amount: number,
+        total_profit: number,
+        average_order: number,
+        marginality: number,
+        clear_profit: number
+    },
+    top_turnover: StatTableItem[],
+    top_clean: StatTableItem[],
+    top_dead: StatTableItem[]
 }
