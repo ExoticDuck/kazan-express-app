@@ -1,0 +1,73 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 35px 0px;
+    gap: 12px;
+    box-sizing: border-box;
+    width: 304px;
+    height: 395px;
+    background: #ffffff;
+    border: 3px solid #e4e4e4;
+    border-radius: 10px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.Title {
+    width: fit-content;
+    height: 38px;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+}
+
+.Line {
+    height: 2px;
+    width: 234px;
+
+}
+
+.Price {
+    height: 43px;
+
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 43px;
+    text-align: right;
+    color: #000000;
+}
+
+.Text {
+    width: 233px;
+    height: 264px;
+    position: relative;
+    font-family: "TRY-finder-regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+
+    color: #000000;
+}
+
+.Strong {
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+
+    color: #000000;
+}
+
+.BottomText {
+    position: absolute;
+    bottom: 20px;
+    left: 0px;
+}

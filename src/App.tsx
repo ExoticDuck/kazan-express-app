@@ -12,6 +12,7 @@ import { setUserInfoAC, setUserStatAC } from './store/reducers/UserReducer';
 import { setIsLoadingAC, setTokenAC } from './store/reducers/AppReducer';
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
+import Profile from './components/Profile/Profile';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route element={<Home/>} path={"/"}></Route>
         <Route element={<Login />} path={"/login"}></Route>
         <Route element={<MainPage />} path={"/seller"}></Route>
+        <Route element={<Profile />} path={"/profile"}></Route>
       </Routes>
     </div>
   );

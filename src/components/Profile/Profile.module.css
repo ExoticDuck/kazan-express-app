@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600;700&display=swap");
+
+.Container {
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    /* overflow: auto; */
+}
+
+.BoxContainer {
+    width: 100vw;
+    margin-top: 50px;
+    height: calc(100vh - 100px);
+    min-height: fit-content;
+    padding-top: 16px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    column-gap: 20px;
+    position: relative;
+}
+
+.ProfileInfo {
+    width: 808px;
+    height: 159px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.TopContainer {
+    width: 808px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.BottomContainer {
+    width: 808px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.TopRight {
+    width: 382px;
+    height: 60px;
+}
+
+.Subscription {
+    height: 38px;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+    text-align: left;
+    color: #1cc600;
+}
+
+.EndDate {
+    height: 22px;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: left;
+    color: #000000;
+}
+
+.TopLeft {
+    width: 382px;
+    height: 60px;
+}
+
+.ProfileName {
+    height: 38px;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+    text-align: right;
+    color: #000000;
+}
+
+.RegisterDate {
+    height: 22px;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: right;
+    color: #000000;
+}
+
+.BottomRight {
+    width: 382px;
+    height: 60px;
+    float: left;
+}
+.BottomLeft {
+    width: 382px;
+    height: 60px;
+}
+
+.TaxBox {
+    width: fit-content;
+    height: 22px;
+}
+
+.Rate {
+    height: 38px;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 38px;
+    text-align: left;
+    color: #ed00c7;
+}
+
+.CardsContainer {
+    width: fit-content;
+    height: 395px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.TextBlock {
+    width: 744px;
+    font-family: "TRY-finder-regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
+}

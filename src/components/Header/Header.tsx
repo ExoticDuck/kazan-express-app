@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Header.module.css';
 import logo from '../../img/KEstat-icon-white.png'
 import { useAppSelector } from '../../store/hooks';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from './../../store/hooks';
 import { resetUserAC, setSelectedShopAC } from '../../store/reducers/UserReducer';
 import { ReactComponent as Logo } from '../../img/KEstatLogo.svg';
@@ -42,14 +42,38 @@ function Header(props: HeaderPropsType) {
                 <div onClick={() => navigate('/seller')}><Logo /></div>
             </div>
             <div className={style.LeftContainer}>
-                <div onClick={() => navigate('/seller')} className={style.Cabinet} >
+                <NavLink
+                    to="/profile"
+                    className={({ isActive }) =>
+                        isActive ? style.CabinetActive : style.Cabinet
+                    }
+                >
                     Личный кабинет
-                </div>
-                <div onClick={() => navigate('/seller')} className={style.Statistics}>
+                </NavLink>
+                <NavLink
+                    to="profile"
+                    className={({ isActive }) =>
+                        isActive ? style.StatisticsActive : style.Statistics
+                    }
+                >
                     Статистика
-                </div>
-                <div onClick={() => navigate('/seller')} className={style.Purchases}>Закупки</div>
-                <div onClick={() => navigate('/seller')} className={style.Storeroom}>Склад</div>
+                </NavLink>
+                <NavLink
+                    to="profile"
+                    className={({ isActive }) =>
+                        isActive ? style.PurchasesActive : style.Purchases
+                    }
+                >
+                    Закупки
+                </NavLink>
+                <NavLink
+                    to="profile"
+                    className={({ isActive }) =>
+                        isActive ? style.StoreroomActive : style.Storeroom
+                    }
+                >
+                    Склад
+                </NavLink>
             </div>
             <div className={style.InfoContainer}>
                 <div className={style.PersonInfoContainer}>

@@ -16,7 +16,7 @@
     background-color: #fff;
 }
 .LeftContainer {
-    width: 440px;
+    width: 500px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -97,13 +97,40 @@ i {
 }
 
 .Cabinet {
-    height: 50px;
+    height: 24px;
     width: fit-content;
     display: flex;
     align-items: center;
+    flex-direction: row;
     margin-right: 33px;
-    /* cursor: pointer; */
+    cursor: pointer;
     box-sizing: border-box;
+    text-decoration: none;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #000000;
+}
+.CabinetActive {
+    height: 50px;
+    width: fit-content;
+    
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-right: 33px;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
 }
 .Statistics {
     height: 50px;
@@ -111,8 +138,32 @@ i {
     display: flex;
     align-items: center;
     margin-right: 32px;
-    /* cursor: pointer; */
+    cursor: pointer;
     box-sizing: border-box;
+    text-decoration: none;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #000000;
+}
+.StatisticsActive {
+    height: 50px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    margin-right: 32px;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #000000;
 }
 
 .Purchases {
@@ -121,8 +172,33 @@ i {
     display: flex;
     align-items: center;
     margin-right: 32px;
-    /* cursor: pointer; */
+    cursor: pointer;
     box-sizing: border-box;
+    text-decoration: none;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #000000;
+}
+.PurchasesActive {
+    height: 50px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    margin-right: 32px;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #000000;
 }
 
 .Storeroom {
@@ -130,8 +206,32 @@ i {
     width: fit-content;
     display: flex;
     align-items: center;
-    /* cursor: pointer; */
+    cursor: pointer;
     box-sizing: border-box;
+    text-decoration: none;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #000000;
+}
+.StoreroomActive {
+    height: 50px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #000000;
 }
 
 /* 

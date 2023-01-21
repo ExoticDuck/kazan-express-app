@@ -16,10 +16,6 @@
     width: 100vw;
     height: calc(100vh - 50px);
     min-height: fit-content;
-
-
-    /* padding-left: 7%;
-    padding-right: 7%; */
     padding-top: 16px;
     padding-left: 10px;
     box-sizing: border-box;
@@ -28,7 +24,6 @@
     flex-direction: row;
     column-gap: 20px;
     position: relative;
-    /* flex-wrap: wrap; */
 }
 
 
