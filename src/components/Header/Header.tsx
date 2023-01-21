@@ -5,12 +5,12 @@ import { useAppSelector } from '../../store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from './../../store/hooks';
 import { resetUserAC, setSelectedShopAC } from '../../store/reducers/UserReducer';
-import { ReactComponent as Logo } from '../../img/Group 1.svg';
+import { ReactComponent as Logo } from '../../img/KEstatLogo.svg';
 import { useState } from 'react';
 
 type HeaderPropsType = {
-    isActiveButton: boolean
-    setIsActive: (isActive: boolean) => void
+    // isActiveButton: boolean
+    // setIsActive: (isActive: boolean) => void
 }
 
 function Header(props: HeaderPropsType) {
@@ -29,7 +29,7 @@ function Header(props: HeaderPropsType) {
     }
 
     function onShopsClickHandler() {
-        props.setIsActive(!props.isActiveButton);
+        // props.setIsActive(!props.isActiveButton);
     }
 
     function onStatClickHandler() {
@@ -42,20 +42,18 @@ function Header(props: HeaderPropsType) {
                 <div onClick={() => navigate('/seller')}><Logo /></div>
             </div>
             <div className={style.LeftContainer}>
-                <div className={style.Shops} onClick={onShopsClickHandler}>
-                    Магазины
+                <div onClick={() => navigate('/seller')} className={style.Cabinet} >
+                    Личный кабинет
                 </div>
-                <div className={style.Menu}>Меню</div>
-                <div className={style.Statistics} onClick={onStatClickHandler}>
+                <div onClick={() => navigate('/seller')} className={style.Statistics}>
                     Статистика
                 </div>
+                <div onClick={() => navigate('/seller')} className={style.Purchases}>Закупки</div>
+                <div onClick={() => navigate('/seller')} className={style.Storeroom}>Склад</div>
             </div>
             <div className={style.InfoContainer}>
                 <div className={style.PersonInfoContainer}>
                     <div style={{ width: "fit-content" }}>{name} {surname}</div>
-                </div>
-                <div>
-                    <button onClick={onExitClickHandler} className={style.Button}>Выход</button>
                 </div>
             </div>
         </div>

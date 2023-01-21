@@ -10,6 +10,7 @@ import Statistics, { InvoicesStatistics } from './Statistics/Statistics';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../img/logo.svg';
 import Table from './Table/Table';
+import Footer from '../Footer/Footer';
 
 function MainPage() {
   let shops = useAppSelector(state => state.user.userInfo.shops);
@@ -50,14 +51,15 @@ function MainPage() {
 
   return (
     <div className={style.Container}>
-      <div className={style.BoxContainer}>
+      <Header/>
+      {/* <div className={style.BoxContainer}>
         <div className={style.LeftContainer}>
           <Logo className={style.LogoLeft} />
           <div className={style.ShopMenuBox}>
             <div className={style.Shops}>
               <div className={style.ShopsTitle}>Магазины</div>
               <div className={style.ShopList}>
-                {shops.concat(...shops).map((el, i) => { //!убери потом нахуй concat
+                {shops.map((el, i) => {
                   return <Shop title={el.title} id={el.id} key={i} onClick={() => dispatch(setSelectedShopAC(el.id, el.title))} />
                 })}
               </div>
@@ -89,7 +91,8 @@ function MainPage() {
           <Table data={topClean} title={"Топ 10 товаров по чистой прибыли"} type={"profit"} />
           <Table data={topDead} title={"Топ 10 товаров dead stock"} type={'quantity'} />
         </div>
-      </div>
+      </div> */}
+      <Footer/>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StatType } from '../../../store/reducers/UserReducer';
 import style from './Statistics.module.css';
-type ColorType = "grey" | "red" | "blue";
+export type ColorType = "grey" | "red" | "blue";
 type StatisticsPropsType = {
     title: string,
     data: StatType

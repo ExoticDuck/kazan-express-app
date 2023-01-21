@@ -11,6 +11,7 @@ import { API } from './api/api';
 import { setUserInfoAC, setUserStatAC } from './store/reducers/UserReducer';
 import { setIsLoadingAC, setTokenAC } from './store/reducers/AppReducer';
 import Home from './components/Home/Home';
+import Header from './components/Header/Header';
 
 function App() {
 

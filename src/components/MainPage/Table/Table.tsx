@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatTableItem } from '../../../store/reducers/UserReducer';
+import { ColorType } from '../Statistics/Statistics';
 import style from './Table.module.css';
 
 type TablePropsType = {
@@ -14,11 +15,24 @@ type RowPropsType = {
 }
 
 type HeadingPropsType = {
+    color: ColorType
     type: "turnover" | "profit" | "quantity"
 }
 
 function Table(props: TablePropsType) {
-    let tableData = [<HeadingRow type={props.type}/>];
+    const [color, setColor] = useState<ColorType>("grey");
+    
+    function onClickHandler() {
+        if(color === "grey") {
+            setColor("red")
+        } else if (color === "red") {
+            setColor("blue")
+        } else {
+            setColor("grey")
+        }
+    }
+
+    let tableData = [<HeadingRow type={props.type} color={color}/>];
     let rows = props.data.map((row) => (
         <Row data={row} type={props.type}/>
     ));
@@ -26,7 +40,7 @@ function Table(props: TablePropsType) {
     return (
         <div className={style.Container}>
             <div className={style.Title}>{props.title}</div>
-            <div className={style.TableBody}>
+            <div className={style.TableBody} id={color === "red" ? style.Red : color === "blue" ? style.Blue : ""} onClick={onClickHandler}>
 
                 {
                     tableData
@@ -42,6 +56,7 @@ function Row(props: RowPropsType) {
     if(props.type === "quantity") {
         ending = " шт"
     }
+
     return (
         <div className={style.RowContainer}>
             <div className={style.Place}>{props.data.place}</div>
@@ -60,7 +75,7 @@ function HeadingRow(props: HeadingPropsType) {
         columnTitle = "Количество"
     }
     return (
-        <div className={style.HeadingRowContainer}>
+        <div className={style.HeadingRowContainer} id={props.color === "red" ? style.Red : props.color === "blue" ? style.Blue : ""}>
             <div className={style.PlaceH}></div>
             <div className={style.IdH}>ID</div>
             <div className={style.RowSkuTitleH}>Наименование</div>

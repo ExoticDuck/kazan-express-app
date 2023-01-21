@@ -196,3 +196,14 @@
         display: none;
     }
 }
+
+#Red {
+    background-color: #FFCACA;
+    border-color: #FFCACA;
+}
+
+#Blue {
+    background-color: #CAD6FF;
+    border-color: #CAD6FF;
+}
+

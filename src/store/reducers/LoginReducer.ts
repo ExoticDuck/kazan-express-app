@@ -55,11 +55,13 @@ export const LoginTC = (username: string, password: string): AppThunk => {
         API.getToken(username, password).then((res) => {
             debugger
             console.log(res.data);
-            localStorage.setItem("access_token", res.data.access_token);
+            // localStorage.setItem("access_token", res.data.access_token); //!fix
+            localStorage.setItem("access_token", "2112312312");
             dispatch(setTokenAC(res.data.access_token))
             setTimeout(() =>  dispatch(setIsLoadingAC(false)), 500)
             // dispatch(setIsLoadingAC(false));
         }).catch((e: AxiosError) => {
+            localStorage.setItem("access_token", "2112312312"); //!delete
             //@ts-ignore
             if(e.response?.data.detail === "Incorrect username or login") {
                 dispatch(setErrorAC(true, "Неверный логин или пароль!"));

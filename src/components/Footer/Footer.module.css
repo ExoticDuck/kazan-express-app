@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600;700&display=swap");
+
+.Container {
+    width: 100vw;
+    height: 50px;
+    position: fixed;
+    z-index: 3;
+    left: 0px;
+    bottom: 0px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0 50px;
+    background-color: #fff;
+}
+
+.LeftContainer {
+    width: 123px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+}
+.RightContainer {
+    width: 55px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    cursor: pointer;
+}
+.ExpandedRightContainer {
+    width: 474px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.RedText {
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: right;
+    width: 374px;
+    color: #ff464c;
+}
+
+.CenterContainer {
+    width: calc(100vw - 150px - 55px - 123px);
+    box-sizing: border-box;
+    height: 50px;
+
+}
+
+.CenterContainerSmall {
+    width: calc(100vw - 150px - 474px - 123px);
+    box-sizing: border-box;
+    height: 50px;
+}
+
+.Yes {
+    cursor: pointer;
+}
+
+.ErrorMessage {
+    background-color: #ff464c;
+    padding: 0 15px;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+    color: #ffffff;
+    height: 50px;
+    display: block;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+}
+  
+.Runline {
+    height: 27px;
+    display: inline-block;
+    white-space: nowrap;
+    animation: runline 50s linear infinite 1s both;
+    /* overflow: hidden; */
+  }
+
+  .Runline:hover {
+    animation-play-state: paused;
+  }
+  
+  @keyframes runline {
+    to {transform: translateX(-100%);}
+  }

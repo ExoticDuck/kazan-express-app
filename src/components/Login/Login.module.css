@@ -89,7 +89,21 @@
     font-family: 'TRY-finder-regular';
     width: 100%;
     height: 68px;
-    border: 1px solid #CECECE;
+    border: 1px solid #EAEAEA;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    padding-left: 17px;
+    margin-bottom: 10px;
+}
+
+.InputEmailFilled {
+    font-family: 'TRY-finder-regular';
+    width: 100%;
+    height: 68px;
+    border: 1px solid #C0C0C0;
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 24px;
@@ -103,7 +117,7 @@
     font-family: 'TRY-finder-regular';
     width: 100%;
     height: 68px;
-    border: 1px solid #FC3D3D;
+    border: 1px solid #FF464C;
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 24px;
@@ -117,7 +131,20 @@
     font-family: 'TRY-finder-regular';
     width: 100%;
     height: 68px;
-    border: 1px solid #CECECE;
+    border: 1px solid #EAEAEA;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 24px;
+    font-weight: 400;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.PasswordInputFilled  {
+    font-family: 'TRY-finder-regular';
+    width: 100%;
+    height: 68px;
+    border: 1px solid #C0C0C0;
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 24px;
@@ -130,7 +157,7 @@
     font-family: 'TRY-finder-regular';
     width: 100%;
     height: 68px;
-    border: 1px solid #FC3D3D;
+    border: 1px solid #FF464C;
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 24px;
@@ -140,14 +167,44 @@
 }
 
 .ErrorMessage {
-    height: 32px;
-    font-family: "TRY-finder-regular";
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 32.45px;
-    color: #FE5C61;
-    padding-left: 17px;
-    margin-bottom: 10px;
+    position: absolute;
+    
+    height: 49px;
+    width: fit-content;
+    font-family: "TRY-finder-bold";
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 27px;
+    color: #fff;
+    background-color: #FF464C;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+
+.Circle {
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #EAEAEA;
+}
+.CircleDark {
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #000000;
+}
+
+.CircleFilled {
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    background-color: #000000;
 }
 
 ::-webkit-input-placeholder { 
@@ -188,7 +245,7 @@ i {
     height: 68px;
     border-radius: 6px;
     border: 0px;
-    background-color: #CECECE;
+    background-color: #EAEAEA;
     color: #fff;
     font-family: "TRY-finder-bold";
     font-weight: 700;
@@ -209,10 +266,36 @@ i {
     line-height: 32.4px;
 }
 
-.Button:hover {
-    cursor: pointer;
+.ButtonError {
+    width: 100%;
+    height: 68px;
+    border-radius: 6px;
+    border: 0px;
     background-color: #C02328;
+    color: #fff;
+    font-family: "TRY-finder-bold";
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32.4px;
+    animation-name:  horizontal-shaking;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+
+    -webkit-animation-name:               horizontal-shaking;    
+    -webkit-animation-duration:          0.3s;
+    -webkit-animation-iteration-count:   1;
+    -webkit-animation-timing-function:   linear;
+    /* -webkit-transform-origin:            50% 100%; */
 }
+
+@keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(5px) }
+    50% { transform: translateX(-5px) }
+    75% { transform: translateX(5px) }
+    100% { transform: translateX(0) }
+   }
 
 .Button:active {
     cursor: pointer;
