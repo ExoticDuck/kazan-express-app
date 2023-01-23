@@ -6,7 +6,7 @@
     box-sizing: border-box;
     position: relative;
     background-color: #ffffff;
-    /* overflow: auto; */
+    overflow: auto;
 }
 
 .BoxContainer {
@@ -22,7 +22,7 @@
     flex-direction: column;
     column-gap: 20px;
     position: relative;
-    overflow: hidden;
+    /* overflow: auto; */
 }
 
 .ProfileInfo {
@@ -187,12 +187,14 @@
     background: #eaeaea;
     border-radius: 5px;
 }
+
 .TaxPercent {
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: "TRY-finder-regular";
     flex-direction: row;
+    flex-wrap: nowrap;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -201,7 +203,7 @@
 
     color: #000000;
 
-    width: 87px;
+    width: fit-content;
     height: 22px;
     padding: 0px 5px;
     box-sizing: border-box;
@@ -221,7 +223,7 @@
 
     color: #000000;
 
-    width: 77px;
+    width: fit-content;
     height: 22px;
 
     background: #eaeaea;
@@ -233,7 +235,7 @@
     padding-left: 3px;
     border: 0;
     box-sizing: border-box;
-    width: 20px;
+    width: 28px;
     border: 0;
     background-color: #eaeaea;
 

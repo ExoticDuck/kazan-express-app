@@ -47,8 +47,30 @@ export const API = {
         return instance.get<any, AxiosResponse<UserAccountResponceType>, any>('/v2/user/account', { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     },
     updateTax(token: string, data: UpdateTaxDataType) {
-        return instance.post<UpdateTaxDataType, AxiosResponse<UpdateTaxResponceType>, any>('/v2/user/update-tax', {"year": data.year, "tax": data.tax}, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'} })
+        return instance.post<UpdateTaxDataType, AxiosResponse<UpdateTaxResponceType>, any>('/v2/user/update-tax', { "year": data.year, "tax": data.tax }, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json' } })
+    },
+    getInvoices(token: string, page: number) {
+        return instance.get<any, AxiosResponse<GetInvoicesResponceType>, any>(`v2/purchase/invoices?page=${page}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     }
+}
+
+export type GetInvoicesResponceType = {
+    id: number,
+    data: [
+        {
+            invoice_id: number,
+            date_created: string,
+            title: string,
+            customer: string,
+            storage: string,
+            quantity: number,
+            price: number,
+            quantity_accepted: number,
+            total_price: number,
+            status: string
+        }],
+    size: number,
+    page: number
 }
 
 export type UpdateTaxDataType = {
@@ -67,11 +89,11 @@ export type UpdateTaxResponceType = {
 }
 
 export type UserInfoResponceType = {
-        id: number,
-        name: string,
-        surname: string,
-        email: string,
-        shops: Array<{ title: string, shop_id: number }>,
+    id: number,
+    name: string,
+    surname: string,
+    email: string,
+    shops: Array<{ title: string, shop_id: number }>,
 }
 
 export type TariffsResponceType = {

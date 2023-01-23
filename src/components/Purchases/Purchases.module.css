@@ -8,12 +8,12 @@
 }
 
 .BoxContainer {
-    height: calc(100vh - 100px);
+    max-height: calc(100vh - 100px);
     padding-left: 30px;
     padding-right: 22px;
     width: 100vw;
     margin-top: 50px;
-    min-height: fit-content;
+    /* min-height: fit-content; */
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
     flex-direction: column;
     /* column-gap: 20px; */
     position: relative;
-    overflow: hidden;
+    /* overflow: auto; */
 }
 
 .Navigation {

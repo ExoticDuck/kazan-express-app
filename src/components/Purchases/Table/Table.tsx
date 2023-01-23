@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Table.module.css'
+import InfiniteScroll from 'react-infinite-scroller';
 
 type TablePropsType = {
     activeTab: 1 | 2 | 3 | 4;
 }
 
 function Table(props: TablePropsType) {
+
+    const [hasMoreItems, setHasMoreItems] = useState(true);
+
+    function loadMore() {
+
+    }
+
     let rowTestData: RowPropsType[] = [
         { number: 1, date: "15.01.2023", title: "КЕ-1818", supplier: "ИП ПОЖАРНОВ", storage: "KE", amount: 10000, sum: 10000, factAmount: 100, totalAmount: 10000, status: "В обработке" },
         { number: 2, date: "15.01.2023", title: "КЕ-1818", supplier: "ИП ПОЖАРНОВ", storage: "KE", amount: 10000, sum: 10000, factAmount: 100, totalAmount: 10000, status: "В обработке" },
@@ -64,20 +72,30 @@ function Table(props: TablePropsType) {
                     <div className={style.ColumnHeader} id={style.Column11}>Действия</div>
                 </div>
                 <div className={style.RowContainer}>
-                    {rowTestData.map(el => {
-                        return <Row
-                            number={el.number}
-                            date={el.date}
-                            title={el.title}
-                            supplier={el.supplier}
-                            storage={el.storage}
-                            amount={el.amount}
-                            sum={el.sum}
-                            factAmount={el.factAmount}
-                            totalAmount={el.totalAmount}
-                            status={el.status}
-                        />
-                    })}
+                    <InfiniteScroll
+                        threshold={0}
+                        pageStart={0}
+                        loadMore={loadMore}
+                        hasMore={hasMoreItems}
+                        loader={<div className={style.LoaderContainer} key={0}><div className={style.Loader}></div></div>}
+                        useWindow={false}
+                    >
+                        {rowTestData.map(el => {
+                            return <Row
+                                number={el.number}
+                                date={el.date}
+                                title={el.title}
+                                supplier={el.supplier}
+                                storage={el.storage}
+                                amount={el.amount}
+                                sum={el.sum}
+                                factAmount={el.factAmount}
+                                totalAmount={el.totalAmount}
+                                status={el.status}
+                            />
+                        })}
+                    </InfiniteScroll>
+
                 </div>
             </div>
         </div>

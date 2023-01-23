@@ -73,7 +73,6 @@
     width: calc(100vw - 150px - 55px - 123px);
     box-sizing: border-box;
     height: 50px;
-
 }
 
 .CenterContainerSmall {
@@ -97,25 +96,40 @@
     text-align: center;
     color: #ffffff;
     height: 50px;
-    display: block;
+
     overflow: hidden;
 
     display: flex;
     align-items: center;
+    justify-content: center;
 }
-  
+
+#RunningBox {
+    justify-content: left;
+}
+
+.ErrorText {
+    width: fit-content;
+}
+
 .Runline {
     height: 27px;
+    max-width: fit-content;
     display: inline-block;
     white-space: nowrap;
-    animation: runline 50s linear infinite 1s both;
     /* overflow: hidden; */
-  }
+}
 
-  .Runline:hover {
+#Running {
+    animation: runline 35s linear infinite 1s both;
+}
+
+#Running:hover {
     animation-play-state: paused;
-  }
-  
-  @keyframes runline {
-    to {transform: translateX(-100%);}
-  }
+}
+
+@keyframes runline {
+    to {
+        transform: translateX(-100%);
+    }
+}

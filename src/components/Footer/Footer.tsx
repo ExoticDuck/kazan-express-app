@@ -15,8 +15,7 @@ type FooterPropsType = {
 function Footer(props: FooterPropsType) {
     const [exitActive, setExitActive] = useState(false);
     let error = useAppSelector(state => state.app.error);
-    let email = useAppSelector(state => state.user.userInfo.email);
-    // let selectedShop = useAppSelector(state => state.user.selectedShop);
+
     let navigate = useNavigate();
     let dispatch = useAppDispatch();
 
@@ -32,7 +31,7 @@ function Footer(props: FooterPropsType) {
             setBoxWidth(Box.current.offsetWidth);
             //@ts-ignore 
             setStringWidth(String.current.offsetWidth);        
-    }, []);
+    }, [error.isActive]);
 
     function onExitClickHandler() {
         setExitActive(true);
@@ -54,15 +53,18 @@ function Footer(props: FooterPropsType) {
                 Техподдержка
             </div>
             <div className={exitActive ? style.CenterContainerSmall : style.CenterContainer}>
-                {/* {error.isActive ?  */}
-                <div className={style.ErrorMessage} ref={Box}>
-                    <div ref={String} className={boxWidth <= (stringWidth + 30) ? style.Runline : ""}>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam rerum possimus explicabo aliquam esse consectetur, nam quasi commodi alias! Consequuntur pariatur obcaecati molestiae qui libero ab ut tempora iusto a.
-                    Error minus odio ipsum dolorem similique modi eligendi, repellat commodi optio nobis explicabo! Saepe quas a ipsam ipsum error modi, cum amet, exercitationem, omnis labore distinctio officiis fugiat atque incidunt!
+                {error.isActive ? 
+                <div className={style.ErrorMessage} ref={Box} id={boxWidth <= (stringWidth + 30) ? style.RunningBox : ""}>
+                    <div ref={String} className={style.Runline} id={boxWidth <= (stringWidth + 30) ? style.Running : ""}>
+                        {error.message}
                     </div>
                 </div>
-                {/* : 
-                <div></div>} */}
+                : 
+                <div ref={Box}>
+                    <div ref={String}>
+
+                    </div>
+                </div>}
             </div>
             {exitActive ?
                 <div className={style.ExpandedRightContainer}>
