@@ -8,11 +8,12 @@ import Loader from './components/Loader/Loader';
 import MainPage from './components/MainPage/MainPage';
 import { useEffect } from 'react';
 import { API } from './api/api';
-import { setUserInfoAC, setUserStatAC } from './store/reducers/UserReducer';
+import { setUserInfoAC} from './store/reducers/UserReducer';
 import { setIsLoadingAC, setTokenAC } from './store/reducers/AppReducer';
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
+import Purchases from './components/Purchases/Purchases';
 
 function App() {
 
@@ -24,8 +25,8 @@ function App() {
       <Routes>
         <Route element={<Home/>} path={"/"}></Route>
         <Route element={<Login />} path={"/login"}></Route>
-        <Route element={<MainPage />} path={"/seller"}></Route>
         <Route element={<Profile />} path={"/profile"}></Route>
+        <Route element={<Purchases />} path={"/purchases"}></Route>
       </Routes>
     </div>
   );

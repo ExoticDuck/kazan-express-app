@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { StatTableItem } from "../store/reducers/UserReducer";
 
 const instance = axios.create({
-    baseURL: "https://api.ke-stat.ru/v2",
+    baseURL: "https://api.ke-stat.ru/",
     withCredentials: false,
     headers: {
         'Accept': 'text/plain',
@@ -24,34 +24,89 @@ const instance = axios.create({
         // 'Sec-Fetch-Site': 'same-origin',
         // 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
         'X-Requested-With': 'XMLHttpRequest',
-        'Access-Control-Allow-Origin': 'https://api.ke-stat.ru/v2',
+        'Access-Control-Allow-Origin': 'https://api.ke-stat.ru/dev',
         'Vary': 'Origin'
     }
 })
 
 export const API = {
     getToken(username: string, password: string) {
-        return instance.post("/user/token", {
+        return instance.post("/v2/user/token", {
             grant_type: "password",
             username,
             password
         })
     },
     getUserInfo(token: string) {
-        return instance.get<any, AxiosResponse<UserInfoResponceType>, any>('/user/info', { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' }})
+        return instance.get<any, AxiosResponse<UserInfoResponceType>, any>('/v2/user/info', { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     },
-    getUserStat(token: string) {
-        return instance.get<any, AxiosResponse<UserStatResponceType>, any>('/user/stat',  { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' }})
+    getTariffs(token: string) {
+        return instance.get<any, AxiosResponse<TariffsResponceType>, any>('/v2/user/tariffs', { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
+    },
+    getUserAccount(token: string) {
+        return instance.get<any, AxiosResponse<UserAccountResponceType>, any>('/v2/user/account', { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
+    },
+    updateTax(token: string, data: UpdateTaxDataType) {
+        return instance.post<UpdateTaxDataType, AxiosResponse<UpdateTaxResponceType>, any>('/v2/user/update-tax', data, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     }
 }
 
+export type UpdateTaxDataType = {
+    year: number,
+    tax: number
+}
+
+export type UpdateTaxResponceType = {
+    id: number,
+    taxes: Array<
+        {
+            year: number,
+            tax: number
+        }
+    >
+}
+
 export type UserInfoResponceType = {
+        id: number,
+        name: string,
+        surname: string,
+        email: string,
+        shops: Array<{ title: string, shop_id: number }>,
+}
+
+export type TariffsResponceType = {
+    tariffs: Array<
+        {
+            id: number,
+            title: string,
+            description: string,
+            price: number,
+            shop_count: number,
+            order_count: number,
+            updates: number
+        }
+    >
+}
+
+export type UserAccountResponceType = {
     id: number,
     name: string,
     surname: string,
     email: string,
-    shops: Array<{title: string, id: number}>,
-    shop_list: number[]
+    shops: Array<
+        {
+            shop_id: number,
+            title: string
+        }
+    >,
+    tariff: string,
+    status: boolean,
+    date_end: string,
+    reg_date: string,
+    taxes: Array<{
+        year: number,
+        tax: number
+    }>
 }
 
 export type UserStatResponceType = {

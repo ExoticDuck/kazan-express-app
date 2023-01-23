@@ -27,7 +27,7 @@ function Login() {
 
     useEffect(() => {
         if(token !== undefined && token !== "" && token !== null) {
-            navigate("/seller")
+            navigate("/profile")
         }
     }, [token, navigate, dispatch])
 

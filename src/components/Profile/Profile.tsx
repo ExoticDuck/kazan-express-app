@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Card from './Card/Card';
 import style from "./Profile.module.css";
+import { useAppDispatch, useAppSelector } from './../../store/hooks';
+import { useNavigate } from 'react-router-dom';
+import { UserInfoTC } from '../../store/reducers/UserReducer';
+import moment from 'moment';
+
+
 
 function Profile() {
+    let dispatch = useAppDispatch();
+    let navigate = useNavigate();
+    let userInfo = useAppSelector(state => state.user.userInfo);
+    let userAccount = useAppSelector(state => state.user.userAccount);
+    let tariffs = useAppSelector(state => state.user.tariffs);
+
+    let regDate = moment(userAccount.reg_date).format('DD.MM.YYYY');
+    let endDate = moment(userAccount.date_end).format('DD.MM.YYYY');
+
+    let colors = ["#1CC600", "#0073C6", "#ED00C7", "#ED7200", "#FF464C"];
+    debugger
+    useEffect(() => {
+        let token = localStorage.access_token;
+        if (token !== undefined && token !== "" && token !== null) {
+            debugger
+            dispatch(UserInfoTC(token));
+        } else {
+            navigate("/login");
+        }
+    }, [dispatch, navigate])
+
     return (
         <div className={style.Container}>
             <Header />
@@ -12,62 +39,41 @@ function Profile() {
                 <div className={style.ProfileInfo}>
                     <div className={style.TopContainer}>
                         <div className={style.TopLeft}>
-                            <div className={style.ProfileName}>Александр Чепкасов</div>
-                            <div className={style.RegisterDate}>Дата создания профиля: 13.01.2023</div>
+                            <div className={style.ProfileName}>{userInfo.name} {userInfo.surname}</div>
+                            <div className={style.RegisterDate}>Дата создания профиля: {regDate}</div>
                         </div>
                         <div className={style.TopRight}>
-                            <div className={style.Subscription}>Подписка активна</div>
-                            <div className={style.EndDate}>Время окончания: 13:09:2023</div>
+                            <div className={style.Subscription}>Подписка {userAccount.status ? "активна" : "не активна"}</div>
+                            <div className={style.EndDate}>Время окончания: {endDate}</div>
                         </div>
                     </div>
                     <div className={style.BottomContainer}>
                         <div className={style.BottomLeft}>
                             <div className={style.ProfileName}>Указать годовой налог</div>
-                            <div className={style.TaxBox}></div>
+                            <div className={style.TaxBox}>
+                                {userAccount.taxes.map(el => <Tax year={el.year} tax={el.tax} />)}
+                            </div>
                         </div>
                         <div className={style.BottomRight}>
-                            <div className={style.Rate}>Максимальный</div>
+                            <div className={style.Rate}>{userAccount.tariff}</div>
                             <div className={style.EndDate}>Ваш тариф</div>
                         </div>
                     </div>
                 </div>
                 <div className={style.CardsContainer}>
-                    <Card
-                        title='Базовый'
-                        price={999}
-                        orderLimit={"20 в день"}
-                        shopLimit={"5"}
-                        optionLimit={"Недоступны некоторые функции раздела закупок и склада"}
-                        updatesPerDay={"2 раза в день"}
-                        color={"#1CC600"}
-                    />
-                    <Card
-                        title='Стандартный'
-                        price={3999}
-                        orderLimit={"40 в день"}
-                        shopLimit={"10"}
-                        optionLimit={"Недоступны некоторые функции раздела закупок и склада"}
-                        updatesPerDay={"6 раз в день"}
-                        color={"#0073C6"}
-                    />
-                    <Card
-                        title='Максимальный'
-                        price={7999}
-                        orderLimit={"100 в день"}
-                        shopLimit={"15"}
-                        optionLimit={"Без ограничений"}
-                        updatesPerDay={"раз в два часа"}
-                        color={"#ED00C7"}
-                    />
-                    <Card
-                        title='Ультра'
-                        price={12999}
-                        orderLimit={"Без ограничений"}
-                        shopLimit={"∞"}
-                        optionLimit={"Без ограничений"}
-                        updatesPerDay={"раз в час"}
-                        color={"#ED7200"}
-                    />
+                    {
+                        tariffs.map((el) => {
+                            return (<Card
+                                title={el.title}
+                                price={el.price}
+                                orderLimit={el.order_count.toString()}
+                                shopLimit={el.shop_count.toString()}
+                                description={el.description}
+                                updatesPerDay={el.updates.toString()}
+                                color={colors[el.id - 1]}
+                            />)
+                        })
+                    }
                 </div>
                 <div className={style.TextBlock}>
                     KEstat сервис для продавцов на маркетплейсе Kazan Express – инструмент для легкого и удобного управления складским запасом,
@@ -77,6 +83,24 @@ function Profile() {
                 </div>
             </div>
             <Footer />
+        </div>
+    )
+}
+
+function Tax(props: { year: number, tax: number }) {
+    const [active, setActive] = useState(false);
+    const [tax, setTax] = useState(props.tax.toString());
+    return (
+        <div>
+            {active ?
+                <div className={style.TaxActive} onDoubleClick={() => {setActive(false)}}>
+                    {props.year} - 
+                    <input maxLength={2} className={style.TaxInput} value={tax} onChange={(el: ChangeEvent<HTMLInputElement>) => setTax(el.currentTarget.value)}></input>
+                </div> :
+                <div className={tax !== "0" ? style.TaxPercent : style.Tax} onDoubleClick={() => setActive(true)}>
+                    {props.year}
+                    {tax !== "0" ? " - " + tax + "%" : ""}
+                </div>}
         </div>
     )
 }

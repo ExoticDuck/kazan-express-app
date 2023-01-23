@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setSelectedShopAC } from '../../../store/reducers/UserReducer'
+
 import style from './Shop.module.css'
 
 type ShopPropsType = {

@@ -19,7 +19,7 @@ type HeadingPropsType = {
     type: "turnover" | "profit" | "quantity"
 }
 
-function Table(props: TablePropsType) {
+function Tables(props: TablePropsType) {
     const [color, setColor] = useState<ColorType>("grey");
     
     function onClickHandler() {
@@ -85,4 +85,4 @@ function HeadingRow(props: HeadingPropsType) {
     )
 }
 
-export default Table 
+export default Tables 

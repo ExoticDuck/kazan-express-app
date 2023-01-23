@@ -1,0 +1,180 @@
+.Container {
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #ffffff;
+    overflow: auto;
+}
+
+.BoxContainer {
+    height: calc(100vh - 100px);
+    padding-left: 30px;
+    padding-right: 22px;
+    width: 100vw;
+    margin-top: 50px;
+    min-height: fit-content;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    /* column-gap: 20px; */
+    position: relative;
+    overflow: hidden;
+}
+
+.Navigation {
+    height: 44px;
+    width: calc(100vw - 52px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+.LeftContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+.TabActive {
+    width: fit-content;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    height: 44px;
+    background-color: #f5f5f5;
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    cursor: pointer;
+}
+.Tab {
+    width: fit-content;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    height: 44px;
+    background-color: #fff;
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    cursor: pointer;
+}
+.Tab:hover {
+    background-color: #f5f5f5;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.RightContainer {
+    height: 44px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-direction: row;
+    margin-right: 18px;
+    box-sizing: border-box;
+}
+
+.RightItem {
+    width: fit-content;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 20px;
+    box-sizing: border-box;
+
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: right;
+
+    color: #eaeaea;
+}
+
+.FilterInput {
+    width: 200px;
+    height: 32px;
+    padding-left: 10px;
+    background: #ffffff;
+    border: 2px solid #eaeaea;
+    border-radius: 5px;
+    box-sizing: border-box;
+    
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #eaeaea;
+}
+
+.SelectBox {
+    box-sizing: border-box;
+    width: 200px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+
+    background: #ffffff;
+    border: 2px solid #eaeaea;
+    border-radius: 5px;
+}
+
+.SelectText {
+    /* width: 158px; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #eaeaea;
+}
+
+.ArrowButton {
+    width: 30px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

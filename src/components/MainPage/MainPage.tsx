@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { API } from '../../api/api';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setIsLoadingAC, setTokenAC } from '../../store/reducers/AppReducer';
-import { resetUserAC, setSelectedShopAC, setUserInfoAC, setUserStatAC, UserInfoTC } from '../../store/reducers/UserReducer';
+import { resetUserAC, setUserInfoAC, UserInfoTC } from '../../store/reducers/UserReducer';
 import Header from '../Header/Header';
 import style from './MainPage.module.css'
 import Shop from './Shop/Shop';
@@ -14,12 +14,12 @@ import Footer from '../Footer/Footer';
 
 function MainPage() {
   let shops = useAppSelector(state => state.user.userInfo.shops);
-  let todayData = useAppSelector(state => state.user.userStat.today);
-  let yesterdayData = useAppSelector(state => state.user.userStat.yesterday);
-  let monthData = useAppSelector(state => state.user.userStat.month);
-  let topTurnover = useAppSelector(state => state.user.userStat.top_turnover);
-  let topClean = useAppSelector(state => state.user.userStat.top_clean);
-  let topDead = useAppSelector(state => state.user.userStat.top_dead);
+  // let todayData = useAppSelector(state => state.user.userStat.today);
+  // let yesterdayData = useAppSelector(state => state.user.userStat.yesterday);
+  // let monthData = useAppSelector(state => state.user.userStat.month);
+  // let topTurnover = useAppSelector(state => state.user.userStat.top_turnover);
+  // let topClean = useAppSelector(state => state.user.userStat.top_clean);
+  // let topDead = useAppSelector(state => state.user.userStat.top_dead);
   let userName = useAppSelector(state => state.user.userInfo.name);
   let userSurname = useAppSelector(state => state.user.userInfo.surname);
   let navigate = useNavigate();

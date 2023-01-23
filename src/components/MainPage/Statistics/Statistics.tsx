@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+//@ts-ignore
 import { StatType } from '../../../store/reducers/UserReducer';
 import style from './Statistics.module.css';
 export type ColorType = "grey" | "red" | "blue";

@@ -4,7 +4,7 @@ import logo from '../../img/KEstat-icon-white.png'
 import { useAppSelector } from '../../store/hooks';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from './../../store/hooks';
-import { resetUserAC, setSelectedShopAC } from '../../store/reducers/UserReducer';
+import { resetUserAC} from '../../store/reducers/UserReducer';
 import { ReactComponent as Logo } from '../../img/KEstatLogo.svg';
 import { useState } from 'react';
 
@@ -16,25 +16,13 @@ type HeaderPropsType = {
 function Header(props: HeaderPropsType) {
     let name = useAppSelector(state => state.user.userInfo.name);
     let surname = useAppSelector(state => state.user.userInfo.surname);
-    let email = useAppSelector(state => state.user.userInfo.email);
-    let selectedShop = useAppSelector(state => state.user.selectedShop);
+    // let email = useAppSelector(state => state.user.userInfo.email);
+    // let selectedShop = useAppSelector(state => state.user.selectedShop);
     let navigate = useNavigate();
     let dispatch = useAppDispatch();
     // let [isActiveBtn, setIsActiveButton] = useState(false);
 
-    function onExitClickHandler() {
-        localStorage.removeItem("access_token");
-        dispatch(resetUserAC());
-        navigate('/login');
-    }
 
-    function onShopsClickHandler() {
-        // props.setIsActive(!props.isActiveButton);
-    }
-
-    function onStatClickHandler() {
-        dispatch(setSelectedShopAC(0, ""))
-    }
 
     return (
         <div className={style.Container}>
@@ -59,7 +47,7 @@ function Header(props: HeaderPropsType) {
                     Статистика
                 </NavLink>
                 <NavLink
-                    to="profile"
+                    to="/purchases"
                     className={({ isActive }) =>
                         isActive ? style.PurchasesActive : style.Purchases
                     }

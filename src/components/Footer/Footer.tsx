@@ -4,7 +4,7 @@ import logo from '../../img/KEstat-icon-white.png'
 import { useAppSelector } from '../../store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooks';
-import { resetUserAC, setSelectedShopAC } from '../../store/reducers/UserReducer';
+import { resetUserAC } from '../../store/reducers/UserReducer';
 import { ReactComponent as Logo } from '../../img/Group 1.svg';
 import { useState } from 'react';
 
@@ -16,7 +16,7 @@ function Footer(props: FooterPropsType) {
     const [exitActive, setExitActive] = useState(false);
     let error = useAppSelector(state => state.app.error);
     let email = useAppSelector(state => state.user.userInfo.email);
-    let selectedShop = useAppSelector(state => state.user.selectedShop);
+    // let selectedShop = useAppSelector(state => state.user.selectedShop);
     let navigate = useNavigate();
     let dispatch = useAppDispatch();
 

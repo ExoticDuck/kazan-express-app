@@ -1,9 +1,9 @@
 import { AxiosError } from "axios";
-import { API, UserInfoResponceType, UserStatResponceType } from "../../api/api"
+import { API, TariffsResponceType, UserAccountResponceType, UserInfoResponceType, UserStatResponceType } from "../../api/api"
 import { AppThunk } from "../store";
 import { setIsLoadingAC, setTokenAC } from "./AppReducer";
 
-type ShopType = { title: string, id: number };
+type ShopType = { title: string, shop_id: number };
 
 export type StatTableItem = {
     place: number,
@@ -19,51 +19,39 @@ type UserStateType = {
         name: string,
         surname: string,
         email: string,
-        shops: Array<ShopType>,
-        shop_list: number[]
+        shops: Array<ShopType>
     },
-    userStat: {
-        today: {
-            items_amount: number,
-            total_profit: number,
-            average_order: number,
-            marginality: number,
-            clear_profit: number
-        },
-        yesterday: {
-            items_amount: number,
-            total_profit: number,
-            average_order: number,
-            marginality: number,
-            clear_profit: number
-        },
-        month: {
-            items_amount: number,
-            total_profit: number,
-            average_order: number,
-            marginality: number,
-            clear_profit: number
-        },
-        top_turnover: StatTableItem[],
-        top_clean: StatTableItem[],
-        top_dead: StatTableItem[]
-    },
-    invoices: {
-        today: {
-            invoices_amount: number,
-            items_amount: number
-        },
-        yesterday: {
-            invoices_amount: number,
-            items_amount: number
-        },
-        items_left: number
-    }
-    ,
-    selectedShop: {
+    userAccount: {
         id: number,
-        title: string
-    }
+        name: string,
+        surname: string,
+        email: string,
+        shops: Array<
+            {
+                shop_id: number,
+                title: string
+            }
+        >,
+        tariff: string,
+        status: boolean,
+        date_end: string,
+        reg_date: string,
+        taxes: Array<{
+            year: number,
+            tax: number
+        }>
+    },
+    tariffs: Array<
+        {
+            id: number,
+            title: string,
+            description: string,
+            price: number,
+            shop_count: number,
+            order_count: number,
+            updates: number,
+        }
+    >
 }
 
 let initialState: UserStateType = {
@@ -73,61 +61,32 @@ let initialState: UserStateType = {
         surname: "",
         email: "",
         shops: [],
-        shop_list: []
     },
-    userStat: {
-        today: {
-            items_amount: 0,
-            total_profit: 0,
-            average_order: 0,
-            marginality: 0,
-            clear_profit: 0
-        },
-        yesterday: {
-            items_amount: 0,
-            total_profit: 0,
-            average_order: 0,
-            marginality: 0,
-            clear_profit: 0
-        },
-        month: {
-            items_amount: 0,
-            total_profit: 0,
-            average_order: 0,
-            marginality: 0,
-            clear_profit: 0
-        },
-        top_turnover: [],
-        top_clean: [],
-        top_dead: []
-    },
-    invoices: {
-        today: {
-            invoices_amount: 0,
-            items_amount: 0
-        },
-        yesterday: {
-            invoices_amount: 0,
-            items_amount: 0
-        },
-        items_left: 0
-    },
-    selectedShop: {
+    userAccount: {
         id: 0,
-        title: ""
-    }
+        name: "",
+        surname: "",
+        email: "",
+        shops: [],
+        tariff: "",
+        status: false,
+        date_end: "",
+        reg_date: "",
+        taxes: []
+    },
+    tariffs: []
 }
 
-export type StatType = typeof initialState.userStat.today;
+// export type StatType = typeof initialState.userStat.today;
 
 export const UserReducer = (state = initialState, action: UserActionsType): UserStateType => {
     switch (action.type) {
         case "user/SET-USER":
             return { ...state, userInfo: { ...action.payload } }
-        case "user/SET-USER-STAT":
-            return { ...state, userStat: { ...action.payload } }
-        case "user/SET-SELECTED-SHOP":
-            return { ...state, selectedShop: { ...action.payload } }
+        case "user/SET-USER-ACCOUNT":
+            return { ...state, userAccount: { ...action.payload } }
+        case "user/SET-USER-TARIFFS":
+            return { ...state, tariffs: [ ...action.payload.tariffs ] }
         case "RESET-USER":
             return { ...initialState }
         default:
@@ -146,15 +105,25 @@ export const setUserInfoAC = (data: UserInfoResponceType) =>
 
 export type setUserInfoACType = ReturnType<typeof setUserInfoAC>
 
-export const setUserStatAC = (data: UserStatResponceType) =>
+export const setUserAccountAC = (data: UserAccountResponceType) =>
 ({
-    type: 'user/SET-USER-STAT',
+    type: 'user/SET-USER-ACCOUNT',
     payload: {
         ...data
     }
 } as const)
 
-export type setUserStatACType = ReturnType<typeof setUserStatAC>
+export type setUserStatACType = ReturnType<typeof setUserAccountAC>
+
+export const setUserTariffsAC = (data: TariffsResponceType) =>
+({
+    type: 'user/SET-USER-TARIFFS',
+    payload: {
+        ...data
+    }
+} as const)
+
+export type setUserTariffsACType = ReturnType<typeof setUserTariffsAC>
 
 export const resetUserAC = () =>
 ({
@@ -163,16 +132,16 @@ export const resetUserAC = () =>
 
 export type resetUserACType = ReturnType<typeof resetUserAC>
 
-export const setSelectedShopAC = (id: number, title: string) =>
-({
-    type: 'user/SET-SELECTED-SHOP',
-    payload: {
-        id,
-        title
-    }
-} as const)
+// export const setSelectedShopAC = (id: number, title: string) =>
+// ({
+//     type: 'user/SET-SELECTED-SHOP',
+//     payload: {
+//         id,
+//         title
+//     }
+// } as const)
 
-export type setSelectedShopACType = ReturnType<typeof setSelectedShopAC>
+// export type setSelectedShopACType = ReturnType<typeof setSelectedShopAC>
 
 
 //thunk
@@ -181,22 +150,26 @@ export const UserInfoTC = (token: string): AppThunk => {
     return (dispatch, getState) => {
         dispatch(setIsLoadingAC(true))
         dispatch(setTokenAC(token));
-        debugger
         dispatch(setIsLoadingAC(true))
         API.getUserInfo(token).then((res) => {
             console.log(res.data);
             dispatch(setUserInfoAC(res.data))
         }).then((res) => {
-            API.getUserStat(token).then((res) => {
+            API.getUserAccount(token).then((res) => {
                 console.log(res.data);
-                dispatch(setUserStatAC(res.data))
+                dispatch(setUserAccountAC(res.data))
             })
             dispatch(setIsLoadingAC(false))
-        }).catch((e: AxiosError) => {
+        }).then((res) => {
+            API.getTariffs(token).then((res) => {
+                console.log(res.data);
+                dispatch(setUserTariffsAC(res.data))
+            }
+        )}).catch((e: AxiosError) => {
             dispatch(setIsLoadingAC(false));
         })
     }
 }
 
 
-export type UserActionsType = setUserInfoACType | setUserStatACType | resetUserACType | setSelectedShopACType;
+export type UserActionsType = setUserInfoACType | setUserStatACType | resetUserACType | setUserTariffsACType;
