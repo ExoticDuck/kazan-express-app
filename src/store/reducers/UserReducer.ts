@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { API, TariffsResponceType, UserAccountResponceType, UserInfoResponceType, UserStatResponceType } from "../../api/api"
+import { API, TariffsResponceType, UpdateTaxDataType, UpdateTaxResponceType, UserAccountResponceType, UserInfoResponceType, UserStatResponceType } from "../../api/api"
 import { AppThunk } from "../store";
 import { setIsLoadingAC, setTokenAC } from "./AppReducer";
 
@@ -87,6 +87,8 @@ export const UserReducer = (state = initialState, action: UserActionsType): User
             return { ...state, userAccount: { ...action.payload } }
         case "user/SET-USER-TARIFFS":
             return { ...state, tariffs: [ ...action.payload.tariffs ] }
+        case "user/SET-USER-TAXES":
+            return { userInfo: {...state.userInfo}, tariffs: [...state.tariffs], userAccount: { ...state.userAccount, taxes: action.payload.taxes.map(el => ({...el})) }}
         case "RESET-USER":
             return { ...initialState }
         default:
@@ -124,6 +126,16 @@ export const setUserTariffsAC = (data: TariffsResponceType) =>
 } as const)
 
 export type setUserTariffsACType = ReturnType<typeof setUserTariffsAC>
+
+export const setUserTaxesAC = (data: UpdateTaxResponceType) =>
+({
+    type: 'user/SET-USER-TAXES',
+    payload: {
+        taxes: [...data.taxes]
+    }
+} as const)
+
+export type setUserTaxesACType = ReturnType<typeof setUserTaxesAC>
 
 export const resetUserAC = () =>
 ({
@@ -171,5 +183,24 @@ export const UserInfoTC = (token: string): AppThunk => {
     }
 }
 
+export const UpdateTaxTC = (token: string, data: UpdateTaxDataType): AppThunk => {
+    return (dispatch, getState) => {
+        dispatch(setIsLoadingAC(true))
+        dispatch(setTokenAC(token));
+        dispatch(setIsLoadingAC(true))
+        API.updateTax(token, data).then((res) => {
+            dispatch(setUserTaxesAC(res.data))
+            debugger
+            // API.getUserAccount(token).then((res) => {
+            //     console.log(res.data);
+            //     dispatch(setUserAccountAC(res.data))
+            // })
+            dispatch(setIsLoadingAC(false))
+        }).catch((e: AxiosError) => {
+            dispatch(setIsLoadingAC(false));
+        })
+    }
+}
 
-export type UserActionsType = setUserInfoACType | setUserStatACType | resetUserACType | setUserTariffsACType;
+
+export type UserActionsType = setUserInfoACType | setUserStatACType | resetUserACType | setUserTariffsACType | setUserTaxesACType;

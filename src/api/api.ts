@@ -47,7 +47,7 @@ export const API = {
         return instance.get<any, AxiosResponse<UserAccountResponceType>, any>('/v2/user/account', { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     },
     updateTax(token: string, data: UpdateTaxDataType) {
-        return instance.post<UpdateTaxDataType, AxiosResponse<UpdateTaxResponceType>, any>('/v2/user/update-tax', data, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
+        return instance.post<UpdateTaxDataType, AxiosResponse<UpdateTaxResponceType>, any>('/v2/user/update-tax', {"year": data.year, "tax": data.tax}, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'} })
     }
 }
 
