@@ -150,7 +150,7 @@ function Tax(props: TaxPropsType) {
         <div>
             {props.activeTax === props.year ?
                 <div className={style.TaxActive} onClick={onClickHandlerExpanded}>
-                    {props.year} -  
+                    {props.year} - 
                     <input autoFocus={true} maxLength={3} className={style.TaxInput} value={inputValue} onChange={onChangeHandler}></input>
                 </div> :
                 <div className={props.tax.toString() !== "0" ? style.TaxPercent : style.Tax} onClick={onClickHandler}>
