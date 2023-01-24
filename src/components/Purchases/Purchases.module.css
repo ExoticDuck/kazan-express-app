@@ -204,6 +204,21 @@
     color: #eaeaea;
 }
 
+.DateInput {
+    box-sizing: border-box;
+    width: 112px;
+    height: 32px;
+    background: #ffffff;
+    border: 2px solid #eaeaea;
+    border-radius: 5px;
+
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+
 .SelectBox {
     box-sizing: border-box;
     width: 200px;

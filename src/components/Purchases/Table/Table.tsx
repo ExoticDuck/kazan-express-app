@@ -106,7 +106,7 @@ function Table(props: TablePropsType) {
         )
     } else {
         return (
-            <div className={style.Table} onScroll={handleScroll} >
+            <div className={style.Table} >
 
                 <div className={style.TableBody} style={{ borderRadius: "0px 8px 8px 8px"}}>
                     <div className={style.TableHeader}>
@@ -127,6 +127,7 @@ function Table(props: TablePropsType) {
                             id={el.stock_id}
                             number={pageNum}
                             title={el.title}
+                            sku={el.sku}
                             supplier={props.activeInvoice?.customer}
                             amount={el.quantity}
                             sum={el.price}
@@ -166,15 +167,17 @@ function Row(props: RowPropsType) {
     if(props.activeTab === 5) {
         return (
             <div className={style.Row}>
-                <div id={style.StocksColumn1}></div>
-                <div id={style.StocksColumn2}></div>
-                <div id={style.StocksColumn3}></div>
-                <div id={style.StocksColumn4}></div>
-                <div id={style.StocksColumn5}></div>
-                <div id={style.StocksColumn6}></div>
-                <div id={style.StocksColumn7}></div>
-                <div id={style.StocksColumn8}></div>
-                <div id={style.StocksColumn9}></div>
+                <div id={style.StocksColumn1}>{props.number}</div>
+                <div id={style.StocksColumn2}>{props.sku}</div>
+                <div id={style.StocksColumnRow3}>{props.title}</div>
+                <div id={style.StocksColumn4}>{props.supplier}</div>
+                <div id={style.StocksColumn5}>{props.amount}</div>
+                <div id={style.StocksColumn6}>{props.sum.toFixed(2)}</div>
+                <div id={style.StocksColumn7}>{props.factAmount}</div>
+                <div id={style.StocksColumn8}>{props.totalAmount.toFixed(2)}</div>
+                <div id={style.StocksColumn9}>
+                    <div>Удалить</div>
+                </div>
             </div>
         )
     } else {

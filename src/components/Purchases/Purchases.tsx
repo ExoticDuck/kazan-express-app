@@ -15,7 +15,8 @@ function Purchases() {
     let navigate = useNavigate();
     let invoiceStocks = useAppSelector(state => state.purchases.invoicesStocks);
     let activeInvoice = useAppSelector(state => state.purchases.invoices.data.find(el => el.invoice_id === invoiceStocks.invoice_id));
-   
+    console.log(activeInvoice);
+
 
     useEffect(() => {
         let token = localStorage.access_token;
@@ -40,16 +41,19 @@ function Purchases() {
                 {activeTab === 5 ?
                     <div className={style.Navigation}>
                         <div className={style.LeftContainer}>
-                            <div className={style.TabExpandedLeft} onClick={() => {}}>
+                            <div className={style.TabExpandedLeft} onClick={() => { }}>
                                 <div className={style.TabTitle}>{activeInvoice?.title}</div>
                                 <div className={style.TabDate}>{date}</div>
                                 <div className={style.Storage}>{activeInvoice?.storage}</div>
                             </div>
-                            <div className={style.TabExpandedRight} onClick={() => {}}>
+                            <div className={style.TabExpandedRight} onClick={() => { }}>
                                 <div>Редактирование</div>
                                 <div>Добавить строку</div>
                             </div>
-                            <div className={style.ExitToEnvoices} onClick={() => setActiveTab(1)}>
+                            <div className={style.ExitToEnvoices} onClick={(e: any) => {
+                                e.stopPropagation();
+                                setActiveTab(1)
+                            }}>
                                 Назад к накладным
                             </div>
                         </div>
@@ -65,7 +69,7 @@ function Purchases() {
                             </div>
                             <div className={style.RightItem}>
                                 Дата
-                                <input></input>
+                                <input className={style.DateInput} type={date}></input>
                             </div>
                         </div>
                     </div>
@@ -89,11 +93,11 @@ function Purchases() {
                             </div>
                             <div className={style.RightItem}>
                                 Дата
-                                <input></input>
+                                <input className={style.DateInput} type={date}></input>
                             </div>
                         </div>
                     </div>
-                    }
+                }
                 <Table activeInvoice={activeInvoice} activeTab={activeTab} setActiveTab={(num: 1 | 2 | 3 | 4 | 5) => setActiveTab(num)} token={token} />
             </div>
             <Footer />
