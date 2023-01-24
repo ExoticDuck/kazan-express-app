@@ -51,12 +51,30 @@ export const API = {
     },
     getInvoices(token: string, page: number) {
         return instance.get<any, AxiosResponse<GetInvoicesResponceType>, any>(`v2/purchase/invoices?page=${page}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
+    },
+    getInvoicesStocks(token: string, invoiceId: number) {
+        return instance.get<any, AxiosResponse<GetInvoicesStocksResponceType>, any>(`v2/purchase/invoice_stocks?invoice_id=${invoiceId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     }
 }
 
+export type GetInvoicesStocksResponceType = {
+        id: number
+        invoice_id: number
+        data: {
+          stock_id: number
+          sku: string
+          title: string
+          quantity: number
+          quantity_accepted: number
+          price: number
+          purchase_price: number
+          total_price: number
+        }[]
+        size: number
+}
 export type GetInvoicesResponceType = {
     id: number,
-    data: [
+    data: 
         {
             invoice_id: number,
             date_created: string,
@@ -68,7 +86,7 @@ export type GetInvoicesResponceType = {
             quantity_accepted: number,
             total_price: number,
             status: string
-        }],
+        }[],
     size: number,
     page: number
 }

@@ -1,7 +1,6 @@
 .Table {
     width: calc(100vw - 52px);
     max-height: calc(100vh - 144px);
-    
     /* background: #f5f5f5;
     padding: 0px 20px 10px 20px; */
     box-sizing: border-box;
@@ -11,42 +10,39 @@
     font-weight: 300;
     font-size: 18px;
     line-height: 24px;
+   
 
     color: #000000;
-
     overflow-y: scroll;
 }
 
 .TableBody {
     width: calc(100% - 18px);
     height: fit-content;
+    /* border: 1px solid black; */
+    /* overflow-y: auto; */
+    position: relative;
     box-sizing: border-box;
-    background: #f5f5f5;
-    padding: 0px 20px 10px 20px;
+    background-color: #f5f5f5;
+    padding: 5px 20px 10px 20px;
 }
 
 .Table::-webkit-scrollbar {
-    width: 8px; /* ширина scrollbar */
+    width: 8px; 
     border-radius: 4px;
     box-sizing: border-box;
 
 }
 .Table::-webkit-scrollbar-track {
-    background: #F5F5F5; /* цвет дорожки */
+    background: #F5F5F5; 
     width: 8px;
     border-radius: 4px;
-
-    /* border-right: 11px solid #e9e9e9;
-    border-left: 11px solid #e9e9e9; */
 }
 .Table::-webkit-scrollbar-thumb {
     width: 8px;
-    /* border-right: 13px solid inherit;
-    border-left: 13px solid inherit; */
-    background-color: #C0C0C0; /* цвет плашки */
+    background-color: #C0C0C0;
     border-radius: 4px;
     border: 2px solid #F5F5F5;
-    /* padding вокруг плашки */
 }
 
 
@@ -62,7 +58,12 @@
     gap: 20px;
 
     box-sizing: border-box;
-
+    background-color: #f5f5f5;
+    position: sticky;
+    z-index: 3;
+    left: 0px;
+    top: -1px;
+    border-radius: 0px 8px 0px 0px ;
 }
 
 .ColumnHeader {
@@ -70,6 +71,7 @@
     border-right: 1px solid #C0C0C0;
     box-sizing: border-box;
     min-width: fit-content;
+    background-color: #f5f5f5;
 }
 
 #Column1 {
@@ -127,12 +129,77 @@
     border: 0;
 }
 
+#StocksColumn1 {
+    width: 59px;
+    min-width: fit-content;
+}
+#StocksColumn2 {
+    width: 486px;
+    min-width: fit-content;
+}
+#StocksColumn3 {
+    width: 320px;
+    min-width: fit-content;
+}
+#StocksColumn4 {
+    width: 153px;
+    min-width: fit-content;
+}
+#StocksColumn5 {
+    width: 75px;
+    min-width: fit-content;
+}
+#StocksColumn6 {
+    width: 149px;
+    min-width: fit-content;
+}
+#StocksColumn7 {
+    width: 118px;
+    min-width: fit-content;
+}
+#StocksColumn8 {
+    width: 163px;
+    min-width: fit-content;
+}
+#StocksColumn9 {
+    width: 125px;
+    min-width: fit-content;
+    border: 0;
+}
+
 .RowContainer {
     width: 100%;
-    height: 100%;
+    /* height: calc(100% - 47px); */
+    box-sizing: border-box;
+    overflow: scroll;
+    /* overflow-y: scroll; */
+}
+
+.RowContainer::-webkit-scrollbar {
+    width: 8px; /* ширина scrollbar */
+    border-radius: 4px;
     box-sizing: border-box;
 
 }
+.RowContainer::-webkit-scrollbar-track {
+    background: #F5F5F5; /* цвет дорожки */
+    width: 8px;
+    border-radius: 4px;
+
+    /* border-right: 11px solid #e9e9e9;
+    border-left: 11px solid #e9e9e9; */
+}
+.RowContainer::-webkit-scrollbar-thumb {
+    width: 8px;
+    /* border-right: 13px solid inherit;
+    border-left: 13px solid inherit; */
+    background-color: #C0C0C0; /* цвет плашки */
+    border-radius: 4px;
+    border: 2px solid #F5F5F5;
+    /* padding вокруг плашки */
+}
+
+
 
 .Row {
     width: 100%;
@@ -235,4 +302,9 @@
         left: 64px;
         width: 16px;
     }
+}
+
+
+.OpenButton {
+    cursor: pointer;
 }
