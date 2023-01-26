@@ -2,6 +2,8 @@ import { DragEvent, useState } from 'react';
 import style from './FileUploader.module.css';
 import { useAppDispatch } from './../../../store/hooks';
 import { DownloadFileTC, UploadFileTC } from '../../../store/reducers/PurchasesReducer';
+import FileSaver from 'file-saver';
+
 
 
 type FileUploaderPropsType = {
@@ -40,27 +42,10 @@ function FileUploader(props: FileUploaderPropsType) {
         if (props.token !== undefined && props.token !== "" && props.token !== null) {
             dispatch(DownloadFileTC(props.token))
         }
+
+        // FileSaver.saveAs(process.env.REACT_APP_CLIENT_URL + '/resource/purchases.xlsx', "purchases.xlsx");
     }
 
-    // const exportData = () => {
-    //     let filename = "Шаблон" + ".xlsx";
-    //     let xmlHttpRequest = new XMLHttpRequest();
-    //     xmlHttpRequest.onreadystatechange = function() {
-    //         var a;
-    //         if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-    //             a = document.createElement('a');
-    //             a.href = window.URL.createObjectURL(xmlHttpRequest.response);
-    //             a.download = filename;
-    //             a.style.display = 'none';
-    //             document.body.appendChild(a);
-    //             a.click();
-    //         }
-    //     };
-    //     xmlHttpRequest.open("POST", '/calc-reverse-matches');
-    //     xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
-    //     xmlHttpRequest.responseType = 'blob';
-    //     xmlHttpRequest.send(JSON.stringify(jsonString));
-    // }
     return (
         <div className={style.Container}>
             {drag ?

@@ -72,7 +72,7 @@ export const API = {
         return instance.get<any, AxiosResponse<any>, any>(`v2/excel/example`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     },
     uploadFile(token: string, data: FileRequestType) {
-        return instance.post<any, AxiosResponse<GetInvoicesResponceType>, any>(`v2/excel/upload`, data, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/vnd.ms-excel' }, })
+        return instance.post<any, AxiosResponse<GetInvoicesResponceType>, any>(`v2/excel/upload`, data, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }, })
     },
 }
 

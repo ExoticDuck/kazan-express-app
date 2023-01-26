@@ -428,18 +428,12 @@ export const DownloadFileTC = (token: string): AppThunk => {
         // dispatch(setIsLoadingAC(true))
         API.getExample(token).then((res) => {
 
-            let code = res.data
-            .match(/.{1,8}/g)
-            .map((b: any) => String.fromCharCode(parseInt(b, 2)))
-            .join("")
-
-            const blob = new Blob([code], { type: 'application/vnd.ms-excel;base64,' })
-            const link = document.createElement('a');
-            const date = new Date().toUTCString();
-            link.download = `file_${date}`;
-            link.href = window.URL.createObjectURL(blob);
+            const url = window.URL.createObjectURL(new Blob([res.data as BlobPart]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute('download', `Purchases.xlsx`);
+            document.body.appendChild(link);
             link.click();
-            window.URL.revokeObjectURL(link.href);
         }).catch((e: AxiosError) => {
             //@ts-ignore
             let message = e.response?.data.detail;
