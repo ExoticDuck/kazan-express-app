@@ -6,8 +6,11 @@ import { ReactComponent as Hopper } from '../../img/HopperIcon.svg';
 import { ReactComponent as ArrowDown } from '../../img/ArrowDown.svg';
 import Table from './Table/Table';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import moment from 'moment';
+import { addInvoiceStockAC, deleteInvoiceStocksAC } from '../../store/reducers/PurchasesReducer';
+import { useDispatch } from 'react-redux';
+import { setErrorAC } from '../../store/reducers/AppReducer';
 
 function Purchases() {
 
@@ -15,7 +18,10 @@ function Purchases() {
     let navigate = useNavigate();
     let invoiceStocks = useAppSelector(state => state.purchases.invoicesStocks);
     let activeInvoice = useAppSelector(state => state.purchases.invoices.data.find(el => el.invoice_id === invoiceStocks.invoice_id));
-    console.log(activeInvoice);
+    let addedStocks = useAppSelector(state => state.purchases.addedInvoiceStocks);
+    let dispatch = useAppDispatch();
+    let actionDispatch = useDispatch();
+    console.log(activeInvoice); 
 
 
     useEffect(() => {
@@ -28,17 +34,29 @@ function Purchases() {
         }
     }, [dispatch, navigate])
 
-    const [activeTab, setActiveTab] = useState<1 | 2 | 3 | 4 | 5>(1);
+    const [activeTab, setActiveTab] = useState<1 | 2 | 3 | 4 | 5 | 6>(1);
+    const [isAddDisabled, setIsAddDisabled] = useState(false)
     let date = moment(activeInvoice?.date_created).format('DD.MM.YYYY').toString().trim();
 
-    console.log(activeTab);
+    function addRow() {
+        if(activeInvoice && addedStocks.length === 0) {
+            actionDispatch(addInvoiceStockAC(activeInvoice.invoice_id));
+            setIsAddDisabled(true);
+            setActiveTab(6);
+        } 
+    }
+
+    function removeAllAddedRows() {
+        actionDispatch(deleteInvoiceStocksAC());
+        setIsAddDisabled(false)
+    }
 
 
     return (
         <div className={style.Container}>
             <Header />
             <div className={style.BoxContainer}>
-                {activeTab === 5 ?
+                {activeTab === 5 || activeTab === 6 ?
                     <div className={style.Navigation}>
                         <div className={style.LeftContainer}>
                             <div className={style.TabExpandedLeft} onClick={() => { }}>
@@ -48,9 +66,10 @@ function Purchases() {
                             </div>
                             <div className={style.TabExpandedRight} onClick={() => { }}>
                                 <div>Редактирование</div>
-                                <div>Добавить строку</div>
+                                <button disabled={isAddDisabled} className={isAddDisabled ? style.AddRowButtonDisabled : style.AddRowButton} onClick={addRow}>Добавить строку</button>
                             </div>
                             <div className={style.ExitToEnvoices} onClick={(e: any) => {
+                                removeAllAddedRows();
                                 e.stopPropagation();
                                 setActiveTab(1)
                             }}>
@@ -98,7 +117,7 @@ function Purchases() {
                         </div>
                     </div>
                 }
-                <Table activeInvoice={activeInvoice} activeTab={activeTab} setActiveTab={(num: 1 | 2 | 3 | 4 | 5) => setActiveTab(num)} token={token} />
+                <Table activeInvoice={activeInvoice} activeTab={activeTab} setActiveTab={(num: 1 | 2 | 3 | 4 | 5 | 6) => setActiveTab(num)} token={token} disableAdd={(value: boolean) => setIsAddDisabled(value)} />
             </div>
             <Footer />
         </div>
@@ -118,6 +137,3 @@ function CustomSelect() {
     );
 }
 
-function dispatch(arg0: any) {
-    throw new Error('Function not implemented.');
-}

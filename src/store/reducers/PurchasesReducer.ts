@@ -4,6 +4,14 @@ import { AppThunk } from "../store";
 import { setIsLoadingAC, setTokenAC } from "./AppReducer";
 
 
+export type AddedInvoice = {
+    invoice_id: number;
+    sku: string;
+    quantity: number;
+    quantity_accepted: number;
+    purchase_price: number;
+}
+
 type PurchasesStateType = {
     invoices: {
         id: number,
@@ -24,7 +32,8 @@ type PurchasesStateType = {
         page: number,
         hasMoreItems: boolean
     },
-    invoicesStocks: GetInvoicesStocksResponceType
+    invoicesStocks: GetInvoicesStocksResponceType,
+    addedInvoiceStocks: AddedInvoice[]
 }
 
 let initialState: PurchasesStateType = {
@@ -40,7 +49,8 @@ let initialState: PurchasesStateType = {
         invoice_id: 0,
         data: [],
         size: 0
-    }
+    },
+    addedInvoiceStocks: []
 }
 
 
@@ -54,6 +64,30 @@ export const PurchasesReducer = (state = initialState, action: UserActionsType):
             return { ...state, invoices: { ...action.payload, hasMoreItems: action.payload.data.length !== 0 && action.payload.data.length === 100, data: [...state.invoices.data, ...action.payload.data] } }
         case "user/SET-PAGE":
             return { ...state, invoices: { ...state.invoices, page: action.payload.page + 1 } }
+        case "user/ADD-STOCK":
+            return {
+                ...state, addedInvoiceStocks: [{
+                    invoice_id: action.payload.invoiceId,
+                    sku: "",
+                    quantity: 0,
+                    quantity_accepted: 0,
+                    purchase_price: 0,
+                }]
+            };
+        case "user/UPDATE-STOCK":
+            return {
+                ...state, addedInvoiceStocks: [{
+                            invoice_id: state.addedInvoiceStocks[0].invoice_id,
+                            sku: action.payload.data.sku,
+                            quantity: action.payload.data.quantity,
+                            quantity_accepted: action.payload.data.quantity_accepted,
+                            purchase_price: action.payload.data.purchase_price,
+                        }]
+            };
+        case "user/REMOVE-STOCKS":
+            return {
+                ...state, addedInvoiceStocks: initialState.addedInvoiceStocks
+            };
         case "RESET-USER":
             return { ...initialState }
         default:
@@ -101,6 +135,34 @@ export const setInvoiceStocksAC = (data: GetInvoicesStocksResponceType) =>
 
 export type setInvoiceStocksACType = ReturnType<typeof setInvoiceStocksAC>
 
+export const addInvoiceStockAC = (invoiceId: number) =>
+({
+    type: 'user/ADD-STOCK',
+    payload: {
+        invoiceId
+    }
+} as const)
+
+export type addInvoiceStockACType = ReturnType<typeof addInvoiceStockAC>
+export const updateInvoiceStockAC = (data: AddedInvoice) =>
+({
+    type: 'user/UPDATE-STOCK',
+    payload: {
+        data
+    }
+} as const)
+
+export type updateInvoiceStockACType = ReturnType<typeof updateInvoiceStockAC>
+
+export const deleteInvoiceStocksAC = () =>
+({
+    type: 'user/REMOVE-STOCKS',
+    payload: {
+    }
+} as const)
+
+export type deleteInvoiceStockACType = ReturnType<typeof deleteInvoiceStocksAC>
+
 export const resetUserAC = () =>
 ({
     type: 'RESET-USER'
@@ -145,8 +207,26 @@ export const GetInvoiceStocksTC = (token: string, invoiceId: number): AppThunk =
             })
     }
 }
+export const AddStockTC = (token: string, data: AddedInvoice): AppThunk => {
+    return (dispatch, getState) => {
+        // dispatch(setIsLoadingAC(true))
+        dispatch(setTokenAC(token));
+        // dispatch(setIsLoadingAC(true))
+        API.addStock(token, data).then((res) => {
+            dispatch(deleteInvoiceStocksAC())
+            return res;
+        }).then((res) => {
+            if(res.data.status === "OK") {
+                dispatch(GetInvoiceStocksTC(token, data.invoice_id))
+            }
+        })
+            .catch((e: AxiosError) => {
+                dispatch(setIsLoadingAC(false));
+            })
+    }
+}
 
 
 
 
-export type UserActionsType = setInvoicesACType | resetUserACType | setPageACType | setInitialInvoicesACType | setInvoiceStocksACType;
+export type UserActionsType = setInvoicesACType | resetUserACType | setPageACType | setInitialInvoicesACType | setInvoiceStocksACType | addInvoiceStockACType | deleteInvoiceStockACType | updateInvoiceStockACType;

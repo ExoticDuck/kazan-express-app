@@ -134,9 +134,9 @@
     max-width: 320px;
 
     white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
     /* overflow: hidden;
     white-space: nowrap;
     padding-right: 5px;
@@ -302,4 +302,99 @@
 
 .OpenButton {
     cursor: pointer;
+}
+.DeleteRowButton {
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #c0c0c0;
+}
+.RowInput {
+    background-color: inherit;
+    border: 0;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    min-height: 100%;
+    color: #000000;
+
+    padding: 0;
+    height: 40px;
+}
+
+#RowInput2 {
+    background-color: inherit;
+    width: 100%;
+    min-width: fit-content;
+    box-sizing: border-box;
+    padding: 0;
+
+    height: 40px;
+    border: 0;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    min-height: 100%;
+    color: #000000;
+}
+#RowInput4 {
+    background-color: inherit;
+    max-width: 153px;
+    /* min-width: fit-content; */
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+
+    height: 40px;
+
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    min-height: 100%;
+    color: #000000;
+}
+#RowInput5 {
+    background-color: inherit;
+    max-width: 75px;
+    /* min-width: fit-content; */
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+
+    height: 40px;
+
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    min-height: 100%;
+    color: #000000;
+}
+#RowInput7 {
+    background-color: inherit;
+    max-width: 118px;
+    /* min-width: fit-content; */
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+
+    height: 40px;
+
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    min-height: 100%;
+    color: #000000;
 }

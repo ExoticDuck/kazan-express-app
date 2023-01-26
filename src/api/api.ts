@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { AddedInvoice } from "../store/reducers/PurchasesReducer";
 import { StatTableItem } from "../store/reducers/UserReducer";
 
 const instance = axios.create({
@@ -53,9 +54,25 @@ export const API = {
         return instance.get<any, AxiosResponse<GetInvoicesResponceType>, any>(`v2/purchase/invoices?page=${page}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     },
     getInvoicesStocks(token: string, invoiceId: number) {
-        return instance.get<any, AxiosResponse<GetInvoicesStocksResponceType>, any>(`v2/purchase/invoice_stocks?invoice_id=${invoiceId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
+        return instance.get<any, AxiosResponse<GetInvoicesStocksResponceType>, any>(`v2/purchase/invoice-stocks?invoice_id=${invoiceId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
+    },
+    addStock(token: string, data: AddedInvoice) {
+        return instance.post<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/add-stock`, {...data}, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
     }
 }
+export type AddStockResponceType = {
+    status: "OK"
+}
+export type InvoiceStock = {
+    stock_id: number
+    sku: string
+    title: string
+    quantity: number
+    quantity_accepted: number
+    price: number
+    purchase_price: number
+    total_price: number
+  }
 
 export type GetInvoicesStocksResponceType = {
         id: number

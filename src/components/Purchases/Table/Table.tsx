@@ -1,17 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import style from './Table.module.css';
-
-import { GetInvoicesTC, GetInvoiceStocksTC } from '../../../store/reducers/PurchasesReducer';
+import { AddedInvoice, AddStockTC, deleteInvoiceStocksAC, GetInvoicesTC, GetInvoiceStocksTC, updateInvoiceStockAC } from '../../../store/reducers/PurchasesReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { v4 } from 'uuid';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { setErrorAC } from '../../../store/reducers/AppReducer';
 
 type TablePropsType = {
     token: string | null;
-    activeTab: 1 | 2 | 3 | 4 | 5;
-    setActiveTab: (num: 1 | 2 | 3 | 4 | 5) => void;
-    activeInvoice?:  {
+    activeTab: 1 | 2 | 3 | 4 | 5 | 6;
+    setActiveTab: (num: 1 | 2 | 3 | 4 | 5 | 6) => void;
+    disableAdd: (value: boolean) => void;
+    activeInvoice?: {
         invoice_id: number,
         date_created: string,
         title: string,
@@ -29,12 +30,17 @@ function Table(props: TablePropsType) {
 
 
     let dispatch = useAppDispatch();
+    let actionDispatch = useDispatch();
     let rowData = useAppSelector(state => state.purchases.invoices.data);
     let rowDataStocks = useAppSelector(state => state.purchases.invoicesStocks.data);
     let hasMoreItems = useAppSelector(state => state.purchases.invoices.hasMoreItems);
-    let invoiceStocks = useAppSelector(state => state.purchases.invoicesStocks)
-    console.log(invoiceStocks);
+    let invoiceStocks = useAppSelector(state => state.purchases.invoicesStocks);
+    let addedStocks = useAppSelector(state => state.purchases.addedInvoiceStocks);
 
+    let invoiceId = useAppSelector(state => state.purchases.invoicesStocks.invoice_id);
+
+
+    // let editRowDataStocks: AddedInvoice | InvoiceStock[] = [...addedStocks, ...rowDataStocks];
 
     let page = useAppSelector(state => state.purchases.invoices.page);
 
@@ -60,7 +66,18 @@ function Table(props: TablePropsType) {
             dispatch(GetInvoiceStocksTC(props.token, invoiceId))
         }
     }
-    if (props.activeTab !== 5) {
+
+    function deleteRow() {
+        actionDispatch(deleteInvoiceStocksAC())
+    }
+    function addRow(data: AddedInvoice) {
+        if (props.token !== undefined && props.token !== "" && props.token !== null) {
+        dispatch(AddStockTC(props.token, data));
+        }
+    }
+
+
+    if (props.activeTab !== 5 && props.activeTab !== 6) {
         return (
             <div className={style.Table} onScroll={handleScroll} >
 
@@ -96,7 +113,76 @@ function Table(props: TablePropsType) {
                             status={el.status}
                             callbackFn={() => {
                                 openStocks(el.invoice_id);
-                                props.setActiveTab(5)
+                                props.setActiveTab(6)
+                            }}
+                            activeTab={props.activeTab}
+                        />
+                    })}
+                </div>
+            </div>
+        )
+    } else if (props.activeTab === 6) {
+        return (
+            <div className={style.Table}>
+                <div className={style.TableBody} style={{ borderRadius: "0px 8px 8px 8px" }}>
+                    <div className={style.TableHeader}>
+                        <div className={style.ColumnHeader} id={style.StocksColumn1}>№</div>
+                        <div className={style.ColumnHeader} id={style.StocksColumn2}>SKU</div>
+                        <div className={style.ColumnHeader} id={style.StocksColumn3}>Название</div>
+                        <div className={style.ColumnHeader} id={style.StocksColumn4}>Себестоимость</div>
+                        <div className={style.ColumnHeader} id={style.StocksColumn5}>Кол-во</div>
+                        <div className={style.ColumnHeader} id={style.StocksColumn6}>Сумма</div>
+                        <div className={style.ColumnHeader} id={style.StocksColumn7}>Кол-во факт</div>
+                        <div className={style.ColumnHeader} id={style.StocksColumn8}>Сумма итого</div>
+                        <div className={style.ColumnHeader} id={style.StocksColumn9}>Действия</div>
+                    </div>
+                    {addedStocks.map((el, i) => {
+                        let pageNum = i + 1;
+                        console.log(el);
+                        debugger
+                        return <EditableRow
+                            key={i}
+                            id={i}
+                            invoice_id={el.invoice_id}
+                            number={pageNum}
+                            title={"default"}
+                            sku={el.sku}
+                            purcasePrice={el.purchase_price}
+                            amount={el.quantity}
+                            factAmount={el.quantity_accepted}
+                            deleteFunction={() => {
+                                deleteRow();
+                                props.disableAdd(false);
+                            }}
+                            addFunction={(data: AddedInvoice) => {
+                                addRow(data);
+                                props.disableAdd(false);
+                            }}
+                            activeTab={props.activeTab}
+                        />
+                    })}
+                    {rowDataStocks.map((el, i) => {
+                        let pageNum = i + 1 + addedStocks.length;
+                        return <EditableRow
+                            key={v4()}
+                            id={el.stock_id}
+                            number={pageNum}
+                            title={el.title}
+                            sku={el.sku}
+                            invoice_id={invoiceId}
+                            purcasePrice={el.purchase_price}
+                            
+                            amount={el.quantity}
+                            sum={el.price}
+                            factAmount={el.quantity_accepted}
+                            totalAmount={el.total_price}
+                            deleteFunction={() => {
+                                deleteRow();
+                                props.disableAdd(false);
+                            }}
+                            addFunction={(data: AddedInvoice) => {
+                                addRow(data);
+                                props.disableAdd(false);
                             }}
                             activeTab={props.activeTab}
                         />
@@ -106,9 +192,8 @@ function Table(props: TablePropsType) {
         )
     } else {
         return (
-            <div className={style.Table} >
-
-                <div className={style.TableBody} style={{ borderRadius: "0px 8px 8px 8px"}}>
+            <div className={style.Table}>
+                <div className={style.TableBody} style={{ borderRadius: "0px 8px 8px 8px" }}>
                     <div className={style.TableHeader}>
                         <div className={style.ColumnHeader} id={style.StocksColumn1}>№</div>
                         <div className={style.ColumnHeader} id={style.StocksColumn2}>SKU</div>
@@ -133,7 +218,7 @@ function Table(props: TablePropsType) {
                             sum={el.price}
                             factAmount={el.quantity_accepted}
                             totalAmount={el.total_price}
-                            callbackFn={() => {}}
+                            callbackFn={() => { }}
                             activeTab={props.activeTab}
                         />
                     })}
@@ -160,11 +245,11 @@ type RowPropsType = {
     totalAmount: number;
     status?: string;
     callbackFn: () => void
-    activeTab: 1 | 2 | 3 | 4 | 5;
+    activeTab: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 function Row(props: RowPropsType) {
-    if(props.activeTab === 5) {
+    if (props.activeTab === 5 || props.activeTab === 6) {
         return (
             <div className={style.Row}>
                 <div id={style.StocksColumn1}>{props.number}</div>
@@ -200,5 +285,123 @@ function Row(props: RowPropsType) {
             </div>
         )
     }
+
+}
+
+type EditableRowPropsType = {
+    invoice_id: number;
+    id: number;
+    sku: string;
+    number: number;
+    date?: string;
+    title: string;
+    purcasePrice: number;
+    storage?: string;
+    amount: number;
+    sum?: number;
+    factAmount: number;
+    totalAmount?: number;
+    status?: string;
+    deleteFunction: () => void
+    addFunction: (data: AddedInvoice) => void
+    activeTab: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+function EditableRow(props: EditableRowPropsType) {
+    let actionDispatch = useDispatch();
     
+    const [data, setData] = useState<AddedInvoice>({
+        invoice_id: props.invoice_id,
+        sku: props.sku,
+        quantity: props.amount,
+        quantity_accepted: props.factAmount,
+        purchase_price: props.purcasePrice
+    })
+
+    useEffect(() => {
+        if(data.sku !== "" || data.quantity > 0 || data.quantity_accepted > 0 || data.purchase_price > 0 ) {
+            setActive(true)
+        } else {
+            setActive(false)
+        }
+    }, [data])
+
+    function checkData(data: AddedInvoice) {
+        if(data.sku !== "" && data.quantity > 0 && data.quantity_accepted > 0 && data.purchase_price > 0 ) {
+            // setActive(true);
+            return true;
+        } else {
+            // setActive(false);
+            return false;
+        }
+    }
+
+    const [active, setActive] = useState(false);
+
+    function onDeleteHandler() {
+        props.deleteFunction();
+    }
+
+    function onAddHandler() {
+        if(checkData(data)){
+            props.addFunction(data);
+        } else {
+            actionDispatch(setErrorAC(true, "Не все поля заполнены корректно!"))
+            setTimeout(() => actionDispatch(setErrorAC(false, "")), 3000)
+        }
+    }
+
+    function onClickHandler() {
+        if(active) {
+            onAddHandler()
+        } else {
+            onDeleteHandler()
+        }
+    }
+
+    function onSkuChange(e: ChangeEvent<HTMLInputElement>) {
+        let value = e.currentTarget.value;
+        setData({ ...data, sku: value })
+        actionDispatch(updateInvoiceStockAC(data))
+        debugger
+    }
+    function onPurchasePriceChange(e: ChangeEvent<HTMLInputElement>) {
+        let value = e.currentTarget.value;
+        if (!isNaN(Number(value))) {
+            setData({ ...data, purchase_price: Number(value) })
+            console.log(value);
+            actionDispatch(updateInvoiceStockAC(data))
+        }
+    }
+    function onQuantityChange(e: ChangeEvent<HTMLInputElement>) {
+        let value = e.currentTarget.value;
+        if (!isNaN(Number(value))) {
+            setData({ ...data, quantity: Number(value) })
+            console.log(value);
+            actionDispatch(updateInvoiceStockAC(data))
+        }
+    }
+    function onQuantityAcceptedChange(e: ChangeEvent<HTMLInputElement>) {
+        let value = e.currentTarget.value;
+        if (!isNaN(Number(value))) {
+            setData({ ...data, quantity_accepted: Number(value) })
+            console.log(value);
+            actionDispatch(updateInvoiceStockAC(data))
+        }
+    }
+    return (
+        <div className={style.Row}>
+            <div id={style.StocksColumn1}>{props.number}</div>
+            <div id={style.StocksColumn2}><input id={style.RowInput2} value={data.sku} placeholder="-" onChange={onSkuChange}></input></div>
+            <div id={style.StocksColumnRow3}>{props.title}</div>
+            <div id={style.StocksColumn4}><input id={style.RowInput4} value={data.purchase_price !== 0 ? data.purchase_price.toString() : ""} placeholder="-" onChange={onPurchasePriceChange}></input></div>
+            <div id={style.StocksColumn5}><input id={style.RowInput5} value={data.quantity !== 0 ? data.quantity.toString() : ""} placeholder="-" onChange={onQuantityChange}></input></div>
+            <div id={style.StocksColumn6}>{props.sum ? props.sum : "default"}</div>
+            <div id={style.StocksColumn7}><input id={style.RowInput7} value={data.quantity_accepted !== 0 ? data.quantity_accepted.toString() : ""} placeholder="-" onChange={onQuantityAcceptedChange}></input></div>
+            <div id={style.StocksColumn8}>{props.totalAmount ? props.sum : "default"}</div>
+            <div id={style.StocksColumn9}>
+                <div onClick={onClickHandler} style={{color: active ? "limegreen" : ""}}>{active ? "Добавить" : "Удалить"}</div>
+            </div>
+        </div>
+    )
 }
