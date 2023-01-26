@@ -3,7 +3,8 @@
  height: 100vh;
  min-height: fit-content;
  box-sizing: border-box;
- overflow: auto;
+ overflow: hidden;
+ /* overflow: auto; */
 }
 
 @font-face {

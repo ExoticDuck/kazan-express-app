@@ -8,7 +8,7 @@ import Table from './Table/Table';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import moment from 'moment';
-import { addInvoiceStockAC, deleteInvoiceStocksAC } from '../../store/reducers/PurchasesReducer';
+import { addInvoiceStockAC, clearAddedInvoicesAC, deleteInvoiceStocksAC } from '../../store/reducers/PurchasesReducer';
 import { useDispatch } from 'react-redux';
 import { setErrorAC } from '../../store/reducers/AppReducer';
 
@@ -27,8 +27,7 @@ function Purchases() {
     useEffect(() => {
         let token = localStorage.access_token;
         if (token !== undefined && token !== "" && token !== null) {
-            // debugger
-            // dispatch(UserInfoTC(token));
+            
         } else {
             navigate("/login");
         }
@@ -51,6 +50,12 @@ function Purchases() {
         setIsAddDisabled(false)
     }
 
+    
+
+
+    function removeAddedTabs() {
+       actionDispatch(clearAddedInvoicesAC());
+    }
 
     return (
         <div className={style.Container}>
@@ -72,6 +77,7 @@ function Purchases() {
                                 removeAllAddedRows();
                                 e.stopPropagation();
                                 setActiveTab(1)
+                                removeAddedTabs();
                             }}>
                                 Назад к накладным
                             </div>
@@ -95,10 +101,10 @@ function Purchases() {
                     :
                     <div className={style.Navigation}>
                         <div className={style.LeftContainer}>
-                            <div className={activeTab === 1 ? style.TabActive : style.Tab} onClick={() => setActiveTab(1)}>Все накладные</div>
-                            <div className={activeTab === 2 ? style.TabActive : style.Tab} onClick={() => setActiveTab(2)}>Свои накладные</div>
-                            <div className={activeTab === 3 ? style.TabActive : style.Tab} onClick={() => setActiveTab(3)}>Накладные KE</div>
-                            <div className={activeTab === 4 ? style.TabActive : style.Tab} onClick={() => setActiveTab(4)}>Добавление</div>
+                            <div className={activeTab === 1 ? style.TabActive : style.Tab} onClick={() => {setActiveTab(1); removeAddedTabs();}}>Все накладные</div>
+                            <div className={activeTab === 2 ? style.TabActive : style.Tab} onClick={() => {setActiveTab(2); removeAddedTabs();}}>Свои накладные</div>
+                            <div className={activeTab === 3 ? style.TabActive : style.Tab} onClick={() => {setActiveTab(3); removeAddedTabs();}}>Накладные KE</div>
+                            <div className={activeTab === 4 ? style.TabActive : style.Tab} onClick={() => {setActiveTab(4); removeAddedTabs();}}>Добавление</div>
                         </div>
                         <div className={style.RightContainer}>
                             <div className={style.RightItem}>

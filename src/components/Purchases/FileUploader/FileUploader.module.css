@@ -1,0 +1,60 @@
+.Container {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 500px;
+    height: fit-content;
+    background-color: inherit;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+}
+
+
+.DropArea {
+    border-radius: 5px;
+    border: 1px solid #C0C0C0;
+    background-color: #fff;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.DragArea {
+    border-radius: 5px;
+    background-color: #fff;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LinkBox {
+    width: 500px;
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+}
+
+a {
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}

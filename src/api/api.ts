@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { AddedInvoice } from "../store/reducers/PurchasesReducer";
+import { AddedInvoice, UpdatedStock } from "../store/reducers/PurchasesReducer";
 import { StatTableItem } from "../store/reducers/UserReducer";
 
 const instance = axios.create({
@@ -58,7 +58,26 @@ export const API = {
     },
     addStock(token: string, data: AddedInvoice) {
         return instance.post<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/add-stock`, {...data}, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
-    }
+    }, 
+    updateStock(token: string, data: UpdatedStock) {
+        return instance.post<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/update-stock`, {...data}, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
+    },
+    deleteStock(token: string, stockId: number) {
+        return instance.delete<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/delete-stock/${stockId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
+    },
+    deleteInvoice(token: string, invoiceId: number) {
+        return instance.delete<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/delete-invoice/${invoiceId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
+    },
+    getExample(token: string) {
+        return instance.get<any, AxiosResponse<any>, any>(`v2/excel/example`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
+    },
+    uploadFile(token: string, data: FileRequestType) {
+        return instance.post<any, AxiosResponse<GetInvoicesResponceType>, any>(`v2/excel/upload`, data, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/vnd.ms-excel' }, })
+    },
+}
+
+export type FileRequestType = {
+    file: string
 }
 export type AddStockResponceType = {
     status: "OK"

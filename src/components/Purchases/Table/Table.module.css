@@ -398,3 +398,130 @@
     min-height: 100%;
     color: #000000;
 }
+
+
+.TableContainer {
+    width: 100%;
+    height: calc(100vh - 143px);
+    background: #f5f5f5;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+
+.TableAdd {
+    width: calc(100vw - 52px - 520px);
+    height: 100%;
+    max-height: calc(100vh - 144px);
+
+    box-sizing: border-box;
+
+    font-family: "TRY-finder-light";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #000000;
+    overflow-y: scroll;
+}
+
+.TableBodyAdd {
+    width: calc(100% - 18px);
+    height: fit-content;
+    /* border: 1px solid black; */
+    /* overflow-y: auto; */
+    position: relative;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    padding: 5px 20px 10px 20px;
+}
+
+.TableAdd::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.TableAdd::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    width: 8px;
+    border-radius: 4px;
+}
+.TableAdd::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: #c0c0c0;
+    border-radius: 4px;
+    border: 2px solid #f5f5f5;
+}
+
+.TableAddHeader {
+    height: 47px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 15px;
+
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    position: sticky;
+    z-index: 3;
+    left: 0px;
+    top: -1px;
+    border-radius: 0px 8px 0px 0px;
+}
+/*  */
+#StocksAddColumn1 { 
+    width: 45px;
+    min-width: fit-content;
+}
+/*  */
+#StocksAddColumn2 {
+    width: 299px;
+    min-width: fit-content;
+}
+/*  */
+#StocksAddColumn3 {
+    width: 250px;
+    max-width: 250px;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    padding-right: 5px;
+}
+/*  */
+#StocksAddColumn4 {
+    width: 116px;
+    max-width: 116px;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+/*  */
+#StocksAddColumn5 {
+    width: 66px;
+    min-width: fit-content;
+}
+/*  */
+#StocksAddColumn6 {
+    width: 104px;
+    min-width: fit-content;
+}
+/*  */
+#StocksAddColumn7 {
+    width: 112px;
+    min-width: fit-content;
+}
+/*  */
+#StocksAddColumn8 {
+    width: 168px;
+    min-width: fit-content;
+}
+
