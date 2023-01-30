@@ -7,6 +7,14 @@
     overflow: auto;
 }
 
+/* @media screen and (min-width: 1920px) {
+    .Container {
+        width: 1920px;
+        
+        
+    }
+} */
+
 .BoxContainer {
     max-height: calc(100vh - 100px);
     padding-left: 30px;
@@ -206,7 +214,7 @@
 
 .DateInput {
     box-sizing: border-box;
-    width: 112px;
+    width: 122px;
     height: 32px;
     background: #ffffff;
     border: 2px solid #eaeaea;

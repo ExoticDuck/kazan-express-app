@@ -1,5 +1,7 @@
 import { AxiosError } from "axios";
+import moment from "moment";
 import { API, GetInvoicesResponceType, GetInvoicesStocksResponceType } from "../../api/api"
+import { s2ab } from "../../utils/utils";
 import { AppThunk } from "../store";
 import { setErrorAC, setIsLoadingAC, setTokenAC } from "./AppReducer";
 
@@ -22,6 +24,25 @@ export type UpdatedStock = {
 
 type PurchasesStateType = {
     invoices: {
+        id: number,
+        data:
+        {
+            invoice_id: number,
+            date_created: string,
+            title: string,
+            customer: string,
+            storage: string,
+            quantity: number,
+            price: number,
+            quantity_accepted: number,
+            total_price: number,
+            status: string
+        }[],
+        size: number,
+        page: number,
+        hasMoreItems: boolean
+    },
+    filteredInvoices: {
         id: number,
         data:
         {
@@ -72,6 +93,13 @@ let initialState: PurchasesStateType = {
         page: 1,
         hasMoreItems: true
     },
+    filteredInvoices: {
+        id: 0,
+        data: [],
+        size: 0,
+        page: 1,
+        hasMoreItems: true
+    },
     addedInvoices: {
         id: 0,
         data: [],
@@ -86,8 +114,8 @@ let initialState: PurchasesStateType = {
         size: 0
     },
     addedInvoiceStocks: [],
-    updatedStock: []
-
+    updatedStock: [],
+    
 }
 
 
@@ -130,6 +158,17 @@ export const PurchasesReducer = (state = initialState, action: UserActionsType):
                     quantity_accepted: action.payload.data.quantity_accepted,
                     purchase_price: action.payload.data.purchase_price,
                 }]
+            };
+        case "user/SET-DATE-FILTER":
+            return {
+                ...state, filteredInvoices: {...state.invoices, 
+                    data: state.invoices.data.filter(el => {
+                        let elDate = moment(el.date_created).format('DD.MM.YYYY');
+                        if(elDate === action.payload.date) {
+                            return el;
+                        }
+                    })
+                }
             };
         case "user/SET-ADDED-INVOICES":
             return {
@@ -240,6 +279,16 @@ export const setAddedInvoicesAC = (data: GetInvoicesResponceType) =>
 } as const)
 
 export type setAddedInvoicesACType = ReturnType<typeof setAddedInvoicesAC>
+
+export const setDateFilterAC = (date: string) =>
+({
+    type: 'user/SET-DATE-FILTER',
+    payload: {
+        date
+    }
+} as const)
+
+export type setDateFilterACType = ReturnType<typeof setDateFilterAC>
 
 export const clearAddedInvoicesAC = () =>
 ({
@@ -427,8 +476,19 @@ export const DownloadFileTC = (token: string): AppThunk => {
         dispatch(setTokenAC(token));
         // dispatch(setIsLoadingAC(true))
         API.getExample(token).then((res) => {
+            debugger
+            // const url = window.URL.createObjectURL(new Blob([res.data as BlobPart]));
+            // const link = document.createElement("a");
+            // link.href = url;
+            // link.setAttribute('download', `Purchases.xlsx`);
+            // document.body.appendChild(link);
+            // link.click();
 
-            const url = window.URL.createObjectURL(new Blob([res.data as BlobPart]));
+            let blob = new Blob([s2ab(atob(res.data))], {
+                type: ''
+            });
+            
+            let url = window.URL.createObjectURL(blob);
             const link = document.createElement("a");
             link.href = url;
             link.setAttribute('download', `Purchases.xlsx`);
@@ -461,4 +521,5 @@ export type UserActionsType =
     deleteUpdatedInvoiceStockACType |
     resetInvoicesACType |
     setAddedInvoicesACType |
-    clearAddedInvoicesACType;
+    clearAddedInvoicesACType |
+    setDateFilterACType;

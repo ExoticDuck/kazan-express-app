@@ -69,7 +69,7 @@ export const API = {
         return instance.delete<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/delete-invoice/${invoiceId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
     },
     getExample(token: string) {
-        return instance.get<any, AxiosResponse<any>, any>(`v2/excel/example`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
+        return instance.get<any, AxiosResponse<any>, any>(`v2/excel/example`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'} })
     },
     uploadFile(token: string, data: FileRequestType) {
         return instance.post<any, AxiosResponse<GetInvoicesResponceType>, any>(`v2/excel/upload`, data, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }, })

@@ -25,6 +25,7 @@ type TablePropsType = {
         total_price: number,
         status: string
     }
+    dateFilter: boolean
 }
 
 function Table(props: TablePropsType) {
@@ -32,7 +33,15 @@ function Table(props: TablePropsType) {
 
     let dispatch = useAppDispatch();
     let actionDispatch = useDispatch();
-    let rowData = useAppSelector(state => state.purchases.invoices.data);
+
+    let rowData = useAppSelector(state => {
+        if(props.dateFilter) {
+            return state.purchases.filteredInvoices.data;
+        } else {
+            return state.purchases.invoices.data;
+        }
+        
+    });
     let rowDataStocks = useAppSelector(state => state.purchases.invoicesStocks.data);
     let hasMoreItems = useAppSelector(state => state.purchases.invoices.hasMoreItems);
     let addedStocks = useAppSelector(state => state.purchases.addedInvoiceStocks);

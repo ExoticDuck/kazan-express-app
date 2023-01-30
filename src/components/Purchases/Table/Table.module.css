@@ -1,10 +1,7 @@
 .Table {
     width: calc(100vw - 52px);
     max-height: calc(100vh - 144px);
-    /* background: #f5f5f5;
-    padding: 0px 20px 10px 20px; */
     box-sizing: border-box;
-
     font-family: "TRY-finder-light";
     font-style: normal;
     font-weight: 300;
@@ -14,6 +11,12 @@
     color: #000000;
     overflow-y: scroll;
 }
+
+/* @media screen and (min-width: 1920px) {
+    .Container {
+        width: calc(1920px - 52px);
+    }
+} */
 
 .TableBody {
     width: calc(100% - 18px);

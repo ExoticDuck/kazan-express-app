@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import style from './Purchases.module.css';
@@ -8,7 +8,7 @@ import Table from './Table/Table';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import moment from 'moment';
-import { addInvoiceStockAC, clearAddedInvoicesAC, deleteInvoiceStocksAC } from '../../store/reducers/PurchasesReducer';
+import { addInvoiceStockAC, clearAddedInvoicesAC, deleteInvoiceStocksAC, setDateFilterAC } from '../../store/reducers/PurchasesReducer';
 import { useDispatch } from 'react-redux';
 import { setErrorAC } from '../../store/reducers/AppReducer';
 
@@ -21,13 +21,13 @@ function Purchases() {
     let addedStocks = useAppSelector(state => state.purchases.addedInvoiceStocks);
     let dispatch = useAppDispatch();
     let actionDispatch = useDispatch();
-    console.log(activeInvoice); 
-
+    console.log(activeInvoice);
+    const [dateFilter, setDateFilter] = useState(false);
 
     useEffect(() => {
         let token = localStorage.access_token;
         if (token !== undefined && token !== "" && token !== null) {
-            
+
         } else {
             navigate("/login");
         }
@@ -38,11 +38,11 @@ function Purchases() {
     let date = moment(activeInvoice?.date_created).format('DD.MM.YYYY').toString().trim();
 
     function addRow() {
-        if(activeInvoice && addedStocks.length === 0) {
+        if (activeInvoice && addedStocks.length === 0) {
             actionDispatch(addInvoiceStockAC(activeInvoice.invoice_id));
             setIsAddDisabled(true);
             setActiveTab(6);
-        } 
+        }
     }
 
     function removeAllAddedRows() {
@@ -50,11 +50,24 @@ function Purchases() {
         setIsAddDisabled(false)
     }
 
-    
+
 
 
     function removeAddedTabs() {
-       actionDispatch(clearAddedInvoicesAC());
+        actionDispatch(clearAddedInvoicesAC());
+    }
+
+
+
+    function onDateChangeHandler(e: ChangeEvent<HTMLInputElement>): void {
+
+        if (e.currentTarget.value === "") {
+            setDateFilter(false)
+        } else {
+            let date = moment(e.currentTarget.value).format('DD.MM.YYYY');
+            actionDispatch(setDateFilterAC(date));
+            setDateFilter(true);
+        }
     }
 
     return (
@@ -94,17 +107,17 @@ function Purchases() {
                             </div>
                             <div className={style.RightItem}>
                                 Дата
-                                <input className={style.DateInput} type={date}></input>
+                                <input className={style.DateInput} type={"date"}></input>
                             </div>
                         </div>
                     </div>
                     :
                     <div className={style.Navigation}>
                         <div className={style.LeftContainer}>
-                            <div className={activeTab === 1 ? style.TabActive : style.Tab} onClick={() => {setActiveTab(1); removeAddedTabs();}}>Все накладные</div>
-                            <div className={activeTab === 2 ? style.TabActive : style.Tab} onClick={() => {setActiveTab(2); removeAddedTabs();}}>Свои накладные</div>
-                            <div className={activeTab === 3 ? style.TabActive : style.Tab} onClick={() => {setActiveTab(3); removeAddedTabs();}}>Накладные KE</div>
-                            <div className={activeTab === 4 ? style.TabActive : style.Tab} onClick={() => {setActiveTab(4); removeAddedTabs();}}>Добавление</div>
+                            <div className={activeTab === 1 ? style.TabActive : style.Tab} onClick={() => { setActiveTab(1); removeAddedTabs(); }}>Все накладные</div>
+                            <div className={activeTab === 2 ? style.TabActive : style.Tab} onClick={() => { setActiveTab(2); removeAddedTabs(); }}>Свои накладные</div>
+                            <div className={activeTab === 3 ? style.TabActive : style.Tab} onClick={() => { setActiveTab(3); removeAddedTabs(); }}>Накладные KE</div>
+                            <div className={activeTab === 4 ? style.TabActive : style.Tab} onClick={() => { setActiveTab(4); removeAddedTabs(); }}>Добавление</div>
                         </div>
                         <div className={style.RightContainer}>
                             <div className={style.RightItem}>
@@ -118,12 +131,18 @@ function Purchases() {
                             </div>
                             <div className={style.RightItem}>
                                 Дата
-                                <input className={style.DateInput} type={date}></input>
+                                <input className={style.DateInput} onChange={onDateChangeHandler} type={"date"}></input>
                             </div>
                         </div>
                     </div>
                 }
-                <Table activeInvoice={activeInvoice} activeTab={activeTab} setActiveTab={(num: 1 | 2 | 3 | 4 | 5 | 6) => setActiveTab(num)} token={token} disableAdd={(value: boolean) => setIsAddDisabled(value)} />
+                <Table
+                    activeInvoice={activeInvoice}
+                    activeTab={activeTab}
+                    setActiveTab={(num: 1 | 2 | 3 | 4 | 5 | 6) => setActiveTab(num)}
+                    token={token} disableAdd={(value: boolean) => setIsAddDisabled(value)}
+                    dateFilter={dateFilter}
+                />
             </div>
             <Footer />
         </div>
