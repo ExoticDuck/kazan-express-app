@@ -211,6 +211,23 @@
 
     color: #eaeaea;
 }
+.FilterInputActive {
+    width: 200px;
+    height: 32px;
+    padding-left: 10px;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #000000;
+}
 
 .DateInput {
     box-sizing: border-box;

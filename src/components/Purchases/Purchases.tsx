@@ -22,7 +22,8 @@ function Purchases() {
     let dispatch = useAppDispatch();
     let actionDispatch = useDispatch();
     console.log(activeInvoice);
-    const [dateFilter, setDateFilter] = useState(false);
+    const [dateFilter, setDateFilter] = useState({isActive: false, date: ""});
+    const [titleFilter, setTitleFilter] = useState({isActive: false, title: ""});
 
     useEffect(() => {
         let token = localStorage.access_token;
@@ -62,14 +63,21 @@ function Purchases() {
     function onDateChangeHandler(e: ChangeEvent<HTMLInputElement>): void {
 
         if (e.currentTarget.value === "") {
-            setDateFilter(false)
+            setDateFilter({isActive: false, date: ""})
         } else {
             let date = moment(e.currentTarget.value).format('DD.MM.YYYY');
             actionDispatch(setDateFilterAC(date));
-            setDateFilter(true);
+            setDateFilter({isActive: true, date: date});
         }
     }
 
+    function onTitleChangeHandler(e: ChangeEvent<HTMLInputElement>): void {
+        if (e.currentTarget.value === "") {
+            setTitleFilter({isActive: false, title: ""});
+        } else {
+            setTitleFilter({isActive: true, title: e.currentTarget.value.trim()})
+        }
+    }
     return (
         <div className={style.Container}>
             <Header />
@@ -98,7 +106,7 @@ function Purchases() {
                         <div className={style.RightContainer}>
                             <div className={style.RightItem}>
                                 <Hopper />
-                                <input className={style.FilterInput} type={"text"} placeholder={"_"}></input>
+                                <input className={style.FilterInput} type={"text"} placeholder={"_"} onChange={onTitleChangeHandler}></input>
                             </div>
                             <div className={style.RightItem}>
                                 Поставщик
@@ -107,7 +115,7 @@ function Purchases() {
                             </div>
                             <div className={style.RightItem}>
                                 Дата
-                                <input className={style.DateInput} type={"date"}></input>
+                                <input className={style.DateInput} onChange={onDateChangeHandler} type={"date"}></input>
                             </div>
                         </div>
                     </div>
@@ -122,7 +130,7 @@ function Purchases() {
                         <div className={style.RightContainer}>
                             <div className={style.RightItem}>
                                 <Hopper />
-                                <input className={style.FilterInput} type={"text"} placeholder={"_"}></input>
+                                <input className={titleFilter.isActive ? style.FilterInputActive : style.FilterInput} type={"text"} placeholder={"_"}  onChange={onTitleChangeHandler}></input>
                             </div>
                             <div className={style.RightItem}>
                                 Поставщик
@@ -142,6 +150,7 @@ function Purchases() {
                     setActiveTab={(num: 1 | 2 | 3 | 4 | 5 | 6) => setActiveTab(num)}
                     token={token} disableAdd={(value: boolean) => setIsAddDisabled(value)}
                     dateFilter={dateFilter}
+                    titleFilter={titleFilter}
                 />
             </div>
             <Footer />

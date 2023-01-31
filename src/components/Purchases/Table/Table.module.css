@@ -232,6 +232,18 @@
 
     box-sizing: border-box;
 }
+.ButtonBoxActive {
+    height: 40px;
+    width: 255px;
+    min-width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-direction: row;
+
+    box-sizing: border-box;
+}
 
 .LoaderContainer {
     width: 100%;

@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import moment from "moment";
-import { API, GetInvoicesResponceType, GetInvoicesStocksResponceType } from "../../api/api"
+import { API, GetInvoicesResponceType, GetInvoicesStocksResponceType, UpdatedInvoice } from "../../api/api"
 import { s2ab } from "../../utils/utils";
 import { AppThunk } from "../store";
 import { setErrorAC, setIsLoadingAC, setTokenAC } from "./AppReducer";
@@ -355,6 +355,31 @@ export const GetInvoicesTC = (token: string): AppThunk => {
             })
     }
 }
+export const GetAllInvoicesTC = (token: string): AppThunk => {
+    return (dispatch, getState) => {
+        // dispatch(setIsLoadingAC(true))
+        dispatch(setTokenAC(token));
+        dispatch(resetInvoicesAC())
+        // dispatch(setIsLoadingAC(true))
+        while(getState().purchases.invoices.hasMoreItems) {
+            API.getInvoices(token, getState().purchases.invoices.page).then((res) => {
+                if (res.data.page === 1) {
+                    debugger
+                    dispatch(setInitialInvoicesAC(res.data))
+                } else {
+                    debugger
+                    dispatch(setInvoicesAC(res.data));
+                }
+                return res
+            }).then((res) => {
+                dispatch(setInvoicePageAC(res.data.page));
+            })
+                .catch((e: AxiosError) => {
+                    dispatch(setIsLoadingAC(false));
+                })
+        }
+        }
+}
 
 
 export const GetInvoiceStocksTC = (token: string, invoiceId: number): AppThunk => {
@@ -409,6 +434,28 @@ export const UpdateStockTC = (token: string, data: UpdatedStock, invoiceId: numb
                 dispatch(setIsLoadingAC(false));
                 dispatch(GetInvoiceStocksTC(token, invoiceId))
             })
+    }
+}
+export const UpdateInvoiceTC = (token: string, data: UpdatedInvoice): AppThunk => {
+    return (dispatch, getState) => {
+        // dispatch(setIsLoadingAC(true))
+        dispatch(setTokenAC(token));
+        // dispatch(setIsLoadingAC(true))
+        API.updateInvoice(token, data).then((res) => {
+            if (res.data.status === "OK") {
+                dispatch(resetInvoicesAC());
+            }
+        }).then((res) => {
+            dispatch(GetInvoicesTC(token))
+        })
+        .catch((e: AxiosError) => {
+            //@ts-ignore
+            let message = e.response?.data.detail 
+            dispatch(setErrorAC(true, message));
+            setTimeout(() => dispatch(setErrorAC(false, "")), 3000);
+            dispatch(setIsLoadingAC(false));
+            dispatch(GetInvoicesTC(token))
+        })
     }
 }
 export const DeleteStockTC = (token: string, stockId: number, invoiceId: number): AppThunk => {

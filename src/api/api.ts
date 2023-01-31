@@ -53,27 +53,38 @@ export const API = {
     getInvoices(token: string, page: number) {
         return instance.get<any, AxiosResponse<GetInvoicesResponceType>, any>(`v2/purchase/invoices?page=${page}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     },
+    updateInvoice(token: string, data: any) {
+        return instance.post<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/update-invoice`, { ...data }, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json' } })
+    },
     getInvoicesStocks(token: string, invoiceId: number) {
         return instance.get<any, AxiosResponse<GetInvoicesStocksResponceType>, any>(`v2/purchase/invoice-stocks?invoice_id=${invoiceId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*' } })
     },
     addStock(token: string, data: AddedInvoice) {
-        return instance.post<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/add-stock`, {...data}, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
-    }, 
+        return instance.post<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/add-stock`, { ...data }, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json' } })
+    },
     updateStock(token: string, data: UpdatedStock) {
-        return instance.post<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/update-stock`, {...data}, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
+        return instance.post<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/update-stock`, { ...data }, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json' } })
     },
     deleteStock(token: string, stockId: number) {
-        return instance.delete<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/delete-stock/${stockId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
+        return instance.delete<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/delete-stock/${stockId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json' } })
     },
     deleteInvoice(token: string, invoiceId: number) {
-        return instance.delete<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/delete-invoice/${invoiceId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json'  } })
+        return instance.delete<any, AxiosResponse<AddStockResponceType>, any>(`v2/purchase/delete-invoice/${invoiceId}`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', "Content-Type": 'application/json' } })
     },
     getExample(token: string) {
-        return instance.get<any, AxiosResponse<any>, any>(`v2/excel/example`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'} })
+        return instance.get<any, AxiosResponse<any>, any>(`v2/excel/example`, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' } })
     },
     uploadFile(token: string, data: FileRequestType) {
         return instance.post<any, AxiosResponse<GetInvoicesResponceType>, any>(`v2/excel/upload`, data, { headers: { Authorization: `Bearer ${token}`, 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }, })
     },
+}
+
+export type UpdatedInvoice = {
+    invoice_id: number
+    date_created: string
+    title: string
+    customer: string
+    storage: string
 }
 
 export type FileRequestType = {
@@ -91,38 +102,38 @@ export type InvoiceStock = {
     price: number
     purchase_price: number
     total_price: number
-  }
+}
 
 export type GetInvoicesStocksResponceType = {
-        id: number
-        invoice_id: number
-        data: {
-          stock_id: number
-          sku: string
-          title: string
-          quantity: number
-          quantity_accepted: number
-          price: number
-          purchase_price: number
-          total_price: number
-        }[]
-        size: number
+    id: number
+    invoice_id: number
+    data: {
+        stock_id: number
+        sku: string
+        title: string
+        quantity: number
+        quantity_accepted: number
+        price: number
+        purchase_price: number
+        total_price: number
+    }[]
+    size: number
 }
 export type GetInvoicesResponceType = {
     id: number,
-    data: 
-        {
-            invoice_id: number,
-            date_created: string,
-            title: string,
-            customer: string,
-            storage: string,
-            quantity: number,
-            price: number,
-            quantity_accepted: number,
-            total_price: number,
-            status: string
-        }[],
+    data:
+    {
+        invoice_id: number,
+        date_created: string,
+        title: string,
+        customer: string,
+        storage: string,
+        quantity: number,
+        price: number,
+        quantity_accepted: number,
+        total_price: number,
+        status: string
+    }[],
     size: number,
     page: number
 }
