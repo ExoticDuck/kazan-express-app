@@ -22,3 +22,9 @@
     src: url('./fonts/tryfinder-light.woff');
     font-display: block;
 }
+
+@media screen and (min-width: 990px) and (max-width: 1650px) {
+    .App {
+        height: fit-content;
+    }
+}

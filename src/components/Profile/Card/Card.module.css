@@ -28,7 +28,6 @@
 .Line {
     height: 2px;
     width: 234px;
-
 }
 
 .Price {
@@ -77,9 +76,94 @@
 }
 .Line2 {
     margin-bottom: 17px;
-
 }
 .Line3 {
     margin-bottom: 17px;
+}
 
+@media screen and (max-width: 990px) {
+    .Container {
+        width: 304px;
+        height: 348px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12px 35px 0px;
+        gap: 12px;
+
+        box-sizing: border-box;
+
+        background: #ffffff;
+        border: 3px solid #e4e4e4;
+        border-radius: 10px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    .Title {
+        width: fit-content;
+        height: 32px;
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .Line {
+    }
+
+    .Price {
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 700;
+        height: 38px;
+
+        font-size: 28px;
+        line-height: 38px;
+        /* identical to box height */
+
+        text-align: right;
+
+        color: #000000;
+    }
+
+    .Text {
+        position: relative;
+        font-family: "TRY-finder-regular";
+        font-style: normal;
+        font-weight: 400;
+        width: 204px;
+        height: 228px;
+        font-size: 14px;
+        line-height: 19px;
+        color: #000000;
+    }
+
+    .Strong {
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        color: #000000;
+    }
+
+    .BottomText {
+        position: absolute;
+        bottom: 20px;
+        left: 0px;
+    }
+
+    .Line1 {
+        margin-bottom: 17px;
+    }
+    .Line2 {
+        margin-bottom: 17px;
+    }
+    .Line3 {
+        margin-bottom: 17px;
+    }
 }

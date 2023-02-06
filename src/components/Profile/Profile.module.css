@@ -120,7 +120,7 @@
 
 .BottomRight {
     width: calc(100vw - 50% - 40px);
-   
+
     height: 60px;
     float: left;
 }
@@ -256,5 +256,279 @@
 }
 
 .Tax:hover {
-    background-color: #C0C0C0;
+    background-color: #c0c0c0;
+}
+
+@media screen and (min-width: 990px) and (max-width: 1650px) {
+    .ProfileInfo {
+    }
+    .CardsContainer {
+        height: fit-content;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 72px;
+    }
+    .Container {
+        min-height: fit-content;
+        overflow: scroll;
+    }
+    .BoxContainer {
+        height: fit-content;
+        overflow: scroll;
+    }
+}
+@media screen and (max-width: 990px) {
+    .ProfileInfo {
+        margin-bottom: 78px;
+        height: 119px;
+    }
+
+    .TopContainer {
+        /* width: 808px; */
+        width: 100vw;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .BottomContainer {
+        /* width: 808px; */
+        width: 100vw;
+        height: 62px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .TopRight {
+        width: 235px;
+        height: 52px;
+    }
+
+    .Subscription {
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: left;
+        height: 32px;
+    }
+
+    .EndDate {
+        height: 19px;
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        text-align: left;
+        color: #000000;
+    }
+
+    .TopLeft {
+        width: 233px;
+        height: 52px;
+    }
+
+    .ProfileName {
+        height: 32px;
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: right;
+        color: #000000;
+    }
+
+    .RegisterDate {
+        height: 19px;
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        text-align: right;
+        color: #000000;
+    }
+
+    .BottomRight {
+        width: calc(100vw - 50% - 40px);
+
+        height: 62px;
+        float: left;
+    }
+    .BottomLeft {
+        width: calc(100vw - 50% - 40px);
+        height: 62px;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+    }
+
+    .Rate {
+        height: 32px;
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: left;
+        color: #ed00c7;
+    }
+
+    .CardsContainer {
+        height: fit-content;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 72px;
+    }
+    .Container {
+        min-height: fit-content;
+        overflow: scroll;
+    }
+    .BoxContainer {
+        height: fit-content;
+        overflow: scroll;
+    }
+    .TextBlock {
+        width: 592px;
+        height: 135px;
+
+        font-family: "TRY-finder-regular";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        text-align: center;
+
+        color: #000000;
+
+        margin-bottom: 44px;
+    }
+
+    .TaxBox {
+        width: fit-content;
+        max-width: 342px;
+        height: 29px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        overflow-x: scroll;
+        gap: 10px;
+    }
+
+    .Tax {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "TRY-finder-regular";
+        flex-direction: row;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        /* identical to box height */
+
+        color: #000000;
+
+        width: 41px;
+        height: 19px;
+        padding: 0px 5px;
+        box-sizing: border-box;
+        background: #eaeaea;
+        border-radius: 5px;
+    }
+
+    .TaxPercent {
+        height: 19px;
+        max-width: fit-content;
+        display: inline-block;
+        white-space: nowrap;
+        /* overflow: hidden; */
+       
+    }
+
+    /* #Running:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes runline {
+        to {
+            transform: translateX(-100%);
+        }
+    } */
+
+    .TaxPercent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "TRY-finder-regular";
+        flex-direction: row;
+        flex-wrap: nowrap;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        /* identical to box height */
+
+        color: #000000;
+
+        width: fit-content;
+        height: 19px;
+        padding: 0px 5px;
+        box-sizing: border-box;
+        background: #eaeaea;
+        border-radius: 5px;
+    }
+    .TaxActive {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "TRY-finder-regular";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        /* identical to box height */
+
+        color: #000000;
+       
+        white-space: nowrap;
+        width: fit-content;
+        height: 19px;
+
+        background: #eaeaea;
+        border-radius: 5px;
+    }
+
+    .TaxInput {
+        padding: 0;
+        padding-left: 3px;
+        border: 0;
+        box-sizing: border-box;
+        width: 28px;
+        border: 0;
+        background-color: #eaeaea;
+
+        font-family: "TRY-finder-regular";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        /* identical to box height */
+
+        color: #000000;
+    }
 }
