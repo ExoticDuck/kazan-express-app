@@ -238,7 +238,7 @@
     min-width: fit-content;
     display: flex;
     align-items: center;
-    justify-content: center;
+    
     gap: 60px;
     flex-direction: row;
 
@@ -274,6 +274,12 @@
     border-radius: 10px;
     background: rgb(255, 0, 0);
     animation: move 3s linear infinite alternate;
+}
+
+.IconBox {
+    width: fit-content;
+    font-size: 20px;
+    height: 20px;
 }
 
 @keyframes move {

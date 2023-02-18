@@ -442,10 +442,12 @@ export const UpdateInvoiceTC = (token: string, data: UpdatedInvoice): AppThunk =
         dispatch(setTokenAC(token));
         // dispatch(setIsLoadingAC(true))
         API.updateInvoice(token, data).then((res) => {
+            debugger
             if (res.data.status === "OK") {
                 dispatch(resetInvoicesAC());
             }
         }).then((res) => {
+            debugger
             dispatch(GetInvoicesTC(token))
         })
         .catch((e: AxiosError) => {

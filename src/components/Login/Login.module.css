@@ -53,33 +53,34 @@
     flex-direction: column;
 }
 
-.Input {
+.InputSmall {
     font-family: 'TRY-finder-regular';
     width: 86%;
     box-sizing: border-box;
-    height: 67px;
+    height: 66px;
     padding: 0;
-    outline: none;
+    outline: 0px;
     font-size: 24px;
     font-weight: 400;
     line-height: 32px;
-    border: none;
+    border: 0px;
     padding-left: 17px;
-    border-bottom: 1px solid #CECECE;
+    /* border-bottom: 1px solid inherit; */
+    margin-bottom: 1px;
     border-bottom-left-radius: 6px;
     border-top-left-radius: 6px;
 }
-.InputError {
+.InputErrorSmall {
     font-family: 'TRY-finder-regular';
     width: 86%;
     box-sizing: border-box;
     height: 67px;
-    padding: 0;
-    outline: none;
+    padding: 0px;
+    outline: 0px;
     font-size: 24px;
     font-weight: 400;
     line-height: 32px;
-    border: none;
+    border: 0;
     padding-left: 17px;
     border-bottom: 1px solid #FC3D3D;
     border-bottom-left-radius: 6px;
@@ -168,7 +169,7 @@
 
 .ErrorMessage {
     position: absolute;
-    
+    bottom: 0px;
     height: 49px;
     width: fit-content;
     font-family: "TRY-finder-bold";
@@ -177,6 +178,10 @@
     line-height: 27px;
     color: #fff;
     background-color: #FF464C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 11px;
@@ -346,7 +351,8 @@ i {
 }
 
 input {
-    outline: none;
+    border: 0px;
+    outline: 0px;
 }
 
 @media (min-width: 540px) and (max-width: 745px) {
@@ -369,13 +375,13 @@ input {
     .Eye {
         height: 58px;
     }
-    .Input {
-        height: 57px;
+    .InputSmall {
+        height: 56px;
         font-size: 19px;
         line-height: 26px;
     }
-    .InputError {
-        height: 57px;
+    .InputErrorSmall {
+        height: 56px;
         font-size: 19px;
         line-height: 26px;
         padding-left: 15px;
@@ -387,6 +393,13 @@ input {
         line-height: 26px;
         padding-left: 15px;
         margin-bottom: 10px;
+    }
+    .InputEmailFilled {
+        height: 58px;
+    }
+
+    .PasswordInputFilled  {
+        height: 58px;
     }
     
     .InputEmailError {
@@ -414,7 +427,8 @@ input {
     }
     
     .ErrorMessage {
-        
+       height: 44px;
+       width: 100vw; 
     }
     
     .Logo {
@@ -492,13 +506,13 @@ input {
     .Eye {
         height: 58px;
     }
-    .Input {
-        height: 57px;
+    .InputSmall {
+        height: 56px;
         font-size: 19px;
         line-height: 26px;
     }
-    .InputError {
-        height: 57px;
+    .InputErrorSmall {
+        height: 56px;
         font-size: 19px;
         line-height: 26px;
         padding-left: 15px;
@@ -535,9 +549,19 @@ input {
 
         margin-bottom: 10px;
     }
+
+    .InputEmailFilled {
+        height: 58px;
+    }
+
+    .PasswordInputFilled  {
+        height: 58px;
+    }
+    
     
     .ErrorMessage {
-        
+        height: 44px;
+        width: 100vw;
     }
     
     .Logo {
@@ -615,13 +639,13 @@ input {
     .Eye {
         height: 58px;
     }
-    .Input {
-        height: 57px;
+    .InputSmall {
+        height: 56px;
         font-size: 19px;
         line-height: 26px;
     }
-    .InputError {
-        height: 57px;
+    .InputErrorSmall {
+        height: 56px;
         font-size: 19px;
         line-height: 26px;
         padding-left: 15px;
@@ -650,6 +674,15 @@ input {
 
         margin-bottom: 40px;
     }
+
+    .InputEmailFilled {
+        height: 58px;
+    }
+
+    .PasswordInputFilled  {
+        height: 58px;
+    }
+    
     
     .PasswordInputError {
         height: 58px;
@@ -660,7 +693,8 @@ input {
     }
     
     .ErrorMessage {
-        
+        height: 44px;
+        width: 100vw;
     }
     
     .Logo {
@@ -743,13 +777,13 @@ input {
     .EyeLogo {
         height: 17px;
     }
-    .Input {
-        height: 47px;
+    .InputSmall {
+        height: 46px;
         font-size: 17px;
         line-height: 24px;
     }
-    .InputError {
-        height: 47px;
+    .InputErrorSmall {
+        height: 46px;
         font-size: 17px;
         line-height: 24px;
         padding-left: 10px;
@@ -784,9 +818,19 @@ input {
         line-height: 24px;
         margin-bottom: 10px;
     }
+
+    .InputEmailFilled {
+        height: 58px;
+    }
+
+    .PasswordInputFilled  {
+        height: 58px;
+    }
+    
     
     .ErrorMessage {
-        
+        height: 44px;
+        width: 100vw;
     }
     
     .Logo {

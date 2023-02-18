@@ -148,7 +148,8 @@ function Purchases() {
                     activeInvoice={activeInvoice}
                     activeTab={activeTab}
                     setActiveTab={(num: 1 | 2 | 3 | 4 | 5 | 6) => setActiveTab(num)}
-                    token={token} disableAdd={(value: boolean) => setIsAddDisabled(value)}
+                    token={token} 
+                    disableAdd={(value: boolean) => setIsAddDisabled(value)}
                     dateFilter={dateFilter}
                     titleFilter={titleFilter}
                 />

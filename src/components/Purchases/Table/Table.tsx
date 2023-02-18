@@ -10,6 +10,7 @@ import FileUploader from '../FileUploader/FileUploader';
 import { formatDate } from '../../../utils/utils';
 import { UpdatedInvoice } from '../../../api/api';
 import { title } from 'process';
+import { ReactComponent as CancelIcon } from '../../../img/CancelIcon.svg';
 
 type TablePropsType = {
     token: string | null;
@@ -300,7 +301,7 @@ function Table(props: TablePropsType) {
                                 totalAmount={el.total_price}
                                 callbackFn={() => { }}
                                 deleteFunction={() => { }}
-                                updateFunction={() => {}}
+                                updateFunction={() => { }}
                                 activeTab={props.activeTab}
                             />
                         })}
@@ -373,12 +374,12 @@ type RowPropsType = {
 
 function Row(props: RowPropsType) {
     const [edit, setEdit] = useState(false);
-    
+
     const [btnActive, setBtnActive] = useState(false);
     let actionDispatch = useDispatch();
     const [dateActive, setDateActive] = useState(false);
     console.log(props.date);
-    
+
     const [data, setData] = useState<UpdatedInvoice>({
         invoice_id: props.id,
         date_created: props.date ? props.date : "",
@@ -387,28 +388,31 @@ function Row(props: RowPropsType) {
         storage: props.storage ? props.storage : ""
     })
 
-    
+
     useEffect(() => {
         console.log(data);
-        
+
     }, [data])
 
     function checkData(data: UpdatedInvoice) {
-        if ((data.date_created !== "" 
-        && moment(data.date_created).isSameOrBefore(moment())) 
-        && data.title !== "" 
-        && data.customer !== "" 
-        && data.storage !== ""
-        && (data.date_created !== props.date || data.title !== props.title || data.customer !== props.supplier || data.storage !== props.storage)) {
+        if ((data.date_created !== ""
+            && moment(data.date_created, "YYYY-MM-DD[T]HH:mm:ss.SSS[Z]").isSameOrBefore(moment()))
+            && data.title !== ""
+            && data.customer !== ""
+            && data.storage !== ""
+            && (data.date_created !== props.date || data.title !== props.title || data.customer !== props.supplier || data.storage !== props.storage)) {
+            debugger
             return true;
         } else {
+            debugger
             return false;
         }
     }
 
     function onAddHandler() {
-        let result: UpdatedInvoice = {...data, date_created: moment(data.date_created).format("YYYY-MM-DD[T]HH:mm:ss.SSS[Z]")}        
+        let result: UpdatedInvoice = { ...data, date_created: moment(data.date_created, 'DD.MM.YYYY').format("YYYY-MM-DD[T]HH:mm:ss.SSS[Z]") }
         if (checkData(result)) {
+            debugger
             props.updateFunction(result);
         } else {
             actionDispatch(setErrorAC(true, "Не все поля заполнены корректно!"))
@@ -417,11 +421,11 @@ function Row(props: RowPropsType) {
     }
 
     function onDateChangeHandler(e: ChangeEvent<HTMLInputElement>): void {
-        
+
         e.stopPropagation();
         let date = moment(e.currentTarget.value).format("DD.MM.YYYY");
         console.log(date);
-        setData({ ...data, date_created: date})
+        setData({ ...data, date_created: date })
         setDateActive(false);
         setBtnActive(true)
     }
@@ -442,6 +446,17 @@ function Row(props: RowPropsType) {
         e.stopPropagation();
         setData({ ...data, customer: e.currentTarget.value.trim() })
         setBtnActive(true)
+    }
+
+    function onCancel() {
+        setData({
+            invoice_id: props.id,
+            date_created: props.date ? props.date : "",
+            title: props.title,
+            customer: props.supplier ? props.supplier : "",
+            storage: props.storage ? props.storage : ""
+        })
+        setBtnActive(false);
     }
 
     if (props.activeTab === 5 || props.activeTab === 6) {
@@ -474,55 +489,60 @@ function Row(props: RowPropsType) {
             </div>
         )
     } else {
-       
-            return (
-                <div className={style.Row} onClick={() => setEdit(false)}>
-                    <div id={style.Column1}>{props.number}</div>
-                    <div id={style.Column2} onClick={() => setDateActive(true)}>
-                        {dateActive ? <input className={style.RowInput} style={{width: "100px"}} type={"date"} value={data.date_created} onChange={onDateChangeHandler}></input>
-                        : <div onClick={() => setDateActive(true)}>{data.date_created}</div>}
-                        
-                    </div>
-                    <div id={style.Column3}><input className={style.RowInput} type={"text"} value={data.title} onChange={onTitleChangeHandler}></input></div>
-                    <div id={style.Column4}><input className={style.RowInput} type={"text"} value={data.customer} onChange={onCustomerChangeHandler}></input></div>
-                    <div id={style.Column5}><input className={style.RowInput} type={"text"} value={data.storage} onChange={onStorageChangeHandler}></input></div>
-                    <div id={style.Column6}>{props.amount}</div>
-                    <div id={style.Column7}>{props.sum.toFixed(2)}</div>
-                    <div id={style.Column8}>{props.factAmount}</div>
-                    <div id={style.Column9}>{props.totalAmount.toFixed(2)}</div>
-                    <div id={style.Column10}>{props.status}</div>
-                    <div id={style.Column11} className={btnActive ? style.ButtonBoxActive : style.ButtonBox}>
-                        {
-                            btnActive ? <div onClick={onAddHandler} style={{ color: btnActive ? "limegreen" : "" }} className={style.OpenButton}>Обновить</div> :
-                                <>
-                                    <div onClick={props.callbackFn} className={style.OpenButton}>Открыть</div>
-                                    <div onClick={props.deleteFunction} className={style.OpenButton}>Удалить</div>
-                                </>
-                        }
 
-                    </div>
+        return (
+            <div className={style.Row} onClick={() => setEdit(false)}>
+                <div id={style.Column1}>{props.number}</div>
+                <div id={style.Column2} onClick={() => setDateActive(true)}>
+                    {dateActive ? <input className={style.RowInput} style={{ width: "100px" }} type={"date"} value={data.date_created} onChange={onDateChangeHandler}></input>
+                        : <div onClick={() => setDateActive(true)}>{data.date_created}</div>}
+
                 </div>
-            )
-       
-            // return (
-            //     <div className={style.Row} onClick={() => setEdit(true)}>
-            //         <div id={style.Column1}>{props.number}</div>
-            //         <div id={style.Column2}>{props.date}</div>
-            //         <div id={style.Column3}>{props.title}</div>
-            //         <div id={style.Column4}>{props.supplier}</div>
-            //         <div id={style.Column5}>{props.storage}</div>
-            //         <div id={style.Column6}>{props.amount}</div>
-            //         <div id={style.Column7}>{props.sum.toFixed(2)}</div>
-            //         <div id={style.Column8}>{props.factAmount}</div>
-            //         <div id={style.Column9}>{props.totalAmount.toFixed(2)}</div>
-            //         <div id={style.Column10}>{props.status}</div>
-            //         <div id={style.Column11} className={style.ButtonBox}>
-            //             <div onClick={props.callbackFn} className={style.OpenButton}>Открыть</div>
-            //             <div onClick={props.deleteFunction} className={style.OpenButton}>Удалить</div>
-            //         </div>
-            //     </div>
-            // )
-        
+                <div id={style.Column3}><input className={style.RowInput} type={"text"} value={data.title} onChange={onTitleChangeHandler}></input></div>
+                <div id={style.Column4}><input className={style.RowInput} type={"text"} value={data.customer} onChange={onCustomerChangeHandler}></input></div>
+                <div id={style.Column5}><input className={style.RowInput} type={"text"} value={data.storage} onChange={onStorageChangeHandler}></input></div>
+                <div id={style.Column6}>{props.amount}</div>
+                <div id={style.Column7}>{props.sum.toFixed(2)}</div>
+                <div id={style.Column8}>{props.factAmount}</div>
+                <div id={style.Column9}>{props.totalAmount.toFixed(2)}</div>
+                <div id={style.Column10}>{props.status}</div>
+                <div id={style.Column11} className={btnActive ? style.ButtonBoxActive : style.ButtonBox}>
+                    {
+                        btnActive ?
+                            <>
+                                <div className={style.OpenButton} onClick={onCancel}>Отмена</div>
+                                <div onClick={onAddHandler} style={{ color: btnActive ? "limegreen" : "" }} className={style.OpenButton}>Обновить</div>
+                            </>
+                            :
+                            <>
+                                <div onClick={props.callbackFn} className={style.OpenButton}>Открыть</div>
+                                <div onClick={props.deleteFunction} className={style.OpenButton}>Удалить</div>
+                            </>
+                    }
+
+                </div>
+            </div>
+        )
+
+        // return (
+        //     <div className={style.Row} onClick={() => setEdit(true)}>
+        //         <div id={style.Column1}>{props.number}</div>
+        //         <div id={style.Column2}>{props.date}</div>
+        //         <div id={style.Column3}>{props.title}</div>
+        //         <div id={style.Column4}>{props.supplier}</div>
+        //         <div id={style.Column5}>{props.storage}</div>
+        //         <div id={style.Column6}>{props.amount}</div>
+        //         <div id={style.Column7}>{props.sum.toFixed(2)}</div>
+        //         <div id={style.Column8}>{props.factAmount}</div>
+        //         <div id={style.Column9}>{props.totalAmount.toFixed(2)}</div>
+        //         <div id={style.Column10}>{props.status}</div>
+        //         <div id={style.Column11} className={style.ButtonBox}>
+        //             <div onClick={props.callbackFn} className={style.OpenButton}>Открыть</div>
+        //             <div onClick={props.deleteFunction} className={style.OpenButton}>Удалить</div>
+        //         </div>
+        //     </div>
+        // )
+
 
     }
 
@@ -657,6 +677,17 @@ function EditableRow(props: EditableRowPropsType) {
             }
         }
     }
+
+    function onCancel() {
+        setData({
+            invoice_id: props.type === "existent" ? props.id : props.invoice_id,
+            sku: props.sku,
+            quantity: props.amount,
+            quantity_accepted: props.factAmount,
+            purchase_price: props.purcasePrice
+        })
+        setActive(false)
+    }
     return (
         <div className={style.Row}>
             <div id={style.StocksColumn1}>{props.number}</div>
@@ -668,7 +699,16 @@ function EditableRow(props: EditableRowPropsType) {
             <div id={style.StocksColumn7}><input id={style.RowInput7} value={data.quantity_accepted !== 0 ? data.quantity_accepted.toString() : ""} placeholder="-" onChange={onQuantityAcceptedChange}></input></div>
             <div id={style.StocksColumn8}>{props.totalAmount ? props.totalAmount.toFixed(2) : "default"}</div>
             <div id={style.StocksColumn9}>
-                <div onClick={onClickHandler} style={{ color: active ? "limegreen" : "" }}>{active ? props.type === "added" ? "Добавить" : "Обновить" : "Удалить"}</div>
+                {
+                    active ?
+                        <>
+                            <CancelIcon style={{height: "30px", marginRight: "5px"}} onClick={onCancel}/>
+                            <div onClick={onClickHandler} style={{ color: active ? "limegreen" : "" }}>{active ? props.type === "added" ? "Добавить" : "Обновить" : "Удалить"}</div>
+                        </>
+                        :
+                        <div onClick={onClickHandler} style={{ color: active ? "limegreen" : "" }}>{active ? props.type === "added" ? "Добавить" : "Обновить" : "Удалить"}</div>
+                }
+
             </div>
         </div>
     )

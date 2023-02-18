@@ -74,7 +74,7 @@ function Login() {
                     <input className={error.isActive ? style.InputEmailError : emailFilledInput ? style.InputEmailFilled : style.InputEmail} placeholder="Введите почту..." value={emailValue} onChange={emailChangeHandler} />
 
                     <div className={error.isActive ? style.PasswordInputError : passwordFilledInput ? style.PasswordInputFilled : style.PasswordInput}>
-                        <input className={error.isActive ? style.InputError : style.Input} placeholder="Введите пароль..." type={showPassword ? "text" : "password"} value={passwordValue} onChange={passwordChangeHandler}></input>
+                        <input className={error.isActive ? style.InputErrorSmall : style.InputSmall} placeholder="Введите пароль..." type={showPassword ? "text" : "password"} value={passwordValue} onChange={passwordChangeHandler}></input>
                         <div className={style.Eye} onClick={() => setShowPassword(!showPassword)}>
                             {showPassword ? <div className={style.CircleFilled}></div> : <div className={passwordFilledInput ? style.CircleDark : style.Circle}></div>}
                         </div>

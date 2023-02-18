@@ -16,7 +16,7 @@ import Profile from './components/Profile/Profile';
 import Purchases from './components/Purchases/Purchases';
 
 function App() {
-
+ 
 
   let isLoading = useAppSelector(state => state.app.isLoading);
   return (
