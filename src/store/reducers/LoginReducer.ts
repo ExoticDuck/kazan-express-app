@@ -1,9 +1,11 @@
 import { AxiosError } from "axios"
+import moment from "moment"
 import { Dispatch } from "redux"
 import { API } from "../../api/api"
 import { AppThunk, RootStateType } from "../store"
 import { setErrorAC, setIsLoadingAC, setTokenAC } from "./AppReducer"
 import { resetUserACType, setUserInfoAC} from "./UserReducer"
+import { isTokenAlive } from './../../utils/utils';
 
 
 type LoginStateType = {
@@ -55,18 +57,19 @@ export const LoginTC = (username: string, password: string): AppThunk => {
         API.getToken(username, password).then((res) => {
             debugger
             console.log(res.data);
-            localStorage.setItem("access_token", res.data.access_token); 
+            localStorage.setItem("access_token", res.data.access_token);
+            localStorage.setItem("token_expires_on", moment().add(2, "hours").unix().toString());
+            // console.log(isTokenAlive());
+            
             dispatch(setTokenAC(res.data.access_token))
             setTimeout(() =>  dispatch(setIsLoadingAC(false)), 500)
             // dispatch(setIsLoadingAC(false));
         }).catch((e: AxiosError) => {
-            
             //@ts-ignore
             if(e.response?.data.detail === "Incorrect username or login") {
                 dispatch(setErrorAC(true, "Неверный логин или пароль!"));
                 dispatch(setPasswordAC(""));
             }
-
             dispatch(setIsLoadingAC(false));
         })
     }

@@ -2,6 +2,7 @@ import { AxiosError } from "axios";
 import { API, TariffsResponceType, UpdateTaxDataType, UpdateTaxResponceType, UserAccountResponceType, UserInfoResponceType, UserStatResponceType } from "../../api/api"
 import { AppThunk } from "../store";
 import { setIsLoadingAC, setTokenAC } from "./AppReducer";
+import { isTokenAlive } from './../../utils/utils';
 
 type ShopType = { title: string, shop_id: number };
 
@@ -163,23 +164,28 @@ export const UserInfoTC = (token: string): AppThunk => {
         dispatch(setIsLoadingAC(true))
         dispatch(setTokenAC(token));
         dispatch(setIsLoadingAC(true))
-        API.getUserInfo(token).then((res) => {
-            console.log(res.data);
-            dispatch(setUserInfoAC(res.data))
-        }).then((res) => {
-            API.getUserAccount(token).then((res) => {
+        if(isTokenAlive()) {
+            API.getUserInfo(token).then((res) => {
                 console.log(res.data);
-                dispatch(setUserAccountAC(res.data))
+                dispatch(setUserInfoAC(res.data))
+            }).then((res) => {
+                API.getUserAccount(token).then((res) => {
+                    console.log(res.data);
+                    dispatch(setUserAccountAC(res.data))
+                })
+                dispatch(setIsLoadingAC(false))
+            }).then((res) => {
+                API.getTariffs(token).then((res) => {
+                    console.log(res.data);
+                    dispatch(setUserTariffsAC(res.data))
+                }
+            )}).catch((e: AxiosError) => {
+                dispatch(setIsLoadingAC(false));
             })
-            dispatch(setIsLoadingAC(false))
-        }).then((res) => {
-            API.getTariffs(token).then((res) => {
-                console.log(res.data);
-                dispatch(setUserTariffsAC(res.data))
-            }
-        )}).catch((e: AxiosError) => {
-            dispatch(setIsLoadingAC(false));
-        })
+        } else {
+            dispatch(resetUserAC())
+        }
+        
     }
 }
 
@@ -188,17 +194,22 @@ export const UpdateTaxTC = (token: string, data: UpdateTaxDataType): AppThunk =>
         dispatch(setIsLoadingAC(true))
         dispatch(setTokenAC(token));
         dispatch(setIsLoadingAC(true))
-        API.updateTax(token, data).then((res) => {
-            dispatch(setUserTaxesAC(res.data))
-            debugger
-            // API.getUserAccount(token).then((res) => {
-            //     console.log(res.data);
-            //     dispatch(setUserAccountAC(res.data))
-            // })
-            dispatch(setIsLoadingAC(false))
-        }).catch((e: AxiosError) => {
-            dispatch(setIsLoadingAC(false));
-        })
+        if(isTokenAlive()) {
+            API.updateTax(token, data).then((res) => {
+                dispatch(setUserTaxesAC(res.data))
+                debugger
+                // API.getUserAccount(token).then((res) => {
+                //     console.log(res.data);
+                //     dispatch(setUserAccountAC(res.data))
+                // })
+                dispatch(setIsLoadingAC(false))
+            }).catch((e: AxiosError) => {
+                dispatch(setIsLoadingAC(false));
+            })
+        } else {
+            dispatch(resetUserAC())
+        }
+       
     }
 }
 

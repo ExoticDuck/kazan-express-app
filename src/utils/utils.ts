@@ -10,3 +10,14 @@ export function s2ab(s: any) {
 export function formatDate(date: string) {
     return moment(date).format('DD.MM.YYYY');
 }
+
+export function isTokenAlive() {
+    let currentDate = moment().unix()
+    let expire_time = localStorage.getItem("token_expires_on")
+    if(Number(expire_time) > currentDate) {
+        return true;
+    } else {
+        localStorage.removeItem("access_token")
+        return false;
+    }
+}
