@@ -278,9 +278,142 @@
         overflow: scroll;
     }
 }
+@media screen and (max-width: 1650px) {
+    .TextBlock {
+        margin-bottom: 50px;
+    }
+    .ProfileInfo {
+        margin-bottom: 50px;
+    }
+    
+}
+@media screen and (max-width: 1465px) {
+    .BottomContainer {
+        height: 75px;
+    }
+    .BottomLeft {
+        height: 67px;
+    }
+    .TaxBox {
+        width: fit-content;
+        max-width: 450px;
+        height: 45px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        box-sizing: border-box;
+        gap: 10px;
+    }
+
+    .TaxBox::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        border-radius: 2.5px;
+    }
+    .TaxBox::-webkit-scrollbar-track {
+        width: 5px;
+        height: 5px;
+        border-radius: 2.5px;
+        background: #ddd
+    }
+    .TaxBox::-webkit-scrollbar-thumb {
+        width: 5px;
+        height: 5px;
+        border-radius: 2.5px;
+        background: #666; 
+    }
+
+    .Tax {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        font-family: "TRY-finder-regular";
+        flex-direction: row;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        flex-wrap: nowrap;
+        /* identical to box height */
+    
+        color: #000000;
+    
+        width: 46px;
+        height: 22px;
+        padding: 0px 5px;
+        box-sizing: border-box;
+        background: #eaeaea;
+        border-radius: 5px;
+    }
+    
+    .TaxPercent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "TRY-finder-regular";
+        flex-direction: row;
+        flex-wrap: nowrap;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        /* identical to box height */
+    
+        color: #000000;
+    
+        width: 100px;
+        height: 22px;
+        padding: 0px 5px;
+        box-sizing: border-box;
+        background: #eaeaea;
+        border-radius: 5px;
+    }
+    .TaxActive {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        font-family: "TRY-finder-regular";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        /* identical to box height */
+    
+        color: #000000;
+    
+        width: fit-content;
+        height: 22px;
+    
+        background: #eaeaea;
+        border-radius: 5px;
+    }
+    
+    .TaxInput {
+        padding: 0;
+        padding-left: 3px;
+        border: 0;
+        box-sizing: border-box;
+        width: 28px;
+        border: 0;
+        background-color: #eaeaea;
+    
+        font-family: "TRY-finder-regular";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        /* identical to box height */
+    
+        color: #000000;
+    }
+}
 @media screen and (max-width: 990px) {
     .ProfileInfo {
-        margin-bottom: 78px;
+        margin-bottom: 40px;
         height: 119px;
     }
 
@@ -299,7 +432,7 @@
     .BottomContainer {
         /* width: 808px; */
         width: 100vw;
-        height: 62px;
+        height: 70px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -421,12 +554,303 @@
     .TaxBox {
         width: fit-content;
         max-width: 342px;
+        height: 35px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        box-sizing: border-box;
+        gap: 10px;
+    }
+
+
+    .TaxBox::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        border-radius: 2.5px;
+    }
+    .TaxBox::-webkit-scrollbar-track {
+        width: 5px;
+        height: 5px;
+        border-radius: 2.5px;
+        background: #ddd
+    }
+    .TaxBox::-webkit-scrollbar-thumb {
+        width: 5px;
+        height: 5px;
+        border-radius: 2.5px;
+        background: #666; 
+    }
+
+    .Tax {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "TRY-finder-regular";
+        flex-direction: row;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        /* identical to box height */
+
+        color: #000000;
+
+        width: 41px;
+        height: 19px;
+        padding: 0px 5px;
+        box-sizing: border-box;
+        background: #eaeaea;
+        border-radius: 5px;
+    }
+
+    .TaxPercent {
+        height: 19px;
+        max-width: fit-content;
+        display: inline-block;
+        white-space: nowrap;
+        /* overflow: hidden; */
+       
+    }
+
+    /* #Running:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes runline {
+        to {
+            transform: translateX(-100%);
+        }
+    } */
+
+    .TaxPercent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "TRY-finder-regular";
+        flex-direction: row;
+        flex-wrap: nowrap;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        /* identical to box height */
+
+        color: #000000;
+
+        width: fit-content;
+        height: 19px;
+        padding: 0px 5px;
+        box-sizing: border-box;
+        background: #eaeaea;
+        border-radius: 5px;
+    }
+    .TaxActive {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "TRY-finder-regular";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        /* identical to box height */
+
+        color: #000000;
+       
+        white-space: nowrap;
+        width: fit-content;
+        height: 19px;
+
+        background: #eaeaea;
+        border-radius: 5px;
+    }
+
+    .TaxInput {
+        padding: 0;
+        padding-left: 3px;
+        border: 0;
+        box-sizing: border-box;
+        width: 28px;
+        border: 0;
+        background-color: #eaeaea;
+
+        font-family: "TRY-finder-regular";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        /* identical to box height */
+
+        color: #000000;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .ProfileInfo {
+        margin-bottom: 40px;
+        height: 250px;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .TopContainer {
+        /* width: 808px; */
+        width: 350px;
+        height: 125px;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        justify-content: left;
+        /* flex-wrap: wrap; */
+        /* gap: 40px; */
+        flex-direction: column;
+        /* flex-wrap: wrap; */
+    }
+
+    .BottomContainer {
+        /* width: 808px; */
+        width: 350px;
+        height: 140px;
+        flex-wrap: wrap;
+        
+        display: flex;
+        align-items: flex-start;
+        justify-content: left;
+        gap: 15px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .TopRight {
+        width: 235px;
+        height: 52px;
+    }
+
+    .Subscription {
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: left;
+        height: 32px;
+    }
+
+    .EndDate {
+        height: 19px;
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        text-align: left;
+        color: #000000;
+    }
+
+    .TopLeft {
+        width: 233px;
+        height: 52px;
+    }
+
+    .ProfileName {
+        height: 32px;
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: left;
+        color: #000000;
+    }
+
+    .RegisterDate {
+        height: 19px;
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        text-align: left;
+        color: #000000;
+    }
+
+    .BottomRight {
+        width: calc(100vw - 50% - 40px);
+
+        height: 62px;
+        float: left;
+    }
+    .BottomLeft {
+        width: 350px;
+        height: 62px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .Rate {
+        height: 32px;
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: left;
+        color: #ed00c7;
+    }
+
+    .CardsContainer {
+        height: fit-content;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 72px;
+    }
+    .Container {
+        min-height: fit-content;
+        overflow: scroll;
+    }
+    .BoxContainer {
+        height: fit-content;
+        overflow: scroll;
+    }
+    .TextBlock {
+        display: none;
+    }
+
+    .TaxBox {
+        width: fit-content;
+        max-width: 342px;
         height: 29px;
         display: flex;
         flex-direction: row;
         align-items: flex-start;
         overflow-x: scroll;
+        overflow-y: hidden;
         gap: 10px;
+    }
+
+    .TaxBox::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        border-radius: 2.5px;
+    }
+    .TaxBox::-webkit-scrollbar-track {
+        width: 5px;
+        height: 5px;
+        border-radius: 2.5px;
+        background: #ddd
+    }
+    .TaxBox::-webkit-scrollbar-thumb {
+        width: 5px;
+        height: 5px;
+        border-radius: 2.5px;
+        background: #666; 
     }
 
     .Tax {

@@ -239,22 +239,158 @@ i {
     display: flex;
     align-items: start;
     justify-content: space-between;
+    margin-left: 15px;
 }
 
-@media screen and(max-width: 1100px) {
-    .Container {
-        width: 100vw;
-        height: 50px;
-        position: fixed;
-        z-index: 3;
-        left: 0px;
+@media screen and (max-width: 1100px) {
+    .LogoContainer {
         top: 0px;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: row;
-        padding: 0 15px;
-        background-color: #fff;
     }
+    
+    .Cabinet {
+        height: 27px;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .CabinetActive {
+        height: 27px;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .Statistics {
+        height: 27px;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .StatisticsActive {
+        height: 27px;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .Purchases {
+        height: 27px;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .PurchasesActive {
+        height: 27px;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .Storeroom {
+        height: 27px;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .StoreroomActive {
+        height: 27px;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .InfoContainer {
+        box-sizing: border-box;
+        height: fit-content;
+        margin-top: 39px;
+    }
+    .PersonInfoContainer {
+        font-family: "TRY-finder-bold";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 27px;
+
+        color: #000000;
+    }
+}
+
+.RightContainer {
+    width: 55px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+    cursor: pointer;
+}
+.ExpandedRightContainer {
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.ButtonBox {
+    width: 70px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.RedText {
+    font-family: "TRY-finder-bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    text-align: right;
+    width: fit-content;
+    color: #ff464c;
+    margin-right: 10px;
+}
+
+
+.ContainerSmall {
+    width: 100vw;
+    position: fixed;
+    z-index: 5;
+    left: 0px;
+    top: 0px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.Wrapper {
+    width: 100vw;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.SmallBox {
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.ExpandableMenu {
+    padding: 23px 30px 0px 30px;
+    position: fixed;
+    top: 50px;
+    z-index: 5;
+    height: 365px;
+    width: 100vw;
+    background-color: #eaeaea;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import style from './Header.module.css';
 import logo from '../../img/KEstat-icon-white.png'
 import { useAppSelector } from '../../store/hooks';
@@ -19,39 +19,124 @@ type HeaderPropsType = {
 function Header(props: HeaderPropsType) {
     let name = useAppSelector(state => state.user.userInfo.name);
     let surname = useAppSelector(state => state.user.userInfo.surname);
-    
+
     let navigate = useNavigate();
     let dispatch = useAppDispatch();
-   
-    const Box = useRef(null);
 
-    const [boxWidth, setBoxWidth] = useState(0);
-    console.log('box: ' + boxWidth)
-    // useLayoutEffect(() => {
+    const [exitActive, setExitActive] = useState(false);
 
-    //     //@ts-ignore 
-    //         //@ts-ignore
-    //         if(Box && Box.current && Box.current.offsetWidth) {
-    //             //@ts-ignore
-    //             setBoxWidth(Box.current.offsetWidth);
+    function onExitClickHandler() {
+        setExitActive(true);
+    }
 
-    //         }
-            
-    //     //@ts-ignore
-    // }, []);
+    function onYesClick() {
+        localStorage.removeItem("access_token");
+        dispatch(resetUserAC());
+        navigate('/login');
+    }
 
-    // if (boxWidth < 1100) {
-    //     return (
-    //         <div className={style.Container}>
-    //             <div className={style.RectangleBox}>
-    //                 <Rectangle1 />
-    //                 <Rectangle2 />
-    //                 <Rectangle3 />
-    //             </div>
-    //         </div>);
-    // } else {
+    function onNoClick() {
+        setExitActive(false);
+    }
+
+    function getWindowSize() {
+        const { innerWidth, innerHeight } = window;
+        return innerWidth;
+    }
+
+    const [windowWidth, setWindowWidth] = useState(getWindowSize());
+    const [menuExpanded, setMenuExpanded] = useState(false);
+
+    useEffect(() => {
+        function handleWindowResize() {
+            setWindowWidth(getWindowSize());
+        }
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
+
+    console.log("window width ", windowWidth);
+
+    if (windowWidth < 1100) {
         return (
-            <div className={style.Container} ref={Box}>
+            <div className={style.ContainerSmall}>
+                <div className={style.Wrapper}>
+                    <div className={style.SmallBox}>
+                        <div className={style.RectangleBox} onClick={() => setMenuExpanded(!menuExpanded)}>
+                            <Rectangle1 />
+                            <Rectangle2 />
+                            <Rectangle3 />
+                            <div className={style.LogoContainer}>
+                                <div onClick={() => navigate('/seller')}><Logo /></div>
+                            </div>
+                        </div>
+                    </div>
+                    {menuExpanded &&
+                        <div className={style.ExpandableMenu}>
+                            <NavLink
+                                to="/profile"
+                                className={({ isActive }) =>
+                                    isActive ? style.CabinetActive : style.Cabinet
+                                }
+                            >
+                                Личный кабинет
+                            </NavLink>
+                            <NavLink
+                                to="profile"
+                                className={({ isActive }) =>
+                                    isActive ? style.StatisticsActive : style.Statistics
+                                }
+                            >
+                                Статистика
+                            </NavLink>
+                            <NavLink
+                                to="/purchases"
+                                className={({ isActive }) =>
+                                    isActive ? style.PurchasesActive : style.Purchases
+                                }
+                            >
+                                Закупки
+                            </NavLink>
+                            <NavLink
+                                to="profile"
+                                className={({ isActive }) =>
+                                    isActive ? style.StoreroomActive : style.Storeroom
+                                }
+                            >
+                                Склад
+                            </NavLink>
+                            <div className={style.InfoContainer}>
+                                <div className={style.PersonInfoContainer}>
+                                    <div style={{ width: "fit-content", color: "#000" }}>{name} {surname}</div>
+                                </div>
+                            </div>
+                            <div className={style.StoreroomActive}>
+                                Техподдержка
+                            </div>
+                            {exitActive ?
+                                <div className={style.ExpandedRightContainer}>
+                                    <div className={style.RedText}>Вы точно желаете выйти?</div>
+                                    <div className={style.ButtonBox}>
+                                        <div className={style.Yes} onClick={onYesClick}>Да</div>
+                                        <div className={style.Yes} onClick={onNoClick}>Нет</div>
+                                    </div>
+                                </div>
+                                :
+                                <div className={style.RightContainer} onClick={onExitClickHandler}>
+                                    Выход
+                                </div>}
+                        </div>
+                    }
+                </div>
+
+            </div >);
+    } else {
+        return (
+            <div className={style.Container}>
                 <div className={style.LogoContainer}>
                     <div onClick={() => navigate('/seller')}><Logo /></div>
                 </div>
@@ -96,7 +181,7 @@ function Header(props: HeaderPropsType) {
                 </div>
             </div>
         )
-    // }
+    }
 
 
 }
