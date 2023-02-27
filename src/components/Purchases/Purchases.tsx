@@ -105,7 +105,7 @@ function Purchases() {
                         </div>
                         <div className={style.RightContainer}>
                             <div className={style.RightItem}>
-                                <Hopper />
+                                <Hopper/>
                                 <input className={style.FilterInput} type={"text"} placeholder={"_"} onChange={onTitleChangeHandler}></input>
                             </div>
                             <div className={style.RightItem}>

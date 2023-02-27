@@ -494,13 +494,13 @@ function Row(props: RowPropsType) {
             <div className={style.Row} onClick={() => setEdit(false)}>
                 <div id={style.Column1}>{props.number}</div>
                 <div id={style.Column2} onClick={() => setDateActive(true)}>
-                    {dateActive ? <input className={style.RowInput} style={{ width: "100px" }} type={"date"} value={data.date_created} onChange={onDateChangeHandler}></input>
+                    {dateActive ? <input className={style.RowInput} id={style.RowInputId1} type={"date"} value={data.date_created} onChange={onDateChangeHandler}></input>
                         : <div onClick={() => setDateActive(true)}>{data.date_created}</div>}
 
                 </div>
-                <div id={style.Column3}><input className={style.RowInput} type={"text"} value={data.title} onChange={onTitleChangeHandler}></input></div>
-                <div id={style.Column4}><input className={style.RowInput} type={"text"} value={data.customer} onChange={onCustomerChangeHandler}></input></div>
-                <div id={style.Column5}><input className={style.RowInput} type={"text"} value={data.storage} onChange={onStorageChangeHandler}></input></div>
+                <div id={style.Column3}><input className={style.RowInput} id={style.RowInputId2} type={"text"} value={data.title} onChange={onTitleChangeHandler}></input></div>
+                <div id={style.Column4}><input className={style.RowInput} id={style.RowInputId3} type={"text"} value={data.customer} onChange={onCustomerChangeHandler}></input></div>
+                <div id={style.Column5}><input className={style.RowInput} id={style.RowInputId4} type={"text"} value={data.storage} onChange={onStorageChangeHandler}></input></div>
                 <div id={style.Column6}>{props.amount}</div>
                 <div id={style.Column7}>{props.sum.toFixed(2)}</div>
                 <div id={style.Column8}>{props.factAmount}</div>
@@ -524,24 +524,7 @@ function Row(props: RowPropsType) {
             </div>
         )
 
-        // return (
-        //     <div className={style.Row} onClick={() => setEdit(true)}>
-        //         <div id={style.Column1}>{props.number}</div>
-        //         <div id={style.Column2}>{props.date}</div>
-        //         <div id={style.Column3}>{props.title}</div>
-        //         <div id={style.Column4}>{props.supplier}</div>
-        //         <div id={style.Column5}>{props.storage}</div>
-        //         <div id={style.Column6}>{props.amount}</div>
-        //         <div id={style.Column7}>{props.sum.toFixed(2)}</div>
-        //         <div id={style.Column8}>{props.factAmount}</div>
-        //         <div id={style.Column9}>{props.totalAmount.toFixed(2)}</div>
-        //         <div id={style.Column10}>{props.status}</div>
-        //         <div id={style.Column11} className={style.ButtonBox}>
-        //             <div onClick={props.callbackFn} className={style.OpenButton}>Открыть</div>
-        //             <div onClick={props.deleteFunction} className={style.OpenButton}>Удалить</div>
-        //         </div>
-        //     </div>
-        // )
+        
 
 
     }

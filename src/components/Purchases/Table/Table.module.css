@@ -12,11 +12,11 @@
     overflow-y: scroll;
 }
 
-/* @media screen and (min-width: 1920px) {
-    .Container {
+@media screen and (min-width: 1920px) {
+    .Table {
         width: calc(1920px - 52px);
     }
-} */
+}
 
 .TableBody {
     width: calc(100% - 18px);
@@ -79,18 +79,24 @@
 #Column2 {
     width: 107px;
     min-width: fit-content;
+    overflow: hidden;
 }
 #Column3 {
     width: 148px;
+    overflow-y: hidden;
     min-width: fit-content;
+    overflow: hidden;
 }
 #Column4 {
     width: 205px;
     min-width: fit-content;
+    overflow: hidden;
 }
 #Column5 {
     width: 142px;
+    overflow-y: hidden;
     min-width: fit-content;
+    overflow: hidden;
 }
 #Column6 {
     width: 149px;
@@ -110,7 +116,11 @@
 }
 #Column10 {
     width: 142px;
-    min-width: fit-content;
+    min-width: 20px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 #Column11 {
     width: 255px;
@@ -119,21 +129,21 @@
 }
 
 #StocksColumn1 {
-    width: 59px;
+    max-width: 59px;
     min-width: fit-content;
 }
 #StocksColumn2 {
-    width: 486px;
+    max-width: 486px;
     min-width: fit-content;
 }
 #StocksColumn3 {
-    width: 320px;
+    max-width: 320px;
     max-width: 320px;
     min-width: fit-content;
     /* overflow: hidden; */
 }
 #StocksColumnRow3 {
-    width: 320px;
+    max-width: 320px;
     max-width: 320px;
 
     white-space: nowrap;
@@ -147,29 +157,47 @@
     text-overflow: ellipsis; */
 }
 #StocksColumn4 {
-    width: 153px;
+    max-width: 153px;
     min-width: fit-content;
 }
 #StocksColumn5 {
-    width: 75px;
+    max-width: 75px;
     min-width: fit-content;
 }
 #StocksColumn6 {
-    width: 149px;
+    max-width: 149px;
     min-width: fit-content;
 }
 #StocksColumn7 {
-    width: 118px;
+    max-width: 118px;
     min-width: fit-content;
 }
 #StocksColumn8 {
-    width: 163px;
+    max-width: 163px;
     min-width: fit-content;
 }
 #StocksColumn9 {
-    width: 125px;
+    max-width: 125px;
     min-width: fit-content;
     border: 0;
+}
+
+#RowInputId1 {
+    width: 100px;
+    min-width: fit-content;
+}
+
+#RowInputId2 {
+    width: 140px;
+    min-width: fit-content;
+}
+#RowInputId3 {
+    width: 200px;
+    min-width: fit-content;
+}
+#RowInputId4 {
+    width: 140px;
+    min-width: fit-content;
 }
 
 .RowContainer {
@@ -238,7 +266,7 @@
     min-width: fit-content;
     display: flex;
     align-items: center;
-    
+
     gap: 60px;
     flex-direction: row;
 
@@ -334,8 +362,13 @@
     color: #c0c0c0;
 }
 .RowInput {
+    /* max-width: 100%; */
+    /* max-width: 40px; */
+    box-sizing: border-box;
+
+    display: block;
     background-color: inherit;
-    border: 0;
+    /* border: 0; */
     font-family: "TRY-finder-light";
     font-style: normal;
     font-weight: 300;
@@ -350,8 +383,9 @@
 
 #RowInput2 {
     background-color: inherit;
-    width: 100%;
+    max-width: 100%;
     min-width: fit-content;
+
     box-sizing: border-box;
     padding: 0;
 
@@ -368,6 +402,8 @@
 #RowInput4 {
     background-color: inherit;
     max-width: 153px;
+    min-width: fit-content;
+
     /* min-width: fit-content; */
     box-sizing: border-box;
     padding: 0;
@@ -386,6 +422,7 @@
 #RowInput5 {
     background-color: inherit;
     max-width: 75px;
+    min-width: fit-content;
     /* min-width: fit-content; */
     box-sizing: border-box;
     padding: 0;
@@ -419,7 +456,6 @@
     min-height: 100%;
     color: #000000;
 }
-
 
 .TableContainer {
     width: 100%;
@@ -493,7 +529,7 @@
     border-radius: 0px 8px 0px 0px;
 }
 /*  */
-#StocksAddColumn1 { 
+#StocksAddColumn1 {
     width: 45px;
     min-width: fit-content;
 }
@@ -546,3 +582,516 @@
     min-width: fit-content;
 }
 
+@media screen and (max-width: 1800px) {
+    .ButtonBox {
+        width: fit-content;
+        min-width: fit-content;
+        gap: 20px;
+        /* justify-content: space-between; */
+        
+    }
+    .ButtonBoxActive {
+        width: fit-content;
+        min-width: fit-content;
+        gap: 20px;
+        /* justify-content: space-between; */
+
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 1920px) {
+    #RowInputId1 {
+        width: 10px;
+        overflow: hidden;
+        /* min-width: fit-content; */
+    }
+
+    #RowInputId2 {
+        width: 13px;
+        overflow: hidden;
+
+        /* min-width: fit-content; */
+    }
+    #RowInputId3 {
+        width: 19px;
+        overflow: hidden;
+
+        /* min-width: fit-content; */
+    }
+    #RowInputId4 {
+        width: 13px;
+        overflow: hidden;
+
+        /* min-width: fit-content; */
+    }
+}
+
+
+
+@media screen and (min-width: 0px) and (max-width: 1200px) {
+    .Table {
+        width: calc(100vw - 30px);
+        max-height: fit-content;
+        box-sizing: border-box;
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+
+        color: #000000;
+        overflow-y: scroll;
+    }
+
+    .TableHeader {
+        height: 29px;
+        gap: 6px;
+    }
+    .TableBody {
+        width: 100%;
+        height: fit-content;
+        /* border: 1px solid black; */
+        /* overflow-y: auto; */
+        position: relative;
+        box-sizing: border-box;
+        background-color: #f5f5f5;
+        padding: 5px 8px 10px 8px;
+    }
+
+    .Table::-webkit-scrollbar {
+        display: none;
+        width: 8px;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .Table::-webkit-scrollbar-track {
+        display: none;
+        background: #f5f5f5;
+        width: 8px;
+        border-radius: 4px;
+    }
+    .Table::-webkit-scrollbar-thumb {
+        display: none;
+        width: 8px;
+        background-color: #c0c0c0;
+        border-radius: 4px;
+        border: 2px solid #f5f5f5;
+    }
+    .ColumnHeader {
+        border-right: 1px solid #c0c0c0;
+        box-sizing: border-box;
+        min-width: fit-content;
+        background-color: #f5f5f5;
+
+        height: 19px;
+
+        /* identical to box height */
+
+        color: #000000;
+    }
+
+    #Column1 {
+        width: 22px;
+        min-width: fit-content;
+    }
+    #Column2 {
+        width: 72px;
+        min-width: fit-content;
+        overflow: hidden;
+    }
+    #Column3 {
+        width: 68px;
+        overflow-y: hidden;
+        min-width: fit-content;
+        overflow: hidden;
+    }
+    #Column4 {
+        width: 123px;
+        min-width: fit-content;
+        overflow: hidden;
+    }
+    #Column5 {
+        width: 45px;
+        overflow-y: hidden;
+        min-width: fit-content;
+        overflow: hidden;
+    }
+    #Column6 {
+        width: 149px;
+        display: none;
+        min-width: fit-content;
+    }
+    #Column7 {
+        width: 149px;
+        display: none;
+        min-width: fit-content;
+    }
+    #Column8 {
+        width: 82px;
+        min-width: fit-content;
+    }
+    #Column9 {
+        width: 88px;
+        min-width: fit-content;
+    }
+    #Column10 {
+        width: 87px;
+        min-width: 20px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        /* overflow: hidden; */
+    }
+    #Column11 {
+        width: 146px;
+        min-width: fit-content;
+        border: 0;
+    }
+
+    .Row {
+        width: 100%;
+        height: 26px;
+        box-sizing: border-box;
+        border-top: 1px solid #c0c0c0;
+
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .Row > div {
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        box-sizing: border-box;
+    }
+
+    .RowInput {
+        /* max-width: 100%; */
+        /* max-width: 40px; */
+        box-sizing: border-box;
+        
+        display: block;
+        background-color: inherit;
+        /* border: 0; */
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        min-height: 100%;
+        color: #000000;
+
+        padding: 0;
+        height: 26px;
+    }
+
+    #RowInput2 {
+        background-color: inherit;
+        max-width: 100%;
+        min-width: fit-content;
+
+        box-sizing: border-box;
+        padding: 0;
+
+        height: 26px;
+        border: 0;
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        min-height: 100%;
+        color: #000000;
+    }
+    #RowInput4 {
+        background-color: inherit;
+        max-width: 153px;
+        min-width: fit-content;
+
+        /* min-width: fit-content; */
+        box-sizing: border-box;
+        padding: 0;
+        border: 0;
+
+        height: 26px;
+
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        min-height: 100%;
+        color: #000000;
+    }
+    #RowInput5 {
+        background-color: inherit;
+        max-width: 75px;
+        min-width: fit-content;
+        /* min-width: fit-content; */
+        box-sizing: border-box;
+        padding: 0;
+        border: 0;
+
+        height: 26px;
+
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        min-height: 100%;
+        color: #000000;
+    }
+    #RowInput7 {
+        background-color: inherit;
+        max-width: 118px;
+        /* min-width: fit-content; */
+        box-sizing: border-box;
+        padding: 0;
+        border: 0;
+
+        height: 26px;
+
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        min-height: 100%;
+        color: #000000;
+    }
+
+    .ButtonBox {
+        height: 26px;
+        width: 146px;
+        min-width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-direction: row;
+
+        box-sizing: border-box;
+    }
+    .ButtonBoxActive {
+        height: 26px;
+        width: 146px;
+        min-width: fit-content;
+        display: flex;
+        align-items: center;
+
+        gap: 30px;
+        flex-direction: row;
+
+        box-sizing: border-box;
+    }
+
+    #StocksColumn1 {
+        max-width: 16px;
+        min-width: fit-content;
+    }
+    #StocksColumn2 {
+        max-width: 72px;
+        min-width: fit-content;
+    }
+    #StocksColumn3 {
+        max-width: 68px;
+        min-width: fit-content;
+        /* overflow: hidden; */
+    }
+    #StocksColumnRow3 {
+        max-width: 68px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        /* overflow: hidden;
+        white-space: nowrap;
+        padding-right: 5px;
+        box-sizing: border-box;
+        text-overflow: ellipsis; */
+    }
+    #StocksColumn4 {
+        max-width: 123px;
+        min-width: fit-content;
+    }
+    #StocksColumn5 {
+        max-width: 45px;
+        min-width: fit-content;
+    }
+    #StocksColumn6 {
+        display: none;
+        max-width: 82px;
+        min-width: fit-content;
+    }
+    #StocksColumn7 {
+        display: none;
+        max-width: 88px;
+        min-width: fit-content;
+    }
+    #StocksColumn8 {
+        max-width: 163px;
+        min-width: fit-content;
+    }
+    #StocksColumn9 {
+        max-width: 125px;
+        min-width: fit-content;
+        border: 0;
+    }
+
+ 
+
+    .TableContainer {
+        width: 100%;
+        height: calc(100vh);
+        background: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+
+        justify-content: space-between;
+    }
+    
+    .TableAdd {
+        width: calc(100vw - 40px);
+        height: 100%;
+        max-height: calc(100vh - 65px);
+    
+        box-sizing: border-box;
+    
+        font-family: "TRY-finder-light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+    
+        color: #000000;
+        overflow-y: scroll;
+    }
+    
+    .TableBodyAdd {
+        width: 100%;
+        height: fit-content;
+        /* border: 1px solid black; */
+        /* overflow-y: auto; */
+        position: relative;
+        box-sizing: border-box;
+        background-color: #f5f5f5;
+        padding: 15px 8px 10px 8px;
+    }
+    
+    .TableAdd::-webkit-scrollbar {
+        display: none;
+        width: 8px;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .TableAdd::-webkit-scrollbar-track {
+        display: none;
+        background: #f5f5f5;
+        width: 8px;
+        border-radius: 4px;
+    }
+    .TableAdd::-webkit-scrollbar-thumb {
+        display: none;
+        width: 8px;
+        background-color: #c0c0c0;
+        border-radius: 4px;
+        border: 2px solid #f5f5f5;
+    }
+    
+    .TableAddHeader {
+        height: 25px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        gap: 0px;
+    
+        box-sizing: border-box;
+        background-color: #f5f5f5;
+        position: sticky;
+        z-index: 3;
+        left: 0px;
+        top: -1px;
+        border-radius: 0px 8px 0px 0px;
+    }
+    /*  */
+    #StocksAddColumn1 {
+        width: 22px;
+        min-width: fit-content;
+    }
+    /*  */
+    #StocksAddColumn2 {
+        width: 186px;
+        min-width: fit-content;
+    }
+    /*  */
+    #StocksAddColumn3 {
+        width: 143px;
+        max-width: 143px;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        padding-right: 5px;
+    }
+    /*  */
+    #StocksAddColumn4 {
+        width: 78px;
+        max-width: 78px;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+    }
+    /*  */
+    #StocksAddColumn5 {
+        width: 48px;
+        min-width: fit-content;
+    }
+    /*  */
+    #StocksAddColumn6 {
+        width: 71px;
+        min-width: fit-content;
+    }
+    /*  */
+    #StocksAddColumn7 {
+        width: 77px;
+        min-width: fit-content;
+    }
+    /*  */
+    #StocksAddColumn8 {
+        width: 108px;
+        min-width: fit-content;
+    }
+    
+}
+
+
+@media screen and (min-width: 950px) and (max-width: 1200px) {
+    #Column3 {
+        width: 98px;
+        overflow-y: hidden;
+        min-width: fit-content;
+        overflow: hidden;
+    }
+    #Column4 {
+        width: 153px;
+        min-width: fit-content;
+        overflow: hidden;
+    }
+    #Column5 {
+        width: 75px;
+        overflow-y: hidden;
+        min-width: fit-content;
+        overflow: hidden;
+    }
+}
