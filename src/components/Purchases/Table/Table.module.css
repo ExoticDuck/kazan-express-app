@@ -129,22 +129,20 @@
 }
 
 #StocksColumn1 {
-    max-width: 59px;
+    width: 59px;
     min-width: fit-content;
 }
 #StocksColumn2 {
-    max-width: 486px;
+    width: 486px;
     min-width: fit-content;
 }
 #StocksColumn3 {
-    max-width: 320px;
-    max-width: 320px;
+    width: 320px;
     min-width: fit-content;
     /* overflow: hidden; */
 }
 #StocksColumnRow3 {
-    max-width: 320px;
-    max-width: 320px;
+    width: 320px;
 
     white-space: nowrap;
     overflow: hidden;
@@ -157,29 +155,34 @@
     text-overflow: ellipsis; */
 }
 #StocksColumn4 {
-    max-width: 153px;
+    width: 153px;
     min-width: fit-content;
 }
 #StocksColumn5 {
-    max-width: 75px;
+    width: 75px;
     min-width: fit-content;
 }
 #StocksColumn6 {
-    max-width: 149px;
+    width: 149px;
     min-width: fit-content;
 }
 #StocksColumn7 {
-    max-width: 118px;
+    width: 118px;
     min-width: fit-content;
 }
 #StocksColumn8 {
-    max-width: 163px;
+    width: 163px;
     min-width: fit-content;
 }
 #StocksColumn9 {
-    max-width: 125px;
+    width: 125px;
     min-width: fit-content;
     border: 0;
+}
+
+#Xbutton {
+    height: 30px;
+    margin-right: 5px;
 }
 
 #RowInputId1 {
@@ -794,7 +797,7 @@
 
         box-sizing: border-box;
         padding: 0;
-
+        
         height: 26px;
         border: 0;
         font-family: "TRY-finder-light";
@@ -888,20 +891,20 @@
     }
 
     #StocksColumn1 {
-        max-width: 16px;
+        width: 22px;
         min-width: fit-content;
     }
     #StocksColumn2 {
-        max-width: 72px;
+        width: 186px;
         min-width: fit-content;
     }
     #StocksColumn3 {
-        max-width: 68px;
+        width: 68px;
         min-width: fit-content;
         /* overflow: hidden; */
     }
     #StocksColumnRow3 {
-        max-width: 68px;
+        width: 68px;
 
         white-space: nowrap;
         overflow: hidden;
@@ -914,31 +917,49 @@
         text-overflow: ellipsis; */
     }
     #StocksColumn4 {
-        max-width: 123px;
-        min-width: fit-content;
+        width: 78px;
+        max-width: 78px;
+        /* min-width: fit-content; */
+        overflow-y: hidden;
+        overflow: hidden;
+    }
+    #StocksColumn4 input {
+        width: 78px;
+    }
+    #StocksColumn7 input {
+        width: 78px;
+    }
+    #StocksColumn5 input {
+        width: 49px;
     }
     #StocksColumn5 {
-        max-width: 45px;
+        width: 49px;
         min-width: fit-content;
+        overflow-y: hidden;
+        overflow: hidden;
     }
     #StocksColumn6 {
-        display: none;
-        max-width: 82px;
+        
+        width: 72px;
         min-width: fit-content;
     }
     #StocksColumn7 {
-        display: none;
-        max-width: 88px;
+        
+        width: 82px;
         min-width: fit-content;
     }
     #StocksColumn8 {
-        max-width: 163px;
+        width: 88px;
         min-width: fit-content;
     }
     #StocksColumn9 {
-        max-width: 125px;
+        width: 90px;
         min-width: fit-content;
         border: 0;
+    }
+
+    #Xbutton {
+        height: 19px;
     }
 
  

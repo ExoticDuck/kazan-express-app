@@ -407,14 +407,14 @@
     }
 
     .TabExpandedLeft {
-        width: 329px;
+        width: 217px;
         height: 35px;
         background: #f5f5f5;
         border-radius: 8px 8px 0px 0px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 30px;
+        gap: 10px;
 
         font-family: "TRY-finder-light";
         font-style: normal;
@@ -424,14 +424,14 @@
         color: #000000;
     }
     .TabExpandedRight {
-        width: 344px;
+        width: 243px;
         height: 35px;
         background: #f5f5f5;
         border-radius: 8px 8px 0px 0px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 30px;
+        gap: 10px;
 
         font-family: "TRY-finder-light";
         font-style: normal;
@@ -443,7 +443,7 @@
 
     .ExitToEnvoices {
         height: 35px;
-        width: 161px;
+        width: 125px;
         display: flex;
         align-items: center;
         justify-content: center;

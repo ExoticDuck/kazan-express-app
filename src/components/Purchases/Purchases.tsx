@@ -11,6 +11,7 @@ import moment from 'moment';
 import { addInvoiceStockAC, clearAddedInvoicesAC, deleteInvoiceStocksAC, setDateFilterAC } from '../../store/reducers/PurchasesReducer';
 import { useDispatch } from 'react-redux';
 import { setErrorAC } from '../../store/reducers/AppReducer';
+import Banner from '../Banner/Banner';
 
 function Purchases() {
 
@@ -81,6 +82,7 @@ function Purchases() {
     return (
         <div className={style.Container}>
             <Header />
+            <Banner />
             <div className={style.BoxContainer}>
                 {activeTab === 5 || activeTab === 6 ?
                     <div className={style.Navigation}>

@@ -685,7 +685,7 @@ function EditableRow(props: EditableRowPropsType) {
                 {
                     active ?
                         <>
-                            <CancelIcon style={{height: "30px", marginRight: "5px"}} onClick={onCancel}/>
+                            <CancelIcon onClick={onCancel} id={style.Xbutton}/>
                             <div onClick={onClickHandler} style={{ color: active ? "limegreen" : "" }}>{active ? props.type === "added" ? "Добавить" : "Обновить" : "Удалить"}</div>
                         </>
                         :
